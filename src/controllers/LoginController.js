@@ -1,4 +1,4 @@
-const LoginModel = require("../models/LoginModel")
+
 exports.loginIndex = (req,res) => {
     res.render('Login');    
 } 
