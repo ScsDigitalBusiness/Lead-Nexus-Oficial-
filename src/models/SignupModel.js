@@ -26,9 +26,30 @@ class SignUp {
  
       if(this.body.password < 3 )this.errors.push("Senha incorreta, precistar ter no minimo 4 caraceters");  
    } 
-   register()  {
+   async register()  { 
+      this.validation();  
+      if(this.errors.length ===  0) {  
+         try {
+            const user =  await  SignupModel.create(this.body);    
+
+         }catch(e)  {
+            throw new Error(e); 
+
+         }  
+      }
 
    } 
+
+   async login() {
+      this.user =  await  SignupModel.findOne({email:this.body.email}); 
+      console.log(this.user); 
+      if(!this.user) {
+         this.errors.push("User não existe"); 
+      }   
+
+    
+
+   }
    cleanUP() {
       for(let key in this.body) {
          if( typeof this.body[key]!== "string") {
@@ -39,7 +60,7 @@ class SignUp {
 }
 
 
-module.exports= SignupModel; 
+module.exports= SignUp; 
 
 
 
