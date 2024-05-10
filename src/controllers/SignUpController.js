@@ -1,7 +1,8 @@
+const SignUpModel = require("../models/SignupModel")
 exports.signupIndex = (req,res) =>{
    res.render("singup");    
 } 
 
-exports.signupIndex =(req,res) =>{
-    
+exports.signupRegister =(req,res) =>{
+    res.send(SignUpModel.create(req.body)); 
 }

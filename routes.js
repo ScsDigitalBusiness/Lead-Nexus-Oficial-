@@ -10,6 +10,6 @@ router.post("login/register/",loginRegister)
 //Singup-page : 
 
 router.get('/signup/index',signupIndex)
-router.post("/signup/register/",signupRegister); 
+router.post("/signup/index/register/",signupRegister); 
 
 module.exports = router; 
