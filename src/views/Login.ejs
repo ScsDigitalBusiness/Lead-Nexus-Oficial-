@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/main.css" /> 
+     <link rel="shortcut icon" href="/utilites/favicon.ico" type="image/x-icon">
+    <title>Entrar Lead Nexus</title>
+  </head>
+  <body>
+    <div id="spiner-area" class="spiner-area">
+      <span class="loader"></span>
+    </div>
+    <section class="principal-home">
+      <section class="section__1">
+        <div class="text__section1">
+          <h2>Seja Bem-vindo</h2>
+          <p>
+            Entre com sua conta logada no sistema, caso não tenha, entre em
+            contato com o desenolvedor Thiago Duarte (31) 9 7508-5922
+          </p>
+        </div>
+      </section>
+      <div class="img-area">
+        <img src="/utilites/artes.svg" alt="" />
+      </div>
+      <section class="section__2">
+        <div class="text__Form">
+          <h2>Entrar com conta</h2>
+          <small> Entre com sua conta de registro:</small>
+        </div>
+        <div class="form-area"  >
+          <form class="forms" action="/login/register/" method="post">
+            <div class="input-area">
+              <img src="/utilites/email.svg" alt="" /><input
+                id="inputEmail"
+                required
+                type="email"
+                name="email"
+                placeholder="E-mail"
+                autocomplete="email"
+              />
+            </div> 
+            <small id="labelEmail">
+              
+            </small>
+            <div class="input-area">
+              <img src="/utilites/pass.svg" alt="" />
+              <input
+                required
+                id="inputPass"
+                type="password"
+                name="nome"
+                placeholder="Senha"
+                autocomplete="new-password"
+              />
+            </div> 
+            <small id="labelPass">
+             
+            </small>
+            <button id="login-btn" class="button" type="button">ENTRAR</button>
+          </form>
+        </div>
+      </section>
+    </section>
+  </body>
+  <script type="module"  src="/js/main.js"></script>
+  <script src="/js/animations.js"></script>
+</html>
