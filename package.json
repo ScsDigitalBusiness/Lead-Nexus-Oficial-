@@ -1,7 +1,6 @@
 {
   "name": "lead-nexus-software",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js --ignore public"
@@ -15,5 +14,14 @@
     "express": "^4.19.2",
     "mongoose": "^8.3.4",
     "nodemon": "^3.1.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ScsDigitalBusiness/Lead-Nexus-Oficial-.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ScsDigitalBusiness/Lead-Nexus-Oficial-/issues"
+  },
+  "homepage": "https://github.com/ScsDigitalBusiness/Lead-Nexus-Oficial-#readme",
+  "description": ""
 }

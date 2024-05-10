@@ -1,6 +1,6 @@
 const express = require('express');
 const { index } = require('./src/controllers/HomeControllers'); 
-const {loginIndex} = require("./src/controllers/LoginController"); 
+const {loginRegister, loginIndex} = require("./src/controllers/LoginController"); 
 const router = express.Router();
 
 router.get("/", index);
