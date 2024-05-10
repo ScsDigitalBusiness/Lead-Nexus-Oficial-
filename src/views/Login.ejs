@@ -30,7 +30,7 @@
           <small> Entre com sua conta de registro:</small>
         </div>
         <div class="form-area"  >
-          <form class="forms" action="login/index/register/" method="post">
+          <form class="forms" action="/login/auth/" method="post">
             <div class="input-area">
               <img src="/utilites/email.svg" alt="" /><input
                 id="inputEmail"
@@ -50,7 +50,7 @@
                 required
                 id="inputPass"
                 type="password"
-                name="nome"
+                name="password"
                 placeholder="Senha"
                 autocomplete="new-password"
               />
@@ -58,7 +58,9 @@
             <small id="labelPass">
              
             </small>
-            <button id="login-btn" class="button" type="button">ENTRAR</button>
+            <button id="login-btn" class="button" type="submit">ENTRAR</button> 
+
+            <a href="/signup/index">Criar conta</a>
           </form>
         </div>
       </section>

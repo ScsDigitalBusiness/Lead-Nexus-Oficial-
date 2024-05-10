@@ -1,15 +1,17 @@
 const express = require('express');
 const { index } = require('./src/controllers/HomeControllers'); 
-const {loginRegister, loginIndex} = require("./src/controllers/LoginController");  
-const {signupIndex,signupRegister, login} = require ("./src/controllers/SignUpController")
+
+const {loginIndex, signupIndex,signupRegister, login} = require ("./src/controllers/LoginAndSignUpController")
 const router = express.Router();
 
-router.get("/", index);
-router.get("/login/index", loginIndex);
-router.post("login/index/register/",login)  
+//Login and Singup Page
+router.get("/", loginIndex);
+router.post("/login/auth/",login)  
 
 
 router.get('/signup/index',signupIndex)
-router.post("/signup/index/register/",signupRegister); 
+router.post("/signup/register/",signupRegister);  
+
+router.get("/home/index",index); 
 
 module.exports = router; 

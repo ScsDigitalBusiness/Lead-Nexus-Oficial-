@@ -41,7 +41,7 @@ class SignUp {
    } 
 
    async login() {
-      this.user =  await  SignupModel.findOne({email:this.body.email}); 
+      this.user =  await  SignupModel.findOne({email:this.body.email, password: this.body.password} ); 
       console.log(this.user); 
       if(!this.user) {
          this.errors.push("User não existe"); 

@@ -1,22 +1,22 @@
-const SignUp = require("../models/SignupModel")
+const SignUp = require("../models/SignupModelAndLoginModel")
 exports.signupIndex = (req,res) =>{
    res.render("singup");    
 } 
-
+  
+exports.loginIndex = (req,res) =>{
+   res.render("Login"); 
+}
 exports.signupRegister = async (req,res) =>{
     const singUp = new SignUp(req.body);  
      await  singUp.register(); 
-     res.send(singUp.user); 
+     res.redirect("/")
 
 
         
 } 
 exports.login = async (req,res) =>{
   const singup = new SignUp(req.body); 
-  if(singup.errors.length ===0) {
-      await singup.login(); 
-
-  } 
-  res.send(singup.errors); 
+   await singup.login();  
+   res.redirect("/home/index"); 
 
 }
