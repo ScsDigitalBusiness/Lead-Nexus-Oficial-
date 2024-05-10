@@ -16,8 +16,8 @@
         <div class="text__section1">
           <h2>Seja Bem-vindo</h2>
           <p>
-            Entre com sua conta logada no sistema, caso não tenha, entre em
-            contato com o desenolvedor Thiago Duarte (31) 9 7508-5922
+            Crie sua conta para acessar o sistema, caso ocorra algum problema, entre em
+            contato com o desenvolvedor Thiago Duarte (31) 9 7508-5922
           </p>
         </div>
       </section>
@@ -26,11 +26,25 @@
       </div>
       <section class="section__2">
         <div class="text__Form">
-          <h2>Entrar com conta</h2>
-          <small> Entre com sua conta de registro:</small>
+          <h2>Criar Conta</h2>
+          <small> Criar sua conta de registro:</small>
         </div>
         <div class="form-area"  >
           <form class="forms" action="/login/register/" method="post">
+            <div class="input-area">
+                <img src="/utilites/user.svg" alt="" /><input
+                  id="inputNome"
+                  required
+                  type="text"
+                  name="nome"
+                  placeholder="Nome"
+                  autocomplete="nome"
+                />
+              </div> 
+              <small id="labelNome">
+                
+              </small>
+  
             <div class="input-area">
               <img src="/utilites/email.svg" alt="" /><input
                 id="inputEmail"
@@ -58,7 +72,23 @@
             <small id="labelPass">
              
             </small>
-            <button id="login-btn" class="button" type="button">ENTRAR</button>
+
+            <div class="input-area">
+                <img src="/utilites/pass.svg" alt="" />
+                <input
+                  required
+                  id="inputConfirPass"
+                  type="password"
+                  name="confirm-password"
+                  placeholder="Confirme a Senha"
+                  autocomplete="confirm-password"
+                />
+              </div> 
+              <small id="labelConfirmPass">
+
+              </small>
+
+            <button id="login-btn" class="button" type="button">CRIAR CONTA</button>
           </form>
         </div>
       </section>
