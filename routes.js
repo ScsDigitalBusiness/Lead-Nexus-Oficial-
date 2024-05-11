@@ -1,5 +1,5 @@
 const express = require('express');
-const { index } = require('./src/controllers/HomeControllers'); 
+const { index,createLead } = require('./src/controllers/HomeControllers'); 
 
 const {loginIndex, signupIndex,signupRegister, login} = require ("./src/controllers/LoginAndSignUpController")
 const router = express.Router();
@@ -11,7 +11,8 @@ router.post("/login/auth/",login)
 
 router.get('/signup/index',signupIndex)
 router.post("/signup/register/",signupRegister);  
-
-router.get("/home/index",index); 
-
+//rota home
+router.get("/home/index/",index);  
+//ppost do formulário
+router.post("/home/leadcreate/",createLead);
 module.exports = router; 

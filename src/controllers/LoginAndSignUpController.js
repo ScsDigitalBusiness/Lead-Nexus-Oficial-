@@ -17,6 +17,6 @@ exports.signupRegister = async (req,res) =>{
 exports.login = async (req,res) =>{
   const singup = new SignUp(req.body); 
    await singup.login();  
-   res.redirect("/home/index"); 
+   res.redirect("/home/index/"); 
 
 }

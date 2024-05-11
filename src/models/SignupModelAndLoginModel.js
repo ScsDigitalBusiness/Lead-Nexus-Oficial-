@@ -10,6 +10,7 @@ const SignupSchema=   mongoose.Schema({
    
 
 }); 
+
 const SignupModel=  mongoose.model("SignUp",SignupSchema); 
 
 
