@@ -26,9 +26,13 @@ class Leads {
     } 
 
    async createLead() { 
-     if(!validator.isEmail(this.body.email)) this.errors.push("Email Inválido !");  
+     if(!validator.isEmail(this.body.email)) this.errors.push("Email Inválido !");   
+     
+
       this.lead = await LeadModel.create(this.body); 
     } 
+    
+    
    
 }  
 exports.Leads = Leads; 

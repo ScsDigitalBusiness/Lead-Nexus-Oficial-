@@ -19,14 +19,21 @@ class SignUp {
        this.body = body;    
        this.errors= []; 
        this.user = null; 
-      } 
-   validation() {
-      this.cleanUP(); 
-      if(!validator.isEmail(this.body.email)) this.errors.push("E-mail incorreto !");  
+      }  
 
+    async userExist() {
+      const existUser = await SignupModel.findOne({email:this.body.email});  
+      if(existUser) this.errors.push("Usuário já existe !"); 
+      
+   } 
+   validation()  {
+      this.cleanUP(); 
+       if(!validator.isEmail(this.body.email)) this.errors.push("E-mail incorreto !");  
+       this.userExist();
  
       if(this.body.password < 3 )this.errors.push("Senha incorreta, precistar ter no minimo 4 caraceters");  
-   } 
+   }  
+   //Regsiter Method 
    async register()  { 
       this.validation();  
       if(this.errors.length ===  0) {  
@@ -40,7 +47,7 @@ class SignUp {
       }
 
    } 
-   
+    //Login method
    async login() {
       this.user =  await  SignupModel.findOne({email:this.body.email, password: this.body.password} );  
        if(!this.user) {

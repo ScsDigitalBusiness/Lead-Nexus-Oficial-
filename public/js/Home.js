@@ -5,30 +5,15 @@ import { GetData } from "./modules/objects.js";
 import { SearchBar } from "./modules/searchBar-module.js";
 import { URL_IBGE_UF_API } from "./modules/keys.js";
 
-const localStorageKey = "user-dados";
 
-const Localimg = "user-img";
 
-function showUserDados() {
-  /*ESSA FUNÇÃO MOSTRA OS DADOS QUE ESTÃO ARMAZENADOS EM OUTRO LOCAL STORAGE DE OUTRA PÁGINA,  
-FOI PUXADO ESSES DADOS E INSERIDO DO HEADER DO HTML DA PÁGINA ATUAL*/
-  let profileImage = localStorage.getItem(Localimg);
-  document.getElementById("user-foto").src = profileImage;
 
-  let db_LocalStorage = JSON.parse(
-    localStorage.getItem(localStorageKey) || "[]"
-  );
 
-  for (let i = 0; i < db_LocalStorage.length; i++) {
-    $(".name-user").html(db_LocalStorage[i]["nome"]);
-  }
-}
 
-showUserDados();
 
 //MOSTRANDO OS DADOS DA API DE MATERIAIS NO FORMS:
 //Pegamos os dados da API Colaborators
-Get_APIS_For_Materials.GetApiColab("responsavel");
+//Get_APIS_For_Materials.GetApiColab("responsavel");
 
 //Método ShowMaterial() mostra os materiais de uma API externa.
 

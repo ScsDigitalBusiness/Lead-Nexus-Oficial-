@@ -18,4 +18,10 @@ exports.createLead = (req, res) => {
 
     res.redirect("/home/index/");
 
+} 
+
+exports.logout = (req,res) => {
+    req.session.destroy(); 
+    res.redirect("/"); 
+     
 }

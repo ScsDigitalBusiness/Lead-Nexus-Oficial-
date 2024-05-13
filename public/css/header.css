@@ -77,9 +77,7 @@
 .user-foto {
   clip-path: circle();
   padding: 1vh; 
-  
-  height: 12vh;
-  background-color: black;
+  height: 9vh;
 }
 .logo img {
   height: 100%;
