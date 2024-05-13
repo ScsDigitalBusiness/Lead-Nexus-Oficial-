@@ -40,11 +40,10 @@ class SignUp {
       }
 
    } 
-
+   
    async login() {
-      this.user =  await  SignupModel.findOne({email:this.body.email, password: this.body.password} ); 
-      console.log(this.user); 
-      if(!this.user) {
+      this.user =  await  SignupModel.findOne({email:this.body.email, password: this.body.password} );  
+       if(!this.user) {
          this.errors.push("User não existe"); 
       }   
 
@@ -60,8 +59,12 @@ class SignUp {
    }
 }
 
+exports.getAllUsers = async  () =>{
+   const allUsers = await SignupModel.find(); 
+   return allUsers;  
+}
+exports.SignUp = SignUp;  
 
-module.exports= SignUp; 
 
 
 

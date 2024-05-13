@@ -1,22 +1,32 @@
-const SignUp = require("../models/SignupModelAndLoginModel")
-exports.signupIndex = (req,res) =>{
-   res.render("singup");    
-} 
-  
-exports.loginIndex = (req,res) =>{
-   res.render("Login"); 
+const { Leads, getLeads } = require("../models/LeadModel");
+const { SignUp, getAllUsers } = require("../models/SignupModelAndLoginModel")
+exports.signupIndex = (req, res) => {
+   res.render("singup");
 }
-exports.signupRegister = async (req,res) =>{
-    const singUp = new SignUp(req.body);  
-     await  singUp.register(); 
-     res.redirect("/")
+
+exports.loginIndex = async (req, res) => {
+   const signup = new SignUp(req.body);
+   const allUsers = await getAllUsers();
+   const leads = await getLeads();
+   if (req.session.user) {
+      return res.render('Home', { leads, allUsers });
+   }
+   res.render("Login");
+}
+exports.signupRegister = async (req, res) => {
+   const singUp = new SignUp(req.body);
+   await singUp.register();
+   res.redirect("/")
 
 
-        
-} 
-exports.login = async (req,res) =>{
-  const singup = new SignUp(req.body); 
-   await singup.login();  
-   res.redirect("/home/index/"); 
 
 }
+exports.login = async (req, res) => {
+   const singup = new SignUp(req.body);
+   await singup.login();
+   req.session.user = singup.user;
+   res.redirect("/home/index");
+
+
+}
+

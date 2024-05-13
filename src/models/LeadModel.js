@@ -2,19 +2,19 @@ const  mongoose =  require('mongoose');
 const validator = require('validator'); 
 
 const LeadSchema  =  mongoose.Schema({
-     name: {type : String, require: true}, 
-     tel: {type:String, require:true}, 
-     email:{type:String, require:true}, 
-     typeLead: {type: String, require: true}, 
-     uf: {type:String, require:true}, 
-     city: {type:String, require :true}, 
-     date: {type:String, require:true}, 
-     material: {type:String, require:true}, 
-     typeOfMaterial: {type : String, require:true}, 
-     process: {type:String, require: true}, 
-     colaborator: {type:String, require: true} 
+     name: { type : String, required: true}, 
+     tel: {type:String, required:true}, 
+     email:{type:String, required:true}, 
+     typeLead: {type: String, required: true}, 
+     uf: {type:String, required:true}, 
+     city: {type:String, required :true}, 
+     date: {type:String, required:true}, 
+     material: {type:String, required:true}, 
+     typeOfMaterial: {type : String, required:true}, 
+     process: {type:String, required: true}, 
+     colaborator: {type:String, required: true} 
 
-}) 
+});
  
 const  LeadModel = mongoose.model("Leads",LeadSchema); 
 

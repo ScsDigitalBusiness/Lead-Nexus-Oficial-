@@ -1,7 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose')
 const router = require('./routes');
-const path = require('path');
+const path = require('path');  
+const session = require('express-session');  
+const MongoStore = require('connect-mongo');  
+const flash  = require('connect-flash');  
+ 
+const globalMiddleware = require ('./src/middlewares/middlewares'); 
 const app = express();
 const connectionURL = "mongodb+srv://xdevelopment:X331400X@lead-nexus.qfz22lk.mongodb.net/?retryWrites=true&w=majority&appName=Lead-Nexus";
 const port = 3000;
@@ -17,15 +22,29 @@ mongoose.connect(connectionURL).then(() => {
 })
 
 app.on("Connected!", () => {
-    app.listen(3000, () => {
+    app.listen(port, () => {
         console.log("Acesse : http://localhost:3000");
     })
 })
 
+ 
 
+//sessions : 
+const sessionOptions = session({
+    secret : "Project Sessions", 
+    store: MongoStore.create({mongoUrl: connectionURL}), 
+    resave: false, 
+    saveUninitialized:false, 
+    cookie : {
+        maxAge: 1000 * 60 * 60 *7, 
+        httpOnly: true
+    }
+})
 
+app.use(sessionOptions); 
+app.use(flash()); 
+app.use(globalMiddleware); 
 app.use(router);
-
 
 app.set('views', path.resolve(__dirname, "src", "views"));
 app.set('view engine', 'ejs'); 

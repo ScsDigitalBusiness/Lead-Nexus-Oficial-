@@ -83,7 +83,7 @@ export class Get_APIS {
   }
 
   GetApiColab(id) {
-    $(`#${id}`).html(`<option value="Não Informado" >
+    $(`#$`).html(`<option value="Não Informado" >
         Não Informado
       </option>`);
     try {
