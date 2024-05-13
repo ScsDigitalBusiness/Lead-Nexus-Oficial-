@@ -9,44 +9,8 @@
   background-color: white; 
   overflow-x: scroll;
 }
-#area-leads {
-  border: none;
-  margin: 0;
-  width: 90vw;
-  outline: none;
-  border-collapse: collapse;
-  background-color: #eeeeee;
-  height: 10%;
-  border-radius: 2vh;
-}
-#area-leads thead {
-  background-color: #c4c4c4;
-  border-radius: 2vh;
-}
-#border-radius-top-right {
-  border-top-right-radius: 2vh;
-}
-#border-radius-top-left {
-  border-top-left-radius: 2vh;
-}
 
-#area-leads th {
-  border-bottom: 1px solid #929292;
-  background-color: #b8b8b8;
-  color: white;
-  border: none;
-  padding: 2vh;
-}
-.th-icons {
-  height: 3vh;
-}
-#area-leads td {
-  text-align: center;
-  padding: 0.7vh;
-  margin: 0;
-  border: none;
-  color: rgb(73, 73, 73);
-}
+
 #nome-lead {
   display: flex;
   align-items: center;

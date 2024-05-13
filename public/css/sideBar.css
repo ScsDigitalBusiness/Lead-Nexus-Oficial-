@@ -30,7 +30,7 @@
 .home-img:hover,
 .lead-icon:hover,
 .crm-img:hover,
-.senting-img:hover {
+.senting-img:hover, .exit-img {
   filter: grayscale(1);
   transform: scale(1.05);
 }
@@ -40,4 +40,11 @@
 #sentings {
   position: relative;
   top: 35%;
+} 
+#exit {
+  position: relative;
+  top: 33%;
+}
+#exit img {
+  height: 3.3vh;
 }
