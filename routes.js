@@ -1,5 +1,5 @@
 const express = require('express');
-const { index,createLead,logout } = require('./src/controllers/HomeControllers'); 
+const { index,createLead,logout,deleteLead,editLead,upate} = require('./src/controllers/HomeControllers'); 
 
 const {loginIndex, signupIndex,signupRegister, login} = require ("./src/controllers/LoginAndSignUpController")
 const router = express.Router();
@@ -15,7 +15,14 @@ router.post("/signup/register/",signupRegister);
 router.get("/home/index/",index);  
 //ppost do formulário
 router.post("/home/leadcreate/",createLead); 
-//logout 
+//delete 
+router.get("/home/delete/:id",deleteLead);  
+//edit 
+router.get("/home/edit/:id",editLead);  
+router.post("/home/update/:id",upate)
+
+//logout  
+
 
 router.get("/home/index/logout",logout); 
 module.exports = router; 

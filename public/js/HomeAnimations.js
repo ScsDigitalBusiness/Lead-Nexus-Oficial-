@@ -52,4 +52,4 @@ $(".sell-flux").click(() => {
  
 setTimeout(() => { 
   document.getElementById("spiner-area").remove(); 
-}, 9000);
+}, 500);

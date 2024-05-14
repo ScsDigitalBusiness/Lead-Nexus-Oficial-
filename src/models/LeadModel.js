@@ -31,8 +31,12 @@ class Leads {
 
       this.lead = await LeadModel.create(this.body); 
     } 
-    
-    
+
+    async edit(id) {  
+    this.lead = await LeadModel.findByIdAndUpdate(id,this.body, {new:true});
+
+    }
+   
    
 }  
 exports.Leads = Leads; 
@@ -40,4 +44,13 @@ exports.Leads = Leads;
 exports.getLeads = async  () =>  {
     const leads = await LeadModel.find(); 
     return leads; 
+} 
+exports.getLeadsById =  async (id) =>{
+     const lead = await LeadModel.findById(id);  
+     return lead; 
+} 
+
+exports.deleteLead = async  (id) =>{
+      const deleted =   await LeadModel.findByIdAndDelete(id); 
+      return deleted; 
 }
