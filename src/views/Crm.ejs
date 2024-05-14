@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/crm.css" /> 
     <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/sidebar.css"> 
+    <link rel="stylesheet" href="/css/sideBar.css"> 
     <link rel="stylesheet" href="/css/crm-principal-content.css"> 
     <link
       rel="shortcut icon"
@@ -29,13 +29,13 @@
         </div>
         <div class="user-dados">
           <div class="user-name">
-            <p class="Username">Olá, <span class="name-user"></span></p>
+            <p class="Username">Olá, <span class="name-user"><%=user.nome %></span></p>
           </div>
           <a href="setings-page/index.html">
             <img
               id="user-foto"
               class="user-foto"
-              src="/utilites/user.png"
+              src="/utilites/user-photo.png"
               alt=""
             />
           </a>
@@ -82,32 +82,34 @@
                 <img src="/utilites/no-contat.svg" alt="" />
               </div>
             </div>
+            <% leads.forEach(lead=> { %>
+              <div class="lead" draggable="true">
+                <div class="indenfication">
+                  <div class="lead-foto">
+                    <img src="/utilites/user.png" alt="" />
+                  </div>
+                  <div class="lead-name">
+                    <p class="name-lead"> <%=  lead.name %> </p>
+                  </div>
+                </div>
+                <div class="infos">
+                  <div class="tel">
+                    <div class="tel-icon"><img src="/utilites/tell.svg" alt=""></div>
+                    <div class="tel-area-text">
+                      <p id="Tell" class="Tell"> <%=  lead.tel %></p>
+                    </div>
+                  </div>
+                  <div class="mail">
+                    <div class="mail-icon"><img src="/utilites/email.png" alt=""></div>
+                    <div class="mail-area-text">
+                      <p id="Mail" class="mail"> <%= lead.email%></p>
+                      <p> 
+                    </div>
+                  </div>
+                </div>
+              </div> 
+           <% }) %>
 
-            <!-- <div class="lead" draggable="true">
-              <div class="indenfication">
-                <div class="lead-foto">
-                  <img src="/utilites/user.png" alt="" />
-                </div>
-                <div class="lead-name">
-                  <p class="name-lead">Thiago duare</p>
-                </div>
-              </div>
-              <div class="infos">
-                <div class="tel">
-                  <div class="tel-icon"><img src="/utilites/tell.svg" alt=""></div>
-                  <div class="tel-area-text">
-                    <p id="Tell" class="Tell">31975085922</p>
-                  </div>
-                </div>
-                <div class="mail">
-                  <div class="mail-icon"><img src="/utilites/email.png" alt=""></div>
-                  <div class="mail-area-text">
-                    <p id="Mail" class="mail">thiagoduatye@gmail.com</p>
-                    <p> 
-                  </div>
-                </div>
-              </div>
-            </div> --->
           </div>
           <div id="contatado" dropzone="move" class="contatado">
             <div class="area-status">
