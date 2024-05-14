@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/crm.css" /> 
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/sidebar.css"> 
+    <link rel="stylesheet" href="/css/principal-content.css"> 
+    <link
+      rel="shortcut icon"
+      href="/utilites/favicon.ico"
+      type="image/x-icon"
+    />
+    <title>CRM</title>
+  </head>
+  <body> 
+    <div id="spiner-area" class="spiner-area">
+      <span class="loader"></span>
+    </div>
+    <main class="content">
+      <header class="cabecalho">
+        <div class="notification-area">
+          <div class="notification-img">
+            <img src="/utilites/notifications-icon]].svg" alt="" />
+          </div>
+          <div class="notification-text">Notificações</div>
+          <div class="number-of-notifications">4</div>
+        </div>
+        <div class="user-dados">
+          <div class="user-name">
+            <p class="Username">Olá, <span class="name-user"></span></p>
+          </div>
+          <a href="setings-page/index.html">
+            <img
+              id="user-foto"
+              class="user-foto"
+              src="/utilites/user.png"
+              alt=""
+            />
+          </a>
+        </div>
+      </header>
+      <div class="slidebar">
+        <div class="logo">
+          <img src="/utilites/logo.svg" alt="" />
+        </div>
+        <ul class="links-bar">
+          <li>
+            <a href="dash-page/dash.html"
+              ><img class="home-img" src="/utilites/apps-dash.svg" alt=""
+            /></a>
+          </li>
+          <li>
+            <a href="#"
+              ><img class="crm-img" src="/utilites/crm-selected.svg" alt=""
+            /></a>
+          </li>
+          <li>
+            <a href="index.html"
+              ><img class="lead-icon" src="/utilites/lead-icon-svg.svg" alt=""
+            /></a>
+          </li>
+          <li id="sentings" >
+            <a href="setings-page/index.html">
+              <img
+                class="senting-img"
+                src="/utilites/settings.svg"
+                alt=""
+              />
+            </a>
+          </li>
+        </ul>
+      </div>
+      <main class="main-content">
+        <!--seção dos users-->
+        <section class="lead-area">
+          <div id="noContato" dropzone="move" class="noContato">
+            <div class="area-status">
+              <h2>Não Contatado</h2>
+              <div class="icon">
+                <img src="/utilites/no-contat.svg" alt="" />
+              </div>
+            </div>
+
+            <!-- <div class="lead" draggable="true">
+              <div class="indenfication">
+                <div class="lead-foto">
+                  <img src="/utilites/user.png" alt="" />
+                </div>
+                <div class="lead-name">
+                  <p class="name-lead">Thiago duare</p>
+                </div>
+              </div>
+              <div class="infos">
+                <div class="tel">
+                  <div class="tel-icon"><img src="/utilites/tell.svg" alt=""></div>
+                  <div class="tel-area-text">
+                    <p id="Tell" class="Tell">31975085922</p>
+                  </div>
+                </div>
+                <div class="mail">
+                  <div class="mail-icon"><img src="/utilites/email.png" alt=""></div>
+                  <div class="mail-area-text">
+                    <p id="Mail" class="mail">thiagoduatye@gmail.com</p>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+          <div id="contatado" dropzone="move" class="contatado">
+            <div class="area-status">
+              <h2>Contatado</h2>
+              <div class="icon">
+                <img src="/utilites/contat.svg" alt="" />
+                <div id="area-append" class="area-append"></div>
+              </div>
+            </div>
+          </div>
+          <div id="vendido" dropzone="move" class="vendido">
+            <div class="area-status">
+              <h2>Vendido</h2>
+              <div class="icon">
+                <img src="/utilites/sale.svg" alt="" />
+                <div id="area-append" class="area-append"></div>
+              </div>
+            </div>
+          </div>
+          <div id="pos-venda" dropzone="move" class="pos-venda">
+            <div class="area-status">
+              <h2>Pós Venda</h2>
+              <div class="icon">
+                <img src="/utilites/pos.svg" alt="" />
+                <div id="area-append" class="area-append"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </main>
+    <script src="/js/code.jquery.com_jquery-3.7.1.js"></script>
+    <script src="/js/profile-foto-laod.js"></script>
+    <script src="/js/show-lead-data.js"></script>
+    <script src="/js/animations.js"></script>
+  </body>
+</html>
