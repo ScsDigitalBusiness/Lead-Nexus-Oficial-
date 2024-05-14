@@ -1,7 +1,8 @@
 const express = require('express'); 
 
 const { index,createLead,logout,deleteLead,editLead,upate} = require('./src/controllers/HomeControllers'); 
-const {loginIndex, signupIndex,signupRegister, login} = require ("./src/controllers/LoginAndSignUpController")
+const {loginIndex, signupIndex,signupRegister, login} = require ("./src/controllers/LoginAndSignUpController"); 
+const {indexCRM} = require ("./src/controllers/CrmControllers"); 
 const {indexDashboard}  = require ("./src/controllers/DashboardControllers")
 const router = express.Router();
 
@@ -29,5 +30,9 @@ router.get("/home/index/logout",logout);
 //DASHBOARD ROUTES 
 router.get("/dashboard/index/",indexDashboard); 
 
+
+//CRM ROUTES 
+
+router.get("/crm/index/",indexCRM); 
 
  module.exports = router; 
