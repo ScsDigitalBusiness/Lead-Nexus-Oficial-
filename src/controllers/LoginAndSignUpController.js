@@ -7,7 +7,7 @@ exports.signupIndex = (req, res) => {
 
 exports.loginIndex = async (req, res) => { 
    const signup = new SignUp(req.body);
-   req.flash("error",signup.errors);
+  // req.flash("error",signup.errors);
    const allUsers = await getAllUsers();
    const leads = await getLeads();
    if (req.session.user) {
