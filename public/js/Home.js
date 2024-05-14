@@ -75,7 +75,7 @@ Form.Button().addEventListener("click", () => {
 //Search Bar
 
 const table = {
-  lines: () => document.getElementsByClassName("leads-person"),
+  lines: () => document.getElementsByTagName("tr"),
   coluns: () => document.getElementsByTagName("td"),
 };
 

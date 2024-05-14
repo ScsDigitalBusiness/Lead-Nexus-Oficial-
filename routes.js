@@ -1,7 +1,8 @@
-const express = require('express');
-const { index,createLead,logout,deleteLead,editLead,upate} = require('./src/controllers/HomeControllers'); 
+const express = require('express'); 
 
+const { index,createLead,logout,deleteLead,editLead,upate} = require('./src/controllers/HomeControllers'); 
 const {loginIndex, signupIndex,signupRegister, login} = require ("./src/controllers/LoginAndSignUpController")
+const {indexDashboard}  = require ("./src/controllers/DashboardControllers")
 const router = express.Router();
 
 //Login and Singup Page
@@ -10,7 +11,8 @@ router.post("/login/auth/",login)
 
 
 router.get('/signup/index',signupIndex)
-router.post("/signup/register/",signupRegister);  
+router.post("/signup/register/",signupRegister);   
+//HOME ROUTES 
 //rota home
 router.get("/home/index/",index);  
 //ppost do formulário
@@ -22,7 +24,10 @@ router.get("/home/edit/:id",editLead);
 router.post("/home/update/:id",upate)
 
 //logout  
-
-
 router.get("/home/index/logout",logout); 
-module.exports = router; 
+
+//DASHBOARD ROUTES 
+router.get("/dashboard/index/",indexDashboard); 
+
+
+ module.exports = router; 

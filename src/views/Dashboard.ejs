@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+    <link rel="stylesheet" href="/css/dash.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/sideBar.css" />
+    <link rel="stylesheet" href="/css/contentDash.css" /> 
+    <link
+      rel="shortcut icon"
+      href="/utilites/favicon.ico"
+      type="image/x-icon"
+    />
+    <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+
+    <title>Dashboard</title>
+  </head>
+  <body> 
+    <div id="spiner-area" class="spiner-area">
+      <span class="loader"></span>
+    </div>
+    <main class="content">
+      <header class="cabecalho"> 
+        <div class="notification-area">
+          <div class="notification-img">
+            <img src="/utilites/notifications-icon]].svg" alt="" />
+          </div>
+          <div class="notification-text">Notificações</div>
+          <div class="number-of-notifications">4</div>
+        </div>
+        
+
+        <div class="user-dados">
+          <div class="user-name">
+            <p class="Username">Olá, <span class="nameUser"> <%= user.nome %></span></p>
+          </div>
+          <a href="/setings-page/index.html"
+            ><img
+              id="user-foto"
+              class="user-foto"
+              src="/utilites/user-photo.png"
+              alt=""
+          /></a>
+        </div>
+      </header>
+      <div class="slidebar"> 
+        <div class="logo">
+          <img src="/utilites/logo.svg" alt="" />
+        </div>
+        <ul class="links-bar">
+          <li>
+            <a href="dash.html"
+              ><img class="home-img" src="/utilites/dash-icon-selected.svg" alt=""
+            /></a>
+          </li> 
+          <li>
+            <a href="/crm-page/crm.html"
+              ><img class="crm-img" src="/utilites/crm icon new.svg" alt=""
+            /></a>
+          </li>
+          <li>
+            <a href="/home/index/"
+              ><img class="lead-icon" src="/utilites/lead-icon-svg.svg" alt=""
+            /></a>
+          </li>
+          <li id="sentings">
+            <a href="/setings-page/index.html">
+              <img
+                class="senting-img"
+                src="/utilites/settings.svg"
+                alt=""
+              />
+            </a>
+          </li>
+        </ul>
+      </div>
+      <main class="dash"> 
+        <div class="geral-view">
+          <div class="total-leads"> 
+            <div class="text-total-lead">
+              <p class="total-lead-title">
+                Total de Leads Cadastradas
+              </p> 
+              <div class="button-view-all go-leads">
+                <img src="/utilites/view-all-icon.svg" alt="">
+              </div>
+            </div>
+            <h3 id="leads-count">0</h3>
+          </div> 
+
+          <div class="total-view"> 
+            <div class="text-total-view">
+              <p  class="total-view-p">
+                Cadastradas hoje
+              </p> 
+              <div  class="button-view-all-type-2 go-leads">
+                <img src="/utilites/view-all-icon.svg" alt="">
+              </div>
+            </div>
+            <h3 id="today-count" class="count">0</h3>
+          </div>
+          <div class="total-view"> 
+            <div class="text-total-view">
+              <p class="total-view-p">
+                Cadastradas Neste Mês
+              </p> 
+              <div class="button-view-all-type-2 go-leads">
+                <img src="/utilites/view-all-icon.svg" alt="">
+              </div>
+            </div>
+            <h3 id="count-month" class="count">0</h3>
+          </div>
+          
+        </div>
+        <section class="grafico-area">
+          <div class="grafico-line">
+            <canvas id="line"> </canvas>
+          </div>
+          <div class="grafico-bar"><canvas id="bar"> </canvas></div>
+          <div class="grafico-more"><canvas id="donout"></canvas></div>
+          <div class="grafico-polar"><canvas id="polar"></canvas></div>
+        </section>
+      </main>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="..//js/jQuery/code.jquery.com_jquery-3.7.1.js"></script>
+    <script src="/js/dash.js"></script>    
+    <script src="/js/Dashanimation.js"></script>
+    <script src="/js/material-grafic.js"></script>6 
+    <script src="/js/process-grafic.js"></script>
+    <script src="/js/geralView.js"></script> 
+    <script src="/js/redirections.js"></script>
+  </body>
+</html>
