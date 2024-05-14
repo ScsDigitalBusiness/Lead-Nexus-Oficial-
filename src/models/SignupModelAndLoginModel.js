@@ -3,11 +3,11 @@ const validator = require('validator');
 
 
 const SignupSchema=   mongoose.Schema({
-   nome: {type:String, require:true}, 
-   email: {type:String, require:true}, 
-   password : {type:String, require:true}, 
-   passwordConfirmed : {type:String, require:true}, 
-   
+   nome: {type:String, required:true}, 
+   email: {type:String, required:true}, 
+   password : {type:String, required:true}, 
+   passwordConfirmed : {type:String, required:true}, 
+     
 
 }); 
 
@@ -21,17 +21,22 @@ class SignUp {
        this.user = null; 
       }  
 
-    async userExist() {
-      const existUser = await SignupModel.findOne({email:this.body.email});  
+    async userExist() { 
+      try {
+         const existUser = await SignupModel.findOne({email:this.body.email});  
       if(existUser) this.errors.push("Usuário já existe !"); 
-      
+
+      }catch (e) {
+         throw new Error(e); 
+      } 
+            
    } 
    validation()  {
       this.cleanUP(); 
        if(!validator.isEmail(this.body.email)) this.errors.push("E-mail incorreto !");  
        this.userExist();
  
-      if(this.body.password < 3 )this.errors.push("Senha incorreta, precistar ter no minimo 4 caraceters");  
+      if(this.body.password < 3 )this.errors.push("Senha inválida, precistar ter no minimo 4 caraceters");  
    }  
    //Regsiter Method 
    async register()  { 
@@ -49,10 +54,15 @@ class SignUp {
    } 
     //Login method
    async login() {
+     try {
       this.user =  await  SignupModel.findOne({email:this.body.email, password: this.body.password} );  
-       if(!this.user) {
-         this.errors.push("User não existe"); 
-      }   
+      if(!this.user) {
+        this.errors.push("User não existe"); 
+     }
+     }catch(e) {
+      throw new Error(e); 
+     }
+        
 
     
 

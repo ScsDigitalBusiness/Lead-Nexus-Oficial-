@@ -1,11 +1,13 @@
 const { Leads, getLeads } = require("../models/LeadModel");
-const { SignUp, getAllUsers } = require("../models/SignupModelAndLoginModel")
+const { SignUp, getAllUsers } = require("../models/SignupModelAndLoginModel"); 
+
 exports.signupIndex = (req, res) => {
    res.render("singup");
 }
 
-exports.loginIndex = async (req, res) => {
+exports.loginIndex = async (req, res) => { 
    const signup = new SignUp(req.body);
+   req.flash("error",signup.errors);
    const allUsers = await getAllUsers();
    const leads = await getLeads();
    if (req.session.user) {

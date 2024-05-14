@@ -26,9 +26,14 @@
       </div>
       <section class="section__2">
         <div class="text__Form"> 
-          <div class="alert alert-danger" role="alert">
-            A simple danger alert—check it out!
-          </div>
+          <% if(menssages.length > 0) { %>
+          
+             <div class="alert alert-danger" role="alert">
+             <%= menssages.error %> 
+            </div>
+          
+            
+          <% } %>
           <h2>Criar Conta</h2>
           <small> Criar sua conta de registro:</small>
         </div> 
