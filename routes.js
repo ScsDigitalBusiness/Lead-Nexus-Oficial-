@@ -4,7 +4,9 @@ const { index,createLead,logout,deleteLead,editLead,upate} = require('./src/cont
 const {loginIndex, signupIndex,signupRegister, login} = require ("./src/controllers/LoginAndSignUpController");  
 const {indexDashboard} = require("./src/controllers/DashboardControllers"); 
 const {indexCRM} = require ("./src/controllers/CrmControllers"); 
-const {indexSettings}  = require ("./src/controllers/SettingsControllers") 
+const {indexSettings,updateProfile}  = require ("./src/controllers/SettingsControllers")  
+const  multer =  require('multer'); 
+const upload = multer({dest:"./public/uploads/"}) 
 const router = express.Router();
 
 //Login and Singup Page
@@ -18,7 +20,7 @@ router.post("/signup/register/",signupRegister);
 //rota home
 router.get("/home/index/",index);  
 //ppost do formulário
-router.post("/home/leadcreate/",createLead); 
+router.post("/home/create/",createLead); 
 //delete 
 router.get("/home/delete/:id",deleteLead);  
 //edit 
@@ -37,6 +39,6 @@ router.get("/dashboard/index/",indexDashboard);
 router.get("/crm/index/",indexCRM); 
  
 //settings
-
 router.get("/settings/index/",indexSettings)
- module.exports = router; 
+router.post("/settings/update/:id",updateProfile); 
+module.exports = router; 

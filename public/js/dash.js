@@ -2,16 +2,8 @@ const localStorageKey = "user-dados";
 
 const LocalStorageKey = "lead-info";
 
-const Localimg = "user-img";
 
-function showUserDados() {
-  let profileImage = localStorage.getItem(Localimg);
-  document.getElementById("user-foto").src = profileImage;
-  let userdata = JSON.parse(localStorage.getItem(localStorageKey) || "[]");
-  for (let i = 0; i < userdata.length; i++) {
-    $(".nameUser").html(userdata[i]["nome"]);
-  }
-}
+
 
 function QTD_TAREFAS() {
   //variáveis que guardam a quantidade por MÊS.
@@ -421,5 +413,4 @@ function QTD_TAREFAS() {
   });
 }
 
-showUserDados();
 QTD_TAREFAS();

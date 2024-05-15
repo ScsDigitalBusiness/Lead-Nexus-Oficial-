@@ -1,13 +1,13 @@
 const { Leads, getLeads } = require("../models/LeadModel");
-const { SignUp, getAllUsers } = require("../models/SignupModelAndLoginModel"); 
+const { SignUp, getAllUsers } = require("../models/SignupModelAndLoginModel");
 
 exports.signupIndex = (req, res) => {
    res.render("singup");
 }
 
-exports.loginIndex = async (req, res) => { 
+exports.loginIndex = async (req, res) => {
    const signup = new SignUp(req.body);
-  // req.flash("error",signup.errors);
+   // req.flash("error",signup.errors);
    const allUsers = await getAllUsers();
    const leads = await getLeads();
    if (req.session.user) {
@@ -16,21 +16,22 @@ exports.loginIndex = async (req, res) => {
    res.render("Login");
 }
 exports.signupRegister = async (req, res) => {
-   const singUp = new SignUp(req.body); 
-    await singUp.register(); 
-    if(singUp.errors.length > 0) {
-      req.session.save(()=>{
+   const singUp = new SignUp(req.body);
+   await singUp.register();
+   if (singUp.errors.length > 0) {
+      req.session.save(() => {
          return res.redirect('back');
-      })  
-    }
+      })
+   }
    res.redirect("/")
 
 
 
 }
-exports.login = async (req, res) => {
+exports.login = async (req, res) => { 
+    
    const singup = new SignUp(req.body);
-   await singup.login();
+    await singup.login();
    req.session.user = singup.user;
    res.redirect("/home/index");
 

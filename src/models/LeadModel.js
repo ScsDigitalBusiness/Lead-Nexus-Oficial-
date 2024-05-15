@@ -26,10 +26,13 @@ class Leads {
     } 
 
    async createLead() { 
-     if(!validator.isEmail(this.body.email)) this.errors.push("Email Inválido !");   
+    try {
+        if(!validator.isEmail(this.body.email)) this.errors.push("Email Inválido !");   
+       this.lead = await LeadModel.create(this.body);
+    }catch(e) {
+        console.error(e); 
+    }
      
-
-      this.lead = await LeadModel.create(this.body); 
     } 
 
     async edit(id) {  
@@ -51,6 +54,6 @@ exports.getLeadsById =  async (id) =>{
 } 
 
 exports.deleteLead = async  (id) =>{
-      const deleted =   await LeadModel.findByIdAndDelete(id); 
+      const deleted =   await LeadModel.findByIdAndDelete({_id:id}); 
       return deleted; 
 }

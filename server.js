@@ -5,7 +5,8 @@ const path = require('path');
 const session = require('express-session');  
 const MongoStore = require('connect-mongo');  
 const flash  = require('connect-flash');  
- 
+
+
 const globalMiddleware = require ('./src/middlewares/middlewares'); 
 const app = express();
 const connectionURL = "mongodb+srv://xdevelopment:X331400X@lead-nexus.qfz22lk.mongodb.net/?retryWrites=true&w=majority&appName=Lead-Nexus";
@@ -27,7 +28,7 @@ app.on("Connected!", () => {
     })
 })
 
- 
+  
 
 //sessions : 
 const sessionOptions = session({
@@ -40,6 +41,7 @@ const sessionOptions = session({
         httpOnly: true
     }
 })
+ 
 
 app.use(sessionOptions); 
 app.use(flash()); 

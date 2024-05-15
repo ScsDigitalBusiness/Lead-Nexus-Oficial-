@@ -31,11 +31,11 @@
           <div class="user-name">
             <p class="Username">Olá, <span class="name-user"><%=user.nome %></span></p>
           </div>
-          <a href="setings-page/index.html">
+          <a href="/settings/index/">
             <img
               id="user-foto"
               class="user-foto"
-              src="/utilites/user-photo.png"
+              src="<%= user.userImg %>"
               alt=""
             />
           </a>
