@@ -5,12 +5,18 @@ const {loginIndex, signupIndex,signupRegister, login} = require ("./src/controll
 const {indexDashboard} = require("./src/controllers/DashboardControllers"); 
 const {indexCRM} = require ("./src/controllers/CrmControllers"); 
 const {indexSettings,updateProfile}  = require ("./src/controllers/SettingsControllers")  
-const  multer =  require('multer'); 
-const upload = multer({dest:"./public/uploads/"}) 
+const  multer =  require('multer');  
+const uploads = multer ({dest: "./public/uploads"}); 
+const path = require('path'); 
 const router = express.Router();
+ 
+//configuração do multer :  
+
+
+ 
 
 //Login and Singup Page
-router.get("/", loginIndex);
+router.get("/" ,loginIndex);
 router.post("/login/auth/",login)  
 
 
@@ -18,7 +24,7 @@ router.get('/signup/index',signupIndex)
 router.post("/signup/register/",signupRegister);   
 //HOME ROUTES 
 //rota home
-router.get("/home/index/",index);  
+router.get("/home/index/",index);   
 //ppost do formulário
 router.post("/home/create/",createLead); 
 //delete 
@@ -37,8 +43,9 @@ router.get("/dashboard/index/",indexDashboard);
 //CRM ROUTES 
 
 router.get("/crm/index/",indexCRM); 
- 
-//settings
+ //settings
 router.get("/settings/index/",indexSettings)
-router.post("/settings/update/:id",updateProfile); 
+
+router.post("/settings/update/:id",uploads.single('userImg'),  updateProfile); 
+
 module.exports = router; 

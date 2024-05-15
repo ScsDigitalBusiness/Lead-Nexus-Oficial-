@@ -7,7 +7,7 @@ const SignupSchema = mongoose.Schema({
    email: { type: String, required: true },
    password: { type: String, required: true },
    passwordConfirmed: { type: String, required: true },
-   userImg: { type: String },
+   userImg: {  type: String },
 
 
 });
