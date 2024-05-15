@@ -72,7 +72,10 @@ class SignUp {
       }
    }  
   
-   
+   async updateProfile (id) {
+      const profileUpdated = await  SignupModel.findByIdAndUpdate(id,this.body,{new: true}); 
+      return profileUpdated; 
+   }
 }
 
 exports.getAllUsers = async () => {
@@ -80,7 +83,7 @@ exports.getAllUsers = async () => {
    return allUsers;
 }
 exports.SignUp = SignUp;  
-exports.SignupModel = SignupModel; 
+
 
 
 
