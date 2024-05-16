@@ -39,7 +39,9 @@ class SignUp {
 
       if (this.body.password < 3) this.errors.push("Senha inválida, precistar ter no minimo 4 caraceters");
    }
-   //Regsiter Method 
+   
+   //Regsiter Method  
+
    async register() {
       this.validation();
       if (this.errors.length === 0) {
@@ -54,6 +56,7 @@ class SignUp {
 
    }
    //Login method
+   
    async login() {
       try {
          this.user = await SignupModel.findOne({ email: this.body.email, password: this.body.password });
