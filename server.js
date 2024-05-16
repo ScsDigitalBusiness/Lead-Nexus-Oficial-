@@ -6,7 +6,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');  
 const flash  = require('connect-flash');    
 require('dotenv').config(); 
-
+const connectionURL = "mongodb+srv://xdevelopment:X331400X@lead-nexus.qfz22lk.mongodb.net/?retryWrites=true&w=majority&appName=Lead-Nexus"
 
 
 const globalMiddleware = require ('./src/middlewares/middlewares'); 
@@ -16,7 +16,7 @@ const port = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect(process.env.CONNECTION_URL).then(() => {
+mongoose.connect(connectionURL).then(() => {
     console.log("Conectando...");
     app.emit("Connected!");
 }).catch(e => {
@@ -34,7 +34,7 @@ app.on("Connected!", () => {
 //sessions : 
 const sessionOptions = session({
     secret : "Project Sessions", 
-    store: MongoStore.create({mongoUrl: process.env.CONNECTION_URL}), 
+    store: MongoStore.create({mongoUrl: connectionURL}), 
     resave: false, 
     saveUninitialized:false, 
     cookie : {
