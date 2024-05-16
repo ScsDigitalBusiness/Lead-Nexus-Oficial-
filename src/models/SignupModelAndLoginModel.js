@@ -7,7 +7,7 @@ const SignupSchema = mongoose.Schema({
    email: { type: String, required: true },
    password: { type: String, required: true },
    passwordConfirmed: { type: String, required: true },
-   userImg: { type: String },
+   userImg: {  type: String },
 
 
 });
@@ -72,7 +72,10 @@ class SignUp {
       }
    }  
   
-   
+   async updateProfile (id) {
+      const profileUpdated = await  SignupModel.findByIdAndUpdate(id,this.body,{new: true}); 
+      return profileUpdated; 
+   }
 }
 
 exports.getAllUsers = async () => {
@@ -80,7 +83,7 @@ exports.getAllUsers = async () => {
    return allUsers;
 }
 exports.SignUp = SignUp;  
-exports.SignupModel = SignupModel; 
+
 
 
 

@@ -13,9 +13,7 @@
 </head>
 <!--CONTENT-PRINCIPAL--> 
 <body>   
-  <div id="spiner-area" class="spiner-area">
-    <span class="loader"></span>
-  </div>
+ 
   <main class="content">
     <header class="cabecalho">
       <div class="notification-area">
@@ -29,7 +27,7 @@
         <div class="user-name">
           <p class="Username">Olá, <span class="name_user"><%=user.nome %></span></p>
         </div>
-        <img id="user-foto" class="user-foto" src="<%= user.userImg %>" alt="" />
+        <img id="user-foto" class="user-foto" src="./uploads/<%= user.userImg %>" alt="" />
       </div>
     </header> 
     <!--SLIDE-BAR-->
@@ -62,13 +60,15 @@
           <form class="data-area" action="/settings/update/<%= user._id %> " method="post" enctype="multipart/form-data"> 
             <div class="user-img">
               <label for="upload-img">Mudar Foto</label>
-              <input id="upload-img" type="file" name="userImg" value = "<%= user.userImg %>"   accept="image/jpeg, image/png, image/jpg" />
-              <img id="profileImg" style="height: 40vh" class="User-foto" src="<%= user.userImg %>"alt="" />
+              <input id="upload-img" type="file" name="userImg" value = ""   accept="image/jpeg, image/png, image/jpg" />
+              <img id="profileImg" style="height: 40vh" class="User-foto" src="data:<%= user.userImg.contentType %>;base64,<%= user.userImg.data %>"alt="" />
             </div>
-            <input id="nome" name="nome" required placeholder="Nome" type="text" value="<%= user.nome %>" />
-            <input id="dep" name="email" required placeholder="Email" type="email" value="<%= user.email%>" />
+            <div class="area-input">
+              <input id="nome" name="nome" required placeholder="Nome" type="text" value="<%= user.nome %>" />
+              <input id="dep" name="email" required placeholder="Email" type="email" value="<%= user.email%>" />
+              <button type="submit" class="btn">Salvar</button>
+            </div>
             
-            <button class="btn">Salvar</button>
           </form>
         </fieldset>
       </section>
