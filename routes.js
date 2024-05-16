@@ -49,3 +49,4 @@ router.get("/settings/index/",indexSettings)
 router.post("/settings/update/:id",uploads.single('userImg'),  updateProfile); 
 
 module.exports = router; 
+

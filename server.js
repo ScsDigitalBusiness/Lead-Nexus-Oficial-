@@ -23,7 +23,7 @@ mongoose.connect(process.env.CONNECTION_URL).then(() => {
 
 app.on("Connected!", () => {
     app.listen(process.env.PORT, () => {
-        console.log("Conectado !");
+        console.log("Conectado!");
     })
 })
 
@@ -49,3 +49,5 @@ app.use(router);
 
 app.set('views', path.resolve(__dirname, "src", "views"));
 app.set('view engine', 'ejs'); 
+
+exports.app = app; 
