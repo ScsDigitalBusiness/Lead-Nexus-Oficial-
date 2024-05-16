@@ -10,7 +10,6 @@ require('dotenv').config();
 
 const globalMiddleware = require ('./src/middlewares/middlewares'); 
 const app = express();
-const port = 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -23,8 +22,8 @@ mongoose.connect(process.env.CONNECTION_URL).then(() => {
 })
 
 app.on("Connected!", () => {
-    app.listen(port, () => {
-        console.log("Acesse : http://localhost:3000");
+    app.listen(process.env.PORT, () => {
+        console.log("Conectado !");
     })
 })
 
