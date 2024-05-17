@@ -11,7 +11,7 @@ require('dotenv').config();
 
 const globalMiddleware = require ('./src/middlewares/middlewares'); 
 const app = express();
-const port = 10000;
+const port = 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
