@@ -5,24 +5,18 @@ exports.index = async (req, res) => {
     const leads = await getLeads();
     const allUsers = await getAllUsers();
     if (req.session.user) return res.render('Home', { leads, allUsers });
-
 }
 
 exports.createLead = (req, res) => {
     const leads = new Leads(req.body);
     leads.createLead();
-
     if (leads.errors.length > 0) res.send(leads.errors);
-
-
     res.redirect("/home/index/");
 
 }
 exports.deleteLead = async (req, res) => {
     const deleted = await deleteLead(req.params.id);
-    req.session.save(() => {
-        res.redirect("back");
-    })
+    req.session.save(() => {return res.redirect("back")})
 
 }
 

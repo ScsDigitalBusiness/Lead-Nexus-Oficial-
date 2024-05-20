@@ -10,16 +10,12 @@ exports.updateProfile = async (req, res) => {
     nome: req.body.nome,
     email: req.body.email,
     userImg: new Buffer.from(fs.readFileSync(req.file.path).toString("base64")),
-
   }
 
   const profile = new SignUp(profileData);
   const profileUpdated = await profile.updateProfile(req.params.id);
   req.session.user = profileUpdated;
   console.log(req.session.user);
-  req.session.save(() => {
-    res.redirect("back");
-
-  })
-
+  req.session.save(() => {return res.redirect("back");})
+ return
 }

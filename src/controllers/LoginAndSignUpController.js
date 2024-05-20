@@ -10,18 +10,16 @@ exports.loginIndex = async (req, res) => {
    // req.flash("error",signup.errors);
    const allUsers = await getAllUsers();
    const leads = await getLeads();
-   if (req.session.user) {
-      return res.render('Home', { leads, allUsers });
-   }
+   if (req.session.user)  return res.render('Home', { leads, allUsers });
+   
    res.render("Login");
 }
 exports.signupRegister = async (req, res) => {
    const singUp = new SignUp(req.body);
    await singUp.register();
    if (singUp.errors.length > 0) {
-      req.session.save(() => {
-         return res.redirect('back');
-      })
+      req.session.save(() => res.redirect('back'));
+   
    }
    res.redirect("/")
 
