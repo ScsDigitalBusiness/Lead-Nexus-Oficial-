@@ -60,16 +60,25 @@ exports.deleteLead = async (id) => {
 }
 exports.getAllEmails = async () => {
     try {
-        const leads = await this.getLeads();
-        let emails = [];
-        leads.forEach((lead) => {
-            emails.push(lead.email);
-        })
+        const leads = await getLeads();
+        
+        let emails =  leads.filter((lead) => lead.email !== " ") 
+        console.log(emails)
         return emails.length;
     } catch (e) {
         throw new Error(e);
     }
+ 
 
 
-
+} 
+exports.getAllNumberOfLeads =  async () =>{
+     try { 
+          
+        let leads = await this.getLeads();  
+       
+        return  numerOfLeadsRegisterForUser.length; 
+     }catch (e) {
+        throw new Error(e); 
+     }
 }

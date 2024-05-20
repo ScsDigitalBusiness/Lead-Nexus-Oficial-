@@ -63,8 +63,12 @@
               <div class="button-view-all go-leads">
                 <img src="/utilites/view-all-icon.svg" alt="">
               </div>
-            </div>
-            <h3 id="leads-count">0</h3>
+            </div> 
+            <% let i = 0  %>  
+            <h3 id="leads-count"><% if(leadsOfUser.colaborator ==user.nome) { %> 
+                   <%=  i++%>
+              <%}%>
+            </h3>
           </div> 
 
           <div class="total-view"> 
@@ -102,7 +106,7 @@
       </main>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="..//js/jQuery/code.jquery.com_jquery-3.7.1.js"></script>
+    <script src="/js/jQuery/code.jquery.com_jquery-3.7.1.js"></script>
     <script src="/js/dash.js"></script>    
     <script src="/js/Dashanimation.js"></script>
     <script src="/js/material-grafic.js"></script>6 

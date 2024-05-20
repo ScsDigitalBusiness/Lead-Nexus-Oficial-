@@ -22,14 +22,7 @@ new Chart(ctx3, {
       {
         label: "Materiais Cadastrados",
         data: [
-            countNenhum,
-            countPlastico,  
-            countMetal, 
-            countPapel, 
-            countVidro, 
-            countPrensas, 
-            countInfoProduto,
-            countPrensas
+           
         ],
         borderWidth: 1, 
         backgroundColor: [
