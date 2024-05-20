@@ -19,8 +19,8 @@ exports.signupRegister = async (req, res) => {
    if (singUp.errors.length > 0) {
       req.session.save(() => res.redirect('back'));
    
+      return res.redirect("/")
    }
-   res.redirect("/")
 
 
 
