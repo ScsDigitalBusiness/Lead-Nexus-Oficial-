@@ -28,10 +28,10 @@ exports.signupRegister = async (req, res) => {
 
 
 }
-exports.login = async (req, res) => { 
-    
+exports.login = async (req, res) => {
+
    const singup = new SignUp(req.body);
-    await singup.login();
+   await singup.login();
    req.session.user = singup.user;
    res.redirect("/home/index");
 

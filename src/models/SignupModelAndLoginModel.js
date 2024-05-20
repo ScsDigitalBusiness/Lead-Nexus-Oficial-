@@ -7,17 +7,17 @@ const SignupSchema = mongoose.Schema({
    email: { type: String, required: true },
    password: { type: String, required: true },
    passwordConfirmed: { type: String, required: true },
-   userImg: {  type: String },
+   userImg: { type: String },
 
 
 });
 
-const  SignupModel = mongoose.model("SignUp", SignupSchema);
+const SignupModel = mongoose.model("SignUp", SignupSchema);
 
 
 class SignUp {
    constructor(body) {
-      this.body = body;  
+      this.body = body;
       this.errors = [];
       this.user = null;
    }
@@ -39,7 +39,7 @@ class SignUp {
 
       if (this.body.password < 3) this.errors.push("Senha inválida, precistar ter no minimo 4 caraceters");
    }
-   
+
    //Regsiter Method  
 
    async register() {
@@ -56,28 +56,26 @@ class SignUp {
 
    }
    //Login method
-   
+
    async login() {
       try {
          this.user = await SignupModel.findOne({ email: this.body.email, password: this.body.password });
-         if (!this.user) {
-            this.errors.push("User não existe");
-         }
+         if (!this.user) this.errors.push("User não existe");
+         
       } catch (e) {
          throw new Error(e);
       }
    }
    cleanUP() {
       for (let key in this.body) {
-         if (typeof this.body[key] !== "string") {
-            this.body[key] = "";
-         }
+         if (typeof this.body[key] !== "string")this.body[key] = "";
+         
       }
-   }  
-  
-   async updateProfile (id) {
-      const profileUpdated = await  SignupModel.findByIdAndUpdate(id,this.body,{new: true}); 
-      return profileUpdated; 
+   }
+
+   async updateProfile(id) {
+      const profileUpdated = await SignupModel.findByIdAndUpdate(id, this.body, { new: true });
+      return profileUpdated;
    }
 }
 
@@ -85,7 +83,7 @@ exports.getAllUsers = async () => {
    const allUsers = await SignupModel.find();
    return allUsers;
 }
-exports.SignUp = SignUp;  
+exports.SignUp = SignUp;
 
 
 

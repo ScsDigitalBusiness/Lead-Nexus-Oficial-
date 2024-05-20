@@ -10,12 +10,10 @@ exports.index = async (req, res) => {
 
 exports.createLead = (req, res) => {
     const leads = new Leads(req.body);
-
     leads.createLead();
 
-    if (leads.errors.length > 0) {
-        res.send(leads.errors);
-    }
+    if (leads.errors.length > 0) res.send(leads.errors);
+
 
     res.redirect("/home/index/");
 
