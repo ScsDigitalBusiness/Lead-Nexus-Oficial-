@@ -11,7 +11,6 @@ exports.loginIndex = async (req, res) => {
    const allUsers = await getAllUsers();
    const leads = await getLeads();
    if (req.session.user)  return res.render('Home', { leads, allUsers });
-   
    res.render("Login");
 }
 exports.signupRegister = async (req, res) => {

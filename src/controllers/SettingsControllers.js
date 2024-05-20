@@ -1,7 +1,6 @@
 const { SignUp } = require("../models/SignupModelAndLoginModel");
 const fs = require('fs')
 exports.indexSettings = (req, res) => {
-
   res.render("Settings");
 }
 

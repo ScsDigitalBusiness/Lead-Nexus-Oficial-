@@ -41,6 +41,7 @@ class Leads {
     }
 
 
+
 }
 exports.Leads = Leads;
 
@@ -56,4 +57,19 @@ exports.getLeadsById = async (id) => {
 exports.deleteLead = async (id) => {
     const deleted = await LeadModel.findByIdAndDelete({ _id: id });
     return deleted;
+}
+exports.getAllEmails = async () => {
+    try {
+        const leads = await this.getLeads();
+        let emails = [];
+        leads.forEach((lead) => {
+            emails.push(lead.email);
+        })
+        return emails.length;
+    } catch (e) {
+        throw new Error(e);
+    }
+
+
+
 }
