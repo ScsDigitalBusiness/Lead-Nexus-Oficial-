@@ -8,8 +8,6 @@ const SignupSchema = mongoose.Schema({
    password: { type: String, required: true },
    passwordConfirmed: { type: String, required: true },
    userImg: { type: String },
-
-
 });
 
 const SignupModel = mongoose.model("SignUp", SignupSchema);
@@ -36,7 +34,6 @@ class SignUp {
       this.cleanUP();
       if (!validator.isEmail(this.body.email)) this.errors.push("E-mail incorreto !");
       this.userExist();
-
       if (this.body.password < 3) this.errors.push("Senha inválida, precistar ter no minimo 4 caraceters");
    }
 

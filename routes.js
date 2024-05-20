@@ -10,19 +10,12 @@ const uploads = multer ({dest: "./public/uploads"});
 const path = require('path'); 
 const router = express.Router();
  
-//configuração do multer :  
-
-
- 
-
 //Login and Singup Page
 router.get("/" ,loginIndex);
-router.post("/login/auth/",login)  
-
-
-router.get('/signup/index',signupIndex)
+router.post("/login/auth/",login); 
+//SIGNUP ROUTES
+router.get('/signup/index',signupIndex);
 router.post("/signup/register/",signupRegister);   
-//HOME ROUTES 
 //rota home
 router.get("/home/index/",index);   
 //ppost do formulário
@@ -31,22 +24,15 @@ router.post("/home/create/",createLead);
 router.get("/home/delete/:id",deleteLead);  
 //edit 
 router.get("/home/edit/:id",editLead);  
-router.post("/home/update/:id",upate)
-
+router.post("/home/update/:id",upate);
 //logout  
 router.get("/home/index/logout",logout); 
-
 //DASHBOARD ROUTES 
 router.get("/dashboard/index/",indexDashboard); 
-
-
 //CRM ROUTES 
-
 router.get("/crm/index/",indexCRM); 
  //settings
-router.get("/settings/index/",indexSettings)
-
+router.get("/settings/index/",indexSettings);
 router.post("/settings/update/:id",uploads.single('userImg'),  updateProfile); 
-
 module.exports = router; 
 
