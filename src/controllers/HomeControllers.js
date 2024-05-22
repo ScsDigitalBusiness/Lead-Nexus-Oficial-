@@ -9,10 +9,9 @@ exports.index = async (req, res) => {
 
 exports.createLead = async (req, res) => {
     const leads = new Leads(req.body,req.session.user); 
-   
-     await  leads.createLead();
-     if (leads.errors.length > 0) res.send(leads.errors);
-     res.redirect("/home/index/");
+    await  leads.createLead();
+    if (leads.errors.length > 0) res.send(leads.errors);
+    res.redirect("/home/index/");
 
 }
 exports.deleteLead = async (req, res) => { 
