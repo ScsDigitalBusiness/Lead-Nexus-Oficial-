@@ -23,7 +23,7 @@ mongoose.connect(process.env.CONNECTION_URL).then(() => {
 
 app.on("Connected!", () => {
     app.listen(process.env.PORT, () => {
-        console.log("Conectado!");
+        console.log("http://localhost:3000/");
     })
 })
 

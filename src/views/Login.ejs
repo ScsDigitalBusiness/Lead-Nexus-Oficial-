@@ -35,7 +35,15 @@
               </div>
               
            <% }) %>
-       <% } %>
+       <% } %> 
+       <% if(sucess.length > 0) { %> 
+        <% sucess.forEach((scss)=>{ %> 
+          <div class="alert alert-sucess" role="alert">
+            <%=scss%>
+          </div>
+          
+       <% }) %>
+   <% } %>
           <h2>Entrar com conta</h2>
           <small> Entre com sua conta de registro:</small>
         </div>

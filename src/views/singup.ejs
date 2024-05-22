@@ -33,7 +33,15 @@
               </div>
               
            <% }) %>
-       <% } %>
+       <% } %> 
+       <% if(sucess.length > 0) { %> 
+        <% sucess.forEach((scss)=>{ %> 
+          <div class="alert alert-sucess" role="alert">
+            <%=scss%>
+          </div>
+          
+       <% }) %>
+   <% } %>
           <h2>Criar Conta</h2>
           <small> Criar sua conta de registro:</small>
         </div> 
