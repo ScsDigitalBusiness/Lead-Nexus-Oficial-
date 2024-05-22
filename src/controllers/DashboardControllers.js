@@ -1,7 +1,8 @@
-const {getAllEmails,getLeads}= require("../models/LeadModel")
-exports.indexDashboard =  async(req,res) =>{  
-    const leadsOfUser = await getLeads();  
-    console.log(leadsOfUser)
-    const leads = await getAllEmails();  
-    res.render('Dashboard',{leads,leadsOfUser});
+const {Leads} = require("../models/LeadModel")
+exports.indexDashboard =  async(req,res) =>{   
+    const AllLeads = new Leads(req.body,req.session.user); 
+    const allLeadsOnDB = await  AllLeads.getAllNumberOfLeadsRegisterForUser();   
+    const emails = await  AllLeads.getAllEmails();   
+    const AllLeadsInMonth = await AllLeads.getAllLeadsInThisMonth() 
+    res.render('Dashboard',{emails,allLeadsOnDB,AllLeadsInMonth});
 }  

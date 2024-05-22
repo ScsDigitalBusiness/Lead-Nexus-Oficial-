@@ -413,4 +413,3 @@ function QTD_TAREFAS() {
   });
 }
 
-QTD_TAREFAS();
