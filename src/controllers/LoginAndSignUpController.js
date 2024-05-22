@@ -18,12 +18,8 @@ exports.signupRegister = async (req, res) => {
    await singUp.register();
    if (singUp.errors.length > 0) {
       req.session.save(() => res.redirect('back'));
-   
-      return res.redirect("/")
-   }
-
-
-
+       return res.redirect("/")
+    }
 }
 exports.login = async (req, res) => {
 
