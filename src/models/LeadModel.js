@@ -74,10 +74,11 @@ class Leads {
              return  lead.date; 
            } 
         }); 
-        return leadsRegisterInThisMonth.length; 
+        return leadsRegisterInThisMonth.length;  
+        
     }
-
-
+    
+   
 }
 exports.Leads = Leads;
 

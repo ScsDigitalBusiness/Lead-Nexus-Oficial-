@@ -14,7 +14,6 @@ exports.updateProfile = async (req, res) => {
   const profile = new SignUp(profileData);
   const profileUpdated = await profile.updateProfile(req.params.id);
   req.session.user = profileUpdated;
-  console.log(req.session.user);
   req.session.save(() => {return res.redirect("back");})
  return
 }
