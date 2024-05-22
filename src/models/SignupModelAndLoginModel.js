@@ -73,13 +73,15 @@ class SignUp {
    async updateProfile(id) {
       const profileUpdated = await SignupModel.findByIdAndUpdate(id, this.body, { new: true });
       return profileUpdated;
+   } 
+   async  getAllUsers () {
+      const allUsers = await SignupModel.find();
+      return allUsers;
    }
 }
 
-exports.getAllUsers = async () => {
-   const allUsers = await SignupModel.find();
-   return allUsers;
-}
+
+
 exports.SignUp = SignUp;
 
 

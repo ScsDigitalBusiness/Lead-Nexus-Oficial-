@@ -13,17 +13,17 @@ const LeadSchema = mongoose.Schema({
     typeOfMaterial: { type: String, required: true },
     process: { type: String, required: true },
     colaborator: { type: String, required: true }
-     
+
 });
 
 const LeadModel = mongoose.model("Leads", LeadSchema);
 
 class Leads {
-    constructor(body,session) {
+    constructor(body, session) {
         this.body = body;
         this.errors = [];
-        this.lead = null; 
-        this.session = session; 
+        this.lead = null;
+        this.session = session;
     }
 
     async createLead() {
@@ -39,65 +39,68 @@ class Leads {
     async edit(id) {
         this.lead = await LeadModel.findByIdAndUpdate(id, this.body, { new: true });
 
-    } 
-    async getAllNumberOfLeadsRegisterForUser() {
-        try { 
-            let leads = await LeadModel.find({colaborator:this.session.nome});  
-            console.log("leads cadastradas por colaborador : "+ this.session.nome+ "LEads: "+  leads.length) 
-            return  leads.length; 
-          }catch (e) {
-             throw new Error(e); 
-          }
     }
- 
-    async getAllEmails () {
+    async getAllNumberOfLeadsRegisterForUser() {
         try {
-            const leads = await LeadModel.find({colaborator: this.session.nome}); 
-            console.log("Emails cadastrados por :"+this.session.nome+ "E-mails"+ leads.length); 
-             let emails =  leads.filter((lead) => { 
-                if( lead.email !==undefined || lead.email !== null || lead.email !== " ") return lead.email
-              }
-             ) 
-             
-             return emails.length;
+            let leads = await LeadModel.find({ colaborator: this.session.nome });
+            console.log("leads cadastradas por colaborador : " + this.session.nome + "LEads: " + leads.length)
+            return leads.length;
+        } catch (e) {
+            throw new Error(e);
+        }
+    }
+
+    async getAllEmails() {
+        try {
+            const leads = await LeadModel.find({ colaborator: this.session.nome });
+            console.log("Emails cadastrados por :" + this.session.nome + "E-mails" + leads.length);
+            let emails = leads.filter((lead) => {
+                if (lead.email !== undefined || lead.email !== null || lead.email !== " ") return lead.email
+            }
+            )
+
+            return emails.length;
+        } catch (e) {
+            throw new Error(e);
+        }
+    }
+    async getAllLeadsInThisMonth() {
+        const leads = await LeadModel.find({ colaborator: this.session.nome });
+        const dateOfSoftware = new Date();
+        const actualMonth = dateOfSoftware.getMonth();
+        const leadsRegisterInThisMonth = leads.filter((lead) => {
+            let LeadDate = new Date(lead.date);
+            if (actualMonth == LeadDate.getMonth()) {
+                return lead.date;
+            }
+        });
+        return leadsRegisterInThisMonth.length;
+
+    }
+    async getLeads() {
+        try {
+            const leads = await LeadModel.find();
+            return leads;
         } catch (e) {
             throw new Error(e);
         }
     } 
-    async getAllLeadsInThisMonth() {
-        const leads = await LeadModel.find({colaborator: this.session.nome}); 
-        const dateOfSoftware = new Date(); 
-        const actualMonth = dateOfSoftware.getMonth();   
-        const leadsRegisterInThisMonth = leads.filter((lead)=>  {
-        let LeadDate =  new Date(lead.date); 
-           if(actualMonth == LeadDate.getMonth()) {
-             return  lead.date; 
-           } 
-        }); 
-        return leadsRegisterInThisMonth.length;  
-        
+
+    async getLeadsById(id) {
+        const lead = await LeadModel.findById(id);
+        return lead;
+    } 
+
+    async deleteLead(id) {
+        const deleted = await LeadModel.findByIdAndDelete({ _id: id });
+        return deleted;
     }
-    
-   
+
 }
+
+
+
+
+
+
 exports.Leads = Leads;
-
-
-exports.getLeadsById = async (id) => {
-    const lead = await LeadModel.findById(id);
-    return lead;
-}
-
-exports.deleteLead = async (id) => {
-    const deleted = await LeadModel.findByIdAndDelete({ _id: id });
-    return deleted;
-}
-
-exports.getLeads = async () =>{
-     try {
-       const leads =   await LeadModel.find(); 
-       return leads;  
-     }catch(e){
-        throw new Error(e);
-     }
-}
