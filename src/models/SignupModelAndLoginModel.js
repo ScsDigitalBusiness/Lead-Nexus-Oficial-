@@ -23,7 +23,7 @@ class SignUp {
    async userExist() {
       try {
          const existUser = await SignupModel.findOne({ email: this.body.email });
-         if (existUser) this.errors.push("Usuário já existe !");
+         if (existUser) this.errors.push("Já possui uma conta com esse E-mail!");
 
       } catch (e) {
          throw new Error(e);
@@ -35,6 +35,7 @@ class SignUp {
       if (!validator.isEmail(this.body.email)) this.errors.push("E-mail incorreto !");
       this.userExist();
       if (this.body.password < 3) this.errors.push("Senha inválida, precistar ter no minimo 4 caraceters");
+      if(this.body.password!== this.body.passwordConfirmed) this.errors.push("Senhas não conferem!"); 
    }
 
    //Regsiter Method  
@@ -57,7 +58,7 @@ class SignUp {
    async login() {
       try {
          this.user = await SignupModel.findOne({ email: this.body.email, password: this.body.password });
-         if (!this.user) this.errors.push("User não existe");
+         if (!this.user) this.errors.push("Usuário não existe !");
          
       } catch (e) {
          throw new Error(e);
