@@ -17,12 +17,12 @@ exports.signupRegister = async (req, res) => {
    const singUp = new SignUp(req.body);
    await singUp.register();
    if (singUp.errors.length > 0) { 
-      req.flash("erros",singUp.errors)
+      req.flash("erros",singUp.errors); 
       req.session.save(() => res.redirect('back'));
    }else{ 
       req.session.save(()=>{
          req.flash("sucess","Conta criada com Sucesso!"); 
-         return res.redirect("/")
+         return res.redirect("/"); 
          
       }) 
       return;
@@ -34,7 +34,7 @@ exports.login = async (req, res) => {
    if(singup.errors.length > 0) {
       req.flash("erros",singup.errors); 
       req.session.save(()=>{
-        return res.redirect('back')
+        return res.redirect('back'); 
       })  
     return
    }else { 
