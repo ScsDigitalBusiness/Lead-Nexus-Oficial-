@@ -19,8 +19,7 @@ class SignUp {
       this.errors = [];
       this.user = null;
    }
-
-   async userExist() {
+  async userExist() {
       try {
          const existUser = await SignupModel.findOne({ email: this.body.email });
          if (existUser) this.errors.push("Já possui uma conta com esse E-mail!");
@@ -37,9 +36,6 @@ class SignUp {
       if (this.body.password < 3) this.errors.push("Senha inválida, precistar ter no minimo 4 caraceters");
       if(this.body.password!== this.body.passwordConfirmed) this.errors.push("Senhas não conferem!"); 
    }
-
-   //Regsiter Method  
-
    async register() {
       this.validation();
       if (this.errors.length === 0) {
@@ -53,9 +49,7 @@ class SignUp {
       }
 
    }
-   //Login method
-
-   async login() {
+  async login() {
       try {
          this.user = await SignupModel.findOne({ email: this.body.email, password: this.body.password });
          if (!this.user) this.errors.push("Usuário não existe !");
@@ -70,7 +64,6 @@ class SignUp {
          
       }
    }
-
    async updateProfile(id) {
       const profileUpdated = await SignupModel.findByIdAndUpdate(id, this.body, { new: true });
       return profileUpdated;

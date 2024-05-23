@@ -15,7 +15,6 @@ const LeadSchema = mongoose.Schema({
     colaborator: { type: String, required: true }
 
 });
-
 const LeadModel = mongoose.model("Leads", LeadSchema);
 
 class Leads {
@@ -36,7 +35,6 @@ class Leads {
     }
     async edit(id) {
         this.lead = await LeadModel.findByIdAndUpdate(id, this.body, { new: true });
-
     }
     async getAllNumberOfLeadsRegisterForUser() {
         try {
@@ -55,7 +53,6 @@ class Leads {
                 if (lead.email !== undefined || lead.email !== null || lead.email !== " ") return lead.email
             }
             )
-
             return emails.length;
         } catch (e) {
             throw new Error(e);
@@ -81,17 +78,16 @@ class Leads {
         } catch (e) {
             throw new Error(e);
         }
-    } 
-
+    }
     async getLeadsById(id) {
         const lead = await LeadModel.findById(id);
         return lead;
-    } 
+    }
     async deleteLead(id) {
         const deleted = await LeadModel.findByIdAndDelete({ _id: id });
         return deleted;
     }
-  
+
 }
 
 
