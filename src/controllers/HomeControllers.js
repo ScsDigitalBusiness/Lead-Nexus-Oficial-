@@ -24,9 +24,10 @@ exports.deleteLead = async (req, res) => {
 }
 
 exports.editLead = async (req, res) => {
-    const leads = new Leads(req.body,req.session.user); 
+    const leads = new Leads(req.body,req.session.user);  
+    const signup = new SignUp(req.body); 
     const leadForEdit = await leads.getLeadsById(req.params.id);
-    const allUsers = await leads.getAllUsers();
+    const allUsers = await signup.getAllUsers();
     res.render("EditLead", { allUsers, leadForEdit });
 }
 exports.upate = async (req, res) => { 
