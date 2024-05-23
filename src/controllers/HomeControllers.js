@@ -4,9 +4,9 @@ const { SignUp} = require("../models/SignupModelAndLoginModel");
 exports.index = async (req, res) => {
     const leads = new Leads(req.body,req.session.user); 
     const signup = new SignUp(req.body); 
-    const AllLeads = await leads.getLeads(); 
+    const allLeads = await leads.getLeads();  
     const allUsers = await signup.getAllUsers();
-    if (req.session.user) return res.render('Home', {AllLeads, allUsers });
+    if (req.session.user) return res.render('Home', {allLeads, allUsers });
 }
 exports.createLead = async (req, res) => {
     const leads = new Leads(req.body,req.session.user); 

@@ -7,7 +7,8 @@ exports.signupIndex = (req, res) => {
 
 exports.loginIndex = async (req, res) => {
    const signup = new SignUp(req.body); 
-   const leads = new Leads(req.body,req.session.user); 
+   const leads = new Leads(req.body,req.session.user);  
+   console.log(req.body,req.session.user) 
    const allUsers = await signup.getAllUsers();
    const allLeads = await leads.getLeads();
    if (req.session.user)  return res.render('Home', { allLeads, allUsers });
