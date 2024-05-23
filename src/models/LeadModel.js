@@ -29,7 +29,7 @@ class Leads {
             if (!validator.isEmail(this.body.email)) this.errors.push("Email Inválido !");
             this.lead = await LeadModel.create(this.body);
         } catch (e) {
-            console.error(e);
+            throw new Error(e);
         }
 
     }
@@ -39,7 +39,6 @@ class Leads {
     async getAllNumberOfLeadsRegisterForUser() {
         try {
             let leads = await LeadModel.find({ colaborator: this.session.nome });
-            console.log("leads cadastradas por colaborador : " + this.session.nome + "LEads: " + leads.length)
             return leads.length;
         } catch (e) {
             throw new Error(e);
