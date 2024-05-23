@@ -8,7 +8,6 @@ exports.index = async (req, res) => {
     const allUsers = await signup.getAllUsers();
     if (req.session.user) return res.render('Home', {AllLeads, allUsers });
 }
-
 exports.createLead = async (req, res) => {
     const leads = new Leads(req.body,req.session.user); 
     await  leads.createLead();
