@@ -25,7 +25,6 @@ class Leads {
         this.lead = null;
         this.session = session;
     }
-
     async createLead() {
         try {
             if (!validator.isEmail(this.body.email)) this.errors.push("Email Inválido !");
@@ -35,7 +34,6 @@ class Leads {
         }
 
     }
-
     async edit(id) {
         this.lead = await LeadModel.findByIdAndUpdate(id, this.body, { new: true });
 
@@ -49,7 +47,6 @@ class Leads {
             throw new Error(e);
         }
     }
-
     async getAllEmails() {
         try {
             const leads = await LeadModel.find({ colaborator: this.session.nome });
@@ -90,12 +87,11 @@ class Leads {
         const lead = await LeadModel.findById(id);
         return lead;
     } 
-
     async deleteLead(id) {
         const deleted = await LeadModel.findByIdAndDelete({ _id: id });
         return deleted;
     }
-
+  
 }
 
 
