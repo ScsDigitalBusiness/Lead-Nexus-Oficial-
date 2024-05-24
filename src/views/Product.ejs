@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/css/header.css" />
   <link rel="stylesheet" href="/css/sideBar.css" />
   <link rel="stylesheet" href="/css/principal-area.css" />
-  <link rel="stylesheet" href="/css/register-area.css" />
+  <link rel="stylesheet" href="/css/register-area-product.css" />
   <link rel="stylesheet" href="/css/animations.css" />
   <link rel="stylesheet" href="/css/more-infos.css" />
   <link rel="stylesheet" href="/css/search.css" /> 
@@ -35,72 +35,40 @@
             <img src="/utilites/user.png" alt="" />
           </div>
           <div class="inputs">
-            <input name="name" required id="nome" type="text" placeholder="Nome do Produto" />
-            <img src="/utilites/nameicon.svg" alt="" />
-            <small id="avisoName" style="color: rgb(213, 100, 100); font-weight: bold"></small>
+              <input type="text" class="form-control" id="floatingInputValue" placeholder="Nome do Produto" value="Nome do Produto">
+              <label for="floatingInputValue">Nome do Produto</label> 
+              <select class="form-select form-select " aria-label="Large select example">
+                <option selected>Selecione a Categoria</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
           </div>
+          
+         <!--Codigo sku-->
           <div class="inputs">
-            <input name="tel" id="tel" type="tel" placeholder="Telefone" />
-            <img src="/utilites/tellicon.svg" alt="" />
-            <small id="avisoTell" style="color: rgb(213, 100, 100); font-weight: bold"></small>
+            <input type="text" class="form-control" id="floatingInputValue" placeholder="SKU" value="teste-teste">
+              <label for="floatingInputValue">SKU</label>
           </div>
-          <div class="inputs">
-            <input name="email" id="mail" type="email" placeholder="E-mail" />
-            <img src="/utilites/email-icon.svg" alt="" />
-            <small id="avisoEmail" style="color: rgb(213, 100, 100); font-weight: bold"></small>
-          </div>
-          <select required name="typeLead" id="type_lead">
-            <option value="Não Informado" disabled selected>
-              Tipo de Lead
-            </option>
-            <option value="Cliente">Cliente</option>
-            <option value="Fornecedor">Fornecedor</option>
-          </select>
-        </div>
+         </div>
         <!-- AREA DE INFORMAÇÕES DE LOCAL -->
         <div class="lead-local-infos">
           <div class="title-area">
             <h2>Localização</h2>
             <img src="/utilites/location.svg" alt="" />
           </div>
-          <select required name="uf" id="uf">
-            <option value="Disable" disabled selected>
-              Selecione Estado
-            </option>
-          </select>
-          <select required name="city" id="cidade">
-            <option value="Disable" disabled selected>
-              Selecione a Cidade
-            </option>
-          </select>
-          <input required id="date" min="" max="" name="date" type="datetime-local" />
+          <input type="number" placeholder="Peso(kg)" required>  
+          <input type="text" placeholder="Marca" required > 
         </div>
         <!-- AREA DE MATERIAIS -->
         <div class="material-area-info">
           <div class="title-area">
             <h2>Material</h2>
             <img src="/utilites/material.svg" alt="" />
-          </div>
-          <select name="material" id="material" required>
-            <option value="Disable" disabled selected>
-              Escolha a Modalidade
-            </option>
-            <option value="Nenhum">Não Informado</option>
-            <option value="Plastico">Plástico</option>
-            <option value="Metal">Metal</option>
-            <option value="Papel">Papel</option>
-            <option value="Vidro">Vidro</option>
-            <option value="Prensas">Prensas</option>
-            <option value="Info-Produto">Info-Produto</option>
-            <option value="Frete">Frete</option>
-            <option value="Frete">Associações cooperativas</option>
-          </select>
-          <select name="typeOfMaterial" id="TipoDeMaterial" required>
-            <option value="Disable" disabled selected>
-              Escolha o Tipo de Material
-            </option>
-          </select>
-          <select name="process" id="Processo" required>
+          </div> 
+          <textarea name="description" id="description-product" placeholder="Descrição"></textarea>
+          <input required id="date" min="" max="" name="date" type="datetime-local" />
+            <select name="process" id="Processo" required>
             <option value="Disable" disabled selected>
               Escolha o Tipo de Processo
             </option>
@@ -111,16 +79,7 @@
             <option value="Prensado">Prensado</option>
             <option value="Nenhum">Nenhum</option>
           </select>
-          <select name="colaborator" required id="responsavel">
-            <option selected disabled value="disable">
-              Selecione o Responsável
-            </option>
-           
-              <option value = "teste" %>
-            
-              </option>
-             
-          </select>
+          
         </div>
         <button type="submit" id="register-btn">Cadastrar</button>
       </form>
@@ -245,9 +204,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
     integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-   script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script type="module" src="/js/Home.js"></script>
+     <script type="module" src="/js/Home.js"></script>
   <script src="/js/HomeAnimations.js"></script>
 </body>
 
