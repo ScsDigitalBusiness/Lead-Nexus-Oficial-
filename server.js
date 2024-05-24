@@ -14,7 +14,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect(process.env.CONNECTION_URL).then(() => {
+mongoose.connect(process.env.CONNECTION_STRING).then(() => {
     console.log("Conectando...");
     app.emit("Connected!");
 }).catch(e => {
@@ -32,7 +32,7 @@ app.on("Connected!", () => {
 //sessions : 
 const sessionOptions = session({
     secret : "Project Sessions", 
-    store: MongoStore.create({mongoUrl: process.env.CONNECTION_URL}), 
+    store: MongoStore.create({mongoUrl: process.env.CONNECTION_STRING}), 
     resave: false, 
     saveUninitialized:false, 
     cookie : {

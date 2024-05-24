@@ -20,7 +20,7 @@ exports.signupRegister = async (req, res) => {
       req.flash("erros",singUp.errors); 
       req.session.save(() => res.redirect('back'));
    }else{ 
-      req.session.save(()=>{
+      req.session.save(()=>{ 
          req.flash("sucess","Conta criada com Sucesso!"); 
          return res.redirect("/"); 
          
