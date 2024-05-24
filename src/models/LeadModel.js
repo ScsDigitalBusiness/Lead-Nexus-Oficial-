@@ -86,12 +86,7 @@ class Leads {
         const deleted = await LeadModel.findByIdAndDelete({ _id: id });
         return deleted;
     }
-
+    
 }
-
-
-
-
-
 
 exports.Leads = Leads;
