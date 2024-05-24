@@ -19,7 +19,6 @@ exports.deleteLead = async (req, res) => {
     const leads = new Leads(req.body,req.session.user); 
     const deleted = await leads.deleteLead(req.params.id);
     req.session.save(() => {return res.redirect("back");})
-
 }
 
 exports.editLead = async (req, res) => {
