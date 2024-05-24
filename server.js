@@ -27,8 +27,6 @@ app.on("Connected!", () => {
     })
 })
 
-  
-
 //sessions : 
 const sessionOptions = session({
     secret : "Project Sessions", 
@@ -40,8 +38,6 @@ const sessionOptions = session({
         httpOnly: true
     }
 })
- 
-
 app.use(sessionOptions); 
 app.use(flash()); 
 app.use(globalMiddleware); 
