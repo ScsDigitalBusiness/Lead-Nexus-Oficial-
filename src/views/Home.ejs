@@ -19,9 +19,7 @@
 </head>
 
 <body>
-  <div id="spiner-area" class="spiner-area">
-    <span class="loader"></span>
-  </div>
+ 
   <!-- REGISTER-AREA -->
   <div class="register">
     <div class="close">
@@ -210,7 +208,7 @@
     </div>
     <main class="dash"> 
       <% if(allLeads.length > 0) {  %>
-      <section class="leads-area">
+      <section class="leads-area w-100">
         <table class = "table"> 
           <thead class ="table-light">
             <tr >
@@ -277,10 +275,9 @@
                  
                 <% }); %>
         </table>
-        
-      </section> 
+        </section> 
       <% }else { %>
-        <div class="alert alert-warning text-center position-relative " role="alert">
+        <div class="alert alert-warning text-center position-fixed" role="alert">
           Nenhum produto cadastrado.
         </div> 
       <% } %>
