@@ -13,69 +13,170 @@
   <link rel="stylesheet" href="/css/register-area-product.css" />
   <link rel="stylesheet" href="/css/animations.css" />
   <link rel="stylesheet" href="/css/more-infos.css" />
-  <link rel="stylesheet" href="/css/search.css" /> 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <title>Lead Nexus</title>
+  <link rel="stylesheet" href="/css/search.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  
+    <title>Lead Nexus</title>
 </head>
 
 <body>
  
   <!-- REGISTER-AREA -->
-  <div class="register  w-75 h-75"> 
-     <h2 class="form-text">Novo Produto</h2>
+  <div class="register  w-75 h-75">
+    <h2 class="form-text">Novo Produto</h2>
     <div class="close">
       <img src="/utilites/close.svg" alt="fechar" />
     </div>
     <fieldset id="register-area" class="register-area d-flex align-items-center justify-content-center">
-      <form class="row g-3 w-75" action="/product/create/" method="post" >
+      <form class="row g-3 w-75" action="/product/create/" method="post">
         <div class="col-md-6">
           <label for="inputProduct4" class="form-label">Nome do Produto</label>
           <input type="text" class="form-control" name="name" id="inputProduct4">
         </div>
         <div class="col-md-6">
-          <label for="inputSKU4"  class="form-label">SKU</label>
-          <input type="text" name="sku"  class="form-control" id="inputSKU4" placeholder="SKU-CODE">
-        </div>  
-        <div class="col-12">
-          <label for="inputDesc" class="form-label">Categoria</label>
-          <select class="form-select" name="category"  aria-label="Default select example">
+          <label for="inputSKU4" class="form-label">SKU</label>
+          <input type="text" name="sku" class="form-control" id="inputSKU4" placeholder="SKU-CODE">
+        </div>
+        <div class="col-md-6">
+          <label for="inputDesc" class="form-label">Categoria <span style="color: #0B5ED7; font-weight: bold;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">+</span></label>
+          <select class="form-select" name="category" aria-label="Default select example">
             <option selected>Selecione a Categoria</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+             <% categories.forEach(category=>{ %> 
+              <option value="<%= category.name %>"><%= category.name %></option>
+             <%  }) %>
           </select>
         </div>
-      
-        <div class="col-12">
+         <div class="col-md-6">
           <label for="inputDesc" class="form-label">Descrição</label>
           <input type="text" class="form-control" name="description" id="inputDesc" placeholder="Descrição do Produto">
         </div>
-        <div class="col-12">
+        <div class="col-md-6">
           <label for="inputWeight" class="form-label">Peso(kg)</label>
           <input type="number" name="weight" class="form-control" id="inputWeight" placeholder="Peso do Produto">
+        </div>
+        <div class="col-md-6">
+          <label for="inputWeight" class="form-label">Preço R$</label>
+          <input type="number" name="price" class="form-control" id="inputWeight" placeholder="R$ 00,00">
         </div>
         <div class="col-md-6">
           <label for="inputBrand" class="form-label">Marca</label>
           <input type="text" name="brand" class="form-control" id="inputBrand">
         </div>
         <div class="col-md-4">
-          <label for="inputProcess"  class="form-label">Processo</label>
+          <label for="inputProcess" class="form-label">Processo <span style="color: #0B5ED7; font-weight: bold;" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">+</span></label>
           <select id="inputProcess" name="process" class="form-select">
-            <option selected>Escolha o Processo</option>
-            <option>...</option>
+            <option selected>Escolha o Processo</option> 
+            <% allProcess.forEach(prcss=>{ %>
+              <option value= "<%= prcss.process %>"><%= prcss.process %></option>
+            <% }) %>
+            
           </select>
         </div>
         <div class="col-md-2">
           <label for="inputDate" class="form-label">Date</label>
           <input type="datetime-local" name="date" class="form-control" id="inputDate">
         </div>
-        
+
         <div class="col-12">
           <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
         </div>
       </form>
     </fieldset>
+  </div> 
+  <!--Modal de categorias--> 
+  <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Adicionar Categoria</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <form class="row gy-2 gx-3 align-items-center" action="/category/create/" method="post">
+        <div class="col-auto">
+          <label class="visually-hidden" for="autoSizingInput">Nome</label>
+          <input type="text" class="form-control" id="autoSizingInput" name="name" placeholder="Categoria">
+        </div>
+         <div class="col-auto">
+          <label class="visually-hidden" for="autoSizingSelect">Colaborador</label>
+          <select name="colaborator" class="form-select" id="autoSizingSelect">
+            <% allUsers.forEach(user=>{ %> 
+              <option value= "<%=user.nome %>" ><%=user.nome %> </option>
+
+             <% }) %> 
+          </select>
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+      </form>
+    </div>
   </div>  
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="row gy-2 gx-3 align-items-center" action="/category/create/" method="post">
+        <div class="col-auto">
+          <label class="visually-hidden" for="autoSizingInput">Nome</label>
+          <input type="text" class="form-control" id="autoSizingInput" name="name" placeholder="Categoria">
+        </div>
+         <div class="col-auto">
+          <label class="visually-hidden" for="autoSizingSelect">Colaborador</label>
+          <select name="colaborator" class="form-select" id="autoSizingSelect">
+            <% allUsers.forEach(user=>{ %> 
+              <option value= "<%=user.nome %>" ><%=user.nome %> </option>
+
+             <% }) %> 
+          </select>
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!--Modal de processo  -->   
+  <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="staticBackdropLabel">Adicionar Processo</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div>
+        <form class="row gy-2 gx-3 align-items-center" action="/process/create/" method="POST">
+          <div class="col-auto">
+            <label class="visually-hidden" for="autoSizingInput">Processo</label>
+            <input type="text" class="form-control" id="autoSizingInput" name="process" placeholder=" Nome do Processo">
+          </div>
+           <div class="col-auto">
+            <label class="visually-hidden" for="autoSizingSelect">Colaborador</label>
+            <select name="colaborator" class="form-select" id="autoSizingSelect">
+              <% allUsers.forEach(user=>{ %> 
+                <option value= "<%=user.nome %>" ><%=user.nome %> </option>
+
+               <% }) %> 
+            </select>
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+ 
   <!--Area de -->
   <main id="content" class="content">
     <header class="cabecalho">
@@ -92,13 +193,8 @@
               <%= user.nome %>
             </span></p>
         </div>
-        <a href="/settings/index/"> 
-          <img
-          id="user-foto"
-          class="user-foto"
-          src="/utilites/user-photo.png"
-          alt=""
-        />  
+        <a href="/settings/index/">
+          <img id="user-foto" class="user-foto" src="/utilites/user-photo.png" alt="" />
         </a>
       </div>
     </header>
@@ -108,148 +204,171 @@
       </div>
       <ul class="links-bar">
         <li>
-          <a href="/dashboard/index/"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-grid-1x2" viewBox="0 0 16 16">
-            <path d="M6 1H1v14h5zm9 0h-5v5h5zm0 9v5h-5v-5zM0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1zm1 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1z"/>
-          </svg></a>
+          <a href="/dashboard/index/"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
+              class="bi bi-grid-1x2" viewBox="0 0 16 16">
+              <path
+                d="M6 1H1v14h5zm9 0h-5v5h5zm0 9v5h-5v-5zM0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1zm1 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1z" />
+            </svg></a>
         </li>
         <li>
-          <a href="/crm/index/"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-heart" viewBox="0 0 16 16">
-            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
-          </svg></a>
+          <a href="/crm/index/"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
+              class="bi bi-heart" viewBox="0 0 16 16">
+              <path
+                d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+            </svg></a>
         </li>
         <li>
-            <a href="/home/index/">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-person-check" viewBox="0 0 16 16">
-                    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
-                    <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z"/>
-                  </svg>
-            </a>
+          <a href="/home/index/">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-person-check"
+              viewBox="0 0 16 16">
+              <path
+                d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
+              <path
+                d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z" />
+            </svg>
+          </a>
         </li>
         <li>
           <a href="/home/index/"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30
             0" fill="black" class="bi bi-hexagon-fill" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M8.5.134a1 1 0 0 0-1 0l-6 3.577a1 1 0 0 0-.5.866v6.846a1 1 0 0 0 .5.866l6 3.577a1 1 0 0 0 1 0l6-3.577a1 1 0 0 0 .5-.866V4.577a1 1 0 0 0-.5-.866z"/>
-          </svg></a>
+              <path fill-rule="evenodd"
+                d="M8.5.134a1 1 0 0 0-1 0l-6 3.577a1 1 0 0 0-.5.866v6.846a1 1 0 0 0 .5.866l6 3.577a1 1 0 0 0 1 0l6-3.577a1 1 0 0 0 .5-.866V4.577a1 1 0 0 0-.5-.866z" />
+            </svg></a>
         </li>
         <li>
           <button id="new-Lead">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-plus-circle" viewBox="0 0 16 16">
-              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-plus-circle"
+              viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
             </svg>
           </button>
-        </li>  
-      
+        </li>
+
         <li id="sentings">
           <a href="/settings/index/">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-gear" viewBox="0 0 16 16">
-              <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0"/>
-              <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-gear"
+              viewBox="0 0 16 16">
+              <path
+                d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
+              <path
+                d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
             </svg>
           </a>
-        </li> 
+        </li>
         <li id="exit">
-         <a href="/home/index/logout">
-          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-unindent" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M13 8a.5.5 0 0 0-.5-.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H12.5A.5.5 0 0 0 13 8"/>
-            <path fill-rule="evenodd" d="M3.5 4a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 1 0v-7a.5.5 0 0 0-.5-.5"/>
-          </svg>
-         </a> 
-      </li>
+          <a href="/home/index/logout">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-unindent"
+              viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M13 8a.5.5 0 0 0-.5-.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H12.5A.5.5 0 0 0 13 8" />
+              <path fill-rule="evenodd" d="M3.5 4a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 1 0v-7a.5.5 0 0 0-.5-.5" />
+            </svg>
+          </a>
+        </li>
       </ul>
     </div>
-    <main class="dash">
+    <main class="dash"> 
       
-      <% if(allProducts.length >0 ) { %>  
-         <section class="area-product w-100">
-                <table class = "table">
-                  <thead class ="table-light">
-                    <tr >
-                      <th>ID</th>
-                      <th>Nome</th>
-                      <th>Categoria</th>
-                      <th>Processo</th>
-                      <th> Marca </th>
-                      <th>Peso</th>
-                      <th>
-                        Ações
-                      </th>
+     <% if(allProducts.length>0 ) { %>
+      <section class="area-product w-100">
+        <table class="table">
+            <thead class="table-light">
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>Processo</th>
+                <th> Marca </th>
+                <th>Peso</th>
+                <th>
+                  Ações
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% let i=0 ; %>
+                <% allProducts.forEach((product)=> { %>
+                  <% i++ %>
+                    <tr id="lead-" <% i %> >
+                      <td>
+                        <%= i %>
+                      </td>
+                      <td id="nome-lead">
+                        <div class="lead-img">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="black"
+                            class="bi bi-hexagon-half" viewBox="0 0 16 16">
+                            <path
+                              d="M14 4.577v6.846L8 15V1zM8.5.134a1 1 0 0 0-1 0l-6 3.577a1 1 0 0 0-.5.866v6.846a1 1 0 0 0 .5.866l6 3.577a1 1 0 0 0 1 0l6-3.577a1 1 0 0 0 .5-.866V4.577a1 1 0 0 0-.5-.866z" />
+                          </svg>
+                        </div>
+                        <%= product.name %>
+                      </td>
+                      <td>
+                        <%= product.category %>
+                      </td>
+                      <td>
+                        <%= product.process %>
+                      </td>
+                      <td>
+                        <%= product.brand %>
+                      </td>
+                      <td>
+                        <%= product.weight %> (Kg)
+                      </td>
+                      <td class="d-flex">
+                        <a href="/product/edit/index/<%=product._id %>">
+                          <button type="button" class="btn btn-dark s,"><svg xmlns="http://www.w3.org/2000/svg"
+                              width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                              <path
+                                d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
+                            </svg></button>
+                        </a>
+                     
+                        <a href="/product/delete/<%= product._id  %>">
+                          <button  type="button" class="btn btn-danger mx-1"><svg xmlns="http://www.w3.org/2000/svg"
+                              width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                              <path
+                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                              <path
+                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                            </svg></button>
+                        </a>
+                      </td>
                     </tr>
-                  </thead>    
-                  <tbody>
-                <% let i=0 ; %>
-                  <% allProducts.forEach((product) => { %> 
-                    <% i++ %>
-                      <tr id="lead-" <% i %> >
-                        <td >
-                          <%= i %>
-                        </td>
-                        <td id="nome-lead">
-                          <div class="lead-img">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="black" class="bi bi-hexagon-half" viewBox="0 0 16 16">
-                              <path d="M14 4.577v6.846L8 15V1zM8.5.134a1 1 0 0 0-1 0l-6 3.577a1 1 0 0 0-.5.866v6.846a1 1 0 0 0 .5.866l6 3.577a1 1 0 0 0 1 0l6-3.577a1 1 0 0 0 .5-.866V4.577a1 1 0 0 0-.5-.866z"/>
-                            </svg>
-                          </div>
-                          <%= product.name %>
-                        </td>
-                        <td >
-                          <%= product.category %>
-                        </td>
-                        <td >
-                          <%= product.process %>
-                        </td>
-                        <td >
-                          <%= product.brand %>
-                        </td>
-                        <td >
-                          <%= product.weight %> (Kg)
-                        </td>
-                         <td class="d-flex" >
-                          <a href="/product/edit/index/<%=product._id %>">
-                            <button type="button"  class="btn btn-dark s,"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
-                              <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z"/>
-                            </svg></button>
-                          </a>
-                
-                          </div>
-                          <a href="/product/delete/<%= product._id  %>">
-                            <button type="button" class="btn btn-danger mx-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                              <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                            </svg></button>
-                          </a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table> 
-                </section>
-                      <% }); %>
-                 <% }else  { %>  
-                  <div class="alert alert-warning text-center position-fixed " role="alert">
-                    Nenhum produto cadastrado.
-                  </div>
-                  
-                 <% } %>
+            </tbody>
             
-       
+            <% }); %>
+          </table> 
+        </section> 
+        
+        <% }else { %>
+          <div class="alert alert-warning text-center position-fixed " role="alert">
+            Nenhum produto cadastrado.
+          </div>
 
+    <% } %> 
+ 
     </main> 
+    
     <div class="search">
       <button id="button-search" class="button-seach">
         <img src="/utilites/search.svg" alt="" />
       </button>
       <input id="Search-bar" placeholder="Pesquisar..." type="search" class="Barra-de-Pesquisa" />
-    </div> 
-    
+    </div>
+
   </main>
-  
-  
+
+
   <!-- SCRIPTS-->
   <script src="/js/Jquery/code.jquery.com_jquery-3.7.1.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
     integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-     <script type="module" src="/js/Home.js"></script>
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script type="module" src="/js/Home.js"></script>
   <script src="/js/HomeAnimations.js"></script>
 </body>
 

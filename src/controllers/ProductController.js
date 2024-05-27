@@ -1,8 +1,19 @@
-const Product =  require("../models/ProductAndServiceModel")
-exports.indexProduct =  async (req,res) =>{ 
+const Product =  require("../models/ProductAndServiceModel") 
+const Category = require("../models/CategoryMOdel");   
+const { SignUp} = require("../models/SignupModelAndLoginModel");
+const Process = require("../models/ProcessModel"); 
+
+exports.indexProduct =  async (req,res) =>{  
   const productModel = new Product(req.body); 
-  const allProducts = await productModel.getProducts(); 
-  res.render("Product",{allProducts});    
+  const signup = new SignUp(req.body);  
+  const category =  new Category(req.body);  
+  const process = new Process(req.body); 
+  const allProducts = await productModel.getProducts();  
+  const allUsers = await signup.getAllUsers();
+  const categories =  await  category.getAllCategory();    
+  const allProcess = await process.getAllProcess(); 
+  
+  res.render("Product",{allProducts,categories,allUsers,allProcess});    
 } 
 exports.createProduct=  async (req,res) =>{
   const productModel = new Product(req.body); 
