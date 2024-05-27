@@ -5,7 +5,7 @@ const {loginIndex, signupIndex,signupRegister, login} = require ("./src/controll
 const {indexDashboard} = require("./src/controllers/DashboardControllers"); 
 const {indexCRM} = require ("./src/controllers/CrmControllers"); 
 const {indexSettings,updateProfile}  = require ("./src/controllers/SettingsControllers")  
-const {indexProduct} = require("./src/controllers/ProductController");  
+const {indexProduct,createProduct} = require("./src/controllers/ProductController");  
 const  multer =  require('multer');  
 const uploads = multer ({dest: "./public/uploads"}); 
 const path = require('path'); 
@@ -33,7 +33,8 @@ router.get("/dashboard/index/",indexDashboard);
 //CRM ROUTES 
 router.get("/crm/index/",indexCRM);   
 //product-page routes 
-router.get("/product/index/",indexProduct)
+router.get("/product/index/",indexProduct) 
+router.post("/product/create/",createProduct); 
  //settings
 router.get("/settings/index/",indexSettings);
 router.post("/settings/update/:id",uploads.single('userImg'),  updateProfile); 

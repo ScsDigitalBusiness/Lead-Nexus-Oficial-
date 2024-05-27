@@ -23,18 +23,62 @@
     <span class="loader"></span>
   </div>
   <!-- REGISTER-AREA -->
-  <div class="register">
+  <div class="register  w-75 h-75"> 
+     <h2 class="form-text">Novo Produto</h2>
     <div class="close">
       <img src="/utilites/close.svg" alt="fechar" />
     </div>
-    <fieldset id="register-area" class="register-area">
-
-      <form id="form-body" action="/poduct/create/"  method="POST">
-       
+    <fieldset id="register-area" class="register-area d-flex align-items-center justify-content-center">
+      <form class="row g-3 w-75" action="/product/create/" method="post" >
+        <div class="col-md-6">
+          <label for="inputProduct4" class="form-label">Nome do Produto</label>
+          <input type="text" class="form-control" name="name" id="inputProduct4">
+        </div>
+        <div class="col-md-6">
+          <label for="inputSKU4"  class="form-label">SKU</label>
+          <input type="text" name="sku"  class="form-control" id="inputSKU4" placeholder="SKU-CODE">
+        </div>  
+        <div class="col-12">
+          <label for="inputDesc" class="form-label">Categoria</label>
+          <select class="form-select" name="category"  aria-label="Default select example">
+            <option selected>Selecione a Categoria</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+      
+        <div class="col-12">
+          <label for="inputDesc" class="form-label">Descrição</label>
+          <input type="text" class="form-control" name="description" id="inputDesc" placeholder="Descrição do Produto">
+        </div>
+        <div class="col-12">
+          <label for="inputWeight" class="form-label">Peso(kg)</label>
+          <input type="number" name="weight" class="form-control" id="inputWeight" placeholder="Peso do Produto">
+        </div>
+        <div class="col-md-6">
+          <label for="inputBrand" class="form-label">Marca</label>
+          <input type="text" name="brand" class="form-control" id="inputBrand">
+        </div>
+        <div class="col-md-4">
+          <label for="inputProcess"  class="form-label">Processo</label>
+          <select id="inputProcess" name="process" class="form-select">
+            <option selected>Escolha o Processo</option>
+            <option>...</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <label for="inputDate" class="form-label">Date</label>
+          <input type="datetime-local" name="date" class="form-control" id="inputDate">
+        </div>
+        
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
+        </div>
       </form>
     </fieldset>
-  </div> 
-  
+  </div>  
+  <!--Area de -->
   <main id="content" class="content">
     <header class="cabecalho">
       <div class="notification-area">
@@ -117,37 +161,75 @@
       </ul>
     </div>
     <main class="dash">
-      <section class="leads-area">
-        <table class = "table"> 
-          <thead class ="table-light">
-            <tr >
-              <th>ID</th>
-              <th>Nome</th>
-              <th>Telefone</th>
-              <th>E-mail</th>
-              <th> Tipo </th>
-              <th>Material</th>
-              <th>Responsável</th>
-              <th>
-                Ações
-              </th>
-            </tr>
-          </thead>
-         
-        </table>
+        <section class="area-product w-100">
+          <table class = "table">
+            <thead class ="table-light">
+              <tr >
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>Processo</th>
+                <th> Marca </th>
+                <th>Peso</th>
+                <th>
+                  Ações
+                </th>
+              </tr>
+            </thead>
+            <% let i=0 ; %>
+            <% allProducts.forEach((product) => { %>
+              <% i++ %>
+                <tr id="lead-" <% i %> >
+                  <td >
+                    <%= i %>
+                  </td>
+                  <td id="nome-lead">
+                    <div class="lead-img">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="black" class="bi bi-hexagon-half" viewBox="0 0 16 16">
+                        <path d="M14 4.577v6.846L8 15V1zM8.5.134a1 1 0 0 0-1 0l-6 3.577a1 1 0 0 0-.5.866v6.846a1 1 0 0 0 .5.866l6 3.577a1 1 0 0 0 1 0l6-3.577a1 1 0 0 0 .5-.866V4.577a1 1 0 0 0-.5-.866z"/>
+                      </svg>
+                    </div>
+                    <%= product.name %>
+                  </td>
+                  <td >
+                    <%= product.category %>
+                  </td>
+                  <td >
+                    <%= product.process %>
+                  </td>
+                  <td >
+                    <%= product.brand %>
+                  </td>
+                  <td >
+                    <%= product.weight %> (Kg)
+                  </td>
+                   <td class="d-flex" >
+                    <a href="/home/edit/<%=product._id %>">
+                      <button type="button"  class="btn btn-dark s,"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                        <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z"/>
+                      </svg></button>
+                    </a>
+          
+                    </div>
+                    <a href="/home/delete/<%= product._id  %>">
+                      <button type="button" class="btn btn-danger mx-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                      </svg></button>
+                    </a>
+                  </td>
+                </tr>
+          
+                <% }); %>
+          </table> 
+          
+        </section>
+       
 
-      </section>
     </main>
   </main>
-  <button id="new-Lead">
-    <img src="/utilites/create.svg" alt="criar" />
-  </button>
-  <div class="search">
-    <button id="button-search" class="button-seach"></button>
-      <img src="/utilites/search.svg" alt="" />
-    </button>
-    <input id="Search-bar" placeholder="Pesquisar..." type="search" class="Barra-de-Pesquisa" />
-  </div>
+ 
+  
   <!-- SCRIPTS-->
   <script src="/js/Jquery/code.jquery.com_jquery-3.7.1.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
