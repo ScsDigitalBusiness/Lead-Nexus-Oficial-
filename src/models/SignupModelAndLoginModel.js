@@ -44,11 +44,9 @@ class SignUp {
 
          } catch (e) {
             throw new Error(e);
-
          }
       }
-
-   }
+  }
   async login() {
       try {
          this.user = await SignupModel.findOne({ email: this.body.email, password: this.body.password });

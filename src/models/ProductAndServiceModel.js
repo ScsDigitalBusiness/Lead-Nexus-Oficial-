@@ -1,6 +1,7 @@
 const mongoose = require('mongoose'); 
 
 const ProductAndServiceSchema= mongoose.Schema({
+  
   name: {type:String, required: true}, 
   category: {type:String,required: true },  
   process: {type:String, required:true}, 
@@ -10,5 +11,6 @@ const ProductAndServiceSchema= mongoose.Schema({
   description: {type:String, required: true}, 
   date: {type:String, required: true}, 
 
-}) 
+}); 
+
 const ProductAndServiceModel = mongoose.model("ProductAndServiceModel",ProductAndServiceSchema); 
