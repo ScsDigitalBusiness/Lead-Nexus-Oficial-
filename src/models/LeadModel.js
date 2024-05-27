@@ -85,7 +85,8 @@ class Leads {
     async deleteLead(id) {
         const deleted = await LeadModel.findByIdAndDelete({ _id: id });
         return deleted;
-    }
+    } 
+   
     
 }
 

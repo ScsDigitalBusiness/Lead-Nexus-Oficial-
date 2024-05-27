@@ -29,8 +29,36 @@ class Product {
     }
   }
   async getProducts() {
-    const products = await ProductAndServiceModel.find();
-    return products;
+    try {
+      const products = await ProductAndServiceModel.find();
+      return products;
+
+    }catch(e) {
+      throw new Error(e); 
+    }
+  }
+  async getProductById(id) {
+    try {
+      const product = await ProductAndServiceModel.findById(id); 
+      return product; 
+    } catch (e) {
+      throw new Error(e);
+    }
+
+  } 
+  async getPorductByIdAndUpate(id) {
+    try  {
+      this.product = await ProductAndServiceModel.findByIdAndUpdate(id,this.body); 
+    }catch(e) {
+      throw new Error(e); 
+    }
+  } 
+  async  getProductByIdAndDelete(id) {
+    try {
+      this.product = await ProductAndServiceModel.findByIdAndDelete({_id: id});
+    }catch(e) {
+      throw new Error(e); 
+    }
   }
 }
 module.exports = Product;
