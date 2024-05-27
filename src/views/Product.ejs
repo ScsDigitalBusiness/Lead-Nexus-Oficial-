@@ -160,68 +160,77 @@
     </div>
     <main class="dash">
         <section class="area-product w-100">
-          <table class = "table">
-            <thead class ="table-light">
-              <tr >
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Categoria</th>
-                <th>Processo</th>
-                <th> Marca </th>
-                <th>Peso</th>
-                <th>
-                  Ações
-                </th>
-              </tr>
-            </thead>
-            <% let i=0 ; %>
-            <% allProducts.forEach((product) => { %>
-              <% i++ %>
-                <tr id="lead-" <% i %> >
-                  <td >
-                    <%= i %>
-                  </td>
-                  <td id="nome-lead">
-                    <div class="lead-img">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="black" class="bi bi-hexagon-half" viewBox="0 0 16 16">
-                        <path d="M14 4.577v6.846L8 15V1zM8.5.134a1 1 0 0 0-1 0l-6 3.577a1 1 0 0 0-.5.866v6.846a1 1 0 0 0 .5.866l6 3.577a1 1 0 0 0 1 0l6-3.577a1 1 0 0 0 .5-.866V4.577a1 1 0 0 0-.5-.866z"/>
-                      </svg>
-                    </div>
-                    <%= product.name %>
-                  </td>
-                  <td >
-                    <%= product.category %>
-                  </td>
-                  <td >
-                    <%= product.process %>
-                  </td>
-                  <td >
-                    <%= product.brand %>
-                  </td>
-                  <td >
-                    <%= product.weight %> (Kg)
-                  </td>
-                   <td class="d-flex" >
-                    <a href="/product/edit/index/<%=product._id %>">
-                      <button type="button"  class="btn btn-dark s,"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
-                        <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z"/>
-                      </svg></button>
-                    </a>
           
-                    </div>
-                    <a href="/product/delete/<%= product._id  %>">
-                      <button type="button" class="btn btn-danger mx-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                      </svg></button>
-                    </a>
-                  </td>
-                </tr>
-          
-                <% }); %>
-          </table> 
-          
-        </section>
+              <% if(allProducts.length >0 ) { %>  
+                <table class = "table">
+                  <thead class ="table-light">
+                    <tr >
+                      <th>ID</th>
+                      <th>Nome</th>
+                      <th>Categoria</th>
+                      <th>Processo</th>
+                      <th> Marca </th>
+                      <th>Peso</th>
+                      <th>
+                        Ações
+                      </th>
+                    </tr>
+                  </thead>    
+                  <tbody>
+                <% let i=0 ; %>
+                  <% allProducts.forEach((product) => { %> 
+                    <% i++ %>
+                      <tr id="lead-" <% i %> >
+                        <td >
+                          <%= i %>
+                        </td>
+                        <td id="nome-lead">
+                          <div class="lead-img">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="black" class="bi bi-hexagon-half" viewBox="0 0 16 16">
+                              <path d="M14 4.577v6.846L8 15V1zM8.5.134a1 1 0 0 0-1 0l-6 3.577a1 1 0 0 0-.5.866v6.846a1 1 0 0 0 .5.866l6 3.577a1 1 0 0 0 1 0l6-3.577a1 1 0 0 0 .5-.866V4.577a1 1 0 0 0-.5-.866z"/>
+                            </svg>
+                          </div>
+                          <%= product.name %>
+                        </td>
+                        <td >
+                          <%= product.category %>
+                        </td>
+                        <td >
+                          <%= product.process %>
+                        </td>
+                        <td >
+                          <%= product.brand %>
+                        </td>
+                        <td >
+                          <%= product.weight %> (Kg)
+                        </td>
+                         <td class="d-flex" >
+                          <a href="/product/edit/index/<%=product._id %>">
+                            <button type="button"  class="btn btn-dark s,"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                              <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z"/>
+                            </svg></button>
+                          </a>
+                
+                          </div>
+                          <a href="/product/delete/<%= product._id  %>">
+                            <button type="button" class="btn btn-danger mx-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                              <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                            </svg></button>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table> 
+                      <% }); %>
+                 <% }else  { %>  
+                  <div class="alert alert-warning text-center position-relative " role="alert">
+                    Nenhum produto cadastrado.
+                  </div>
+                 
+                 <% } %>
+            
+          </section>
        
 
     </main> 
