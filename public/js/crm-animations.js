@@ -33,10 +33,6 @@ for (lead of leads) {
       e.preventDefault();
     });
     areaLead.AreaContatado().addEventListener("drop", () => { 
-      let ContactDb = JSON.parse(localStorage.getItem(ContatDB) || "[]");  
-      ContactDb.push(selected) 
-      localStorage.setItem(ContatDB, JSON.stringify(ContactDb)); 
-
       areaLead.AreaContatado().appendChild(selected); 
       selected = null;
       

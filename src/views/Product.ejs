@@ -159,9 +159,9 @@
       </ul>
     </div>
     <main class="dash">
-        <section class="area-product w-100">
-          
-              <% if(allProducts.length >0 ) { %>  
+      
+      <% if(allProducts.length >0 ) { %>  
+         <section class="area-product w-100">
                 <table class = "table">
                   <thead class ="table-light">
                     <tr >
@@ -222,15 +222,15 @@
                       </tr>
                     </tbody>
                   </table> 
+                </section>
                       <% }); %>
                  <% }else  { %>  
-                  <div class="alert alert-warning text-center position-relative " role="alert">
+                  <div class="alert alert-warning text-center position-fixed " role="alert">
                     Nenhum produto cadastrado.
                   </div>
                   
                  <% } %>
             
-          </section>
        
 
     </main> 
