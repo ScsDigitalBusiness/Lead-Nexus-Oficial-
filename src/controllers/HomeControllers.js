@@ -7,10 +7,10 @@ const Process = require("../models/ProcessModel");
 exports.index = async (req, res) => {
     const leads = new Leads(req.body,req.session.user); 
     const signup = new SignUp(req.body); 
-    const allLeads = await leads.getLeads();  
-    const allUsers = await signup.getAllUsers(); 
     const category =  new Category(req.body);  
     const process = new Process(req.body);  
+    const allLeads = await leads.getLeads();  
+    const allUsers = await signup.getAllUsers(); 
     const categories =  await  category.getAllCategory();    
     const allProcess = await process.getAllProcess();  
     if (req.session.user) return res.render('Home', {allLeads, allUsers,categories,allProcess });
