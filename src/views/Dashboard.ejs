@@ -141,25 +141,25 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
 
-    const leadsInDb = <% - JSON.stringify(leads) %>;
-    const process =  <% - JSON.stringify(allProcess) %>;
+    const leadsInDb = <%- JSON.stringify(leadsAll) %>;
+    const process =  <%- JSON.stringify(allProcess) %>;
     const nameProcess = process.map(prcs => prcs.process);
     let numbeOfLeadWithProcess = [];
-    let arr = []
+    let arr = []  
+
     for (let j in nameProcess) {
       arr = leadsInDb.filter((lead) => (lead.process === nameProcess[j]))
       numbeOfLeadWithProcess.push(arr.length);
     }
-    console.log(numbeOfLeadWithProcess)
     const ctx3 = document.getElementById("donout");
     new Chart(ctx3, {
       type: "bar",
       data: {
-        labels: numbeOfLeadWithProcess,
+        labels: nameProcess,
         datasets: [
           {
             label: "Materiais Cadastrados",
-            data: [],
+            data: numbeOfLeadWithProcess,
             borderWidth: 1,
             backgroundColor: [
               '#5EE95C',
