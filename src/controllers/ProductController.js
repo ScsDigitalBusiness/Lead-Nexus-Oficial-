@@ -12,7 +12,6 @@ exports.indexProduct =  async (req,res) =>{
   const allUsers = await signup.getAllUsers();
   const categories =  await  category.getAllCategory();    
   const allProcess = await process.getAllProcess(); 
-  
   res.render("Product",{allProducts,categories,allUsers,allProcess});    
 } 
 exports.createProduct=  async (req,res) =>{

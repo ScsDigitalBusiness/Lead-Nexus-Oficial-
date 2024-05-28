@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <!-- HEAD - META DADOS -->
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/css/settings.css" />
   <link rel="stylesheet" href="/css/header.css" />
   <link rel="stylesheet" href="/css/sideBar.css" />
-  <link rel="stylesheet" href="/css/settings-principal-area.css" /> 
+  <link rel="stylesheet" href="/css/settings-principal-area.css" />
   <link rel="shortcut icon" href="/utilites/favicon.ico" type="image/x-icon">
   <title>Senttings</title>
 </head>
-<!--CONTENT-PRINCIPAL--> 
-<body>   
- 
+<!--CONTENT-PRINCIPAL-->
+
+<body>
+
   <main class="content">
     <header class="cabecalho">
       <div class="notification-area">
@@ -25,11 +27,13 @@
       </div>
       <div class="user-dados">
         <div class="user-name">
-          <p class="Username">Olá, <span class="name_user"><%=user.nome %></span></p>
+          <p class="Username">Olá, <span class="name_user">
+              <%=user.nome %>
+            </span></p>
         </div>
         <img id="user-foto" class="user-foto" src="./uploads/<%= user.userImg %>" alt="" />
       </div>
-    </header> 
+    </header>
     <!--SLIDE-BAR-->
     <div class="slidebar">
       <div class="logo">
@@ -52,15 +56,16 @@
         </li>
       </ul>
     </div>
-    <main class="dash"> 
+    <main class="dash">
       <!--seção dos users-->
       <section class="user-data">
         <fieldset class="user-form">
-          <form class="data-area" action="/settings/update/<%= user._id %> " method="post" enctype="multipart/form-data"> 
+          <form class="data-area" action="/settings/update/<%= user._id %> " method="post"
+            enctype="multipart/form-data">
             <div class="user-img">
               <label for="upload-img">Mudar Foto</label>
-              <input id="upload-img" type="file" name="userImg" value = ""   accept="image/jpeg, image/png, image/jpg" />
-              <img id="profileImg" style="height: 40vh" class="User-foto" src="/utilites//user-photo.png"alt="" />
+              <input id="upload-img" type="file" name="userImg" value="" accept="image/jpeg, image/png, image/jpg" />
+              <img id="profileImg" style="height: 40vh" class="User-foto" src="/utilites//user-photo.png" alt="" />
             </div>
             <div class="area-input">
               <input id="nome" name="nome" required placeholder="Nome" type="text" value="<%= user.nome %>" />
@@ -72,9 +77,9 @@
       </section>
     </main>
   </main>
-  <script src="/js/Jquery/code.jquery.com_jquery-3.7.1.js"></script> 
+  <script src="/js/Jquery/code.jquery.com_jquery-3.7.1.js"></script>
   <script src="/js/settings-animation.js"></script>
-  
+
 </body>
 
 </html>
