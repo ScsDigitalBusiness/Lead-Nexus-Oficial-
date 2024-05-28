@@ -91,7 +91,8 @@
             </option>
             <% categories.forEach(category=> { %>
                 <option value="<%= category.name  %>">
-                  <%=   category.name %>
+                  <%= category.name %> 
+
                </option>
             <% }) %>
           </select>
@@ -104,12 +105,11 @@
             <option value="Disable" disabled selected>
               Escolha o Tipo de Processo
             </option>
-            <option value="Moído e Lavado">Moído e Lavado</option>
-            <option value="Granulado">Granulado</option>
-            <option value="Enfardado">Enfardado</option>
-            <option value="Solto">Solto</option>
-            <option value="Prensado">Prensado</option>
-            <option value="Nenhum">Nenhum</option>
+            <%allProcess.forEach(process=>{ %> 
+              <option value="<%=process.process%>">
+                <%=process.process%> 
+              </option>
+            <% })  %>
           </select>
           <select name="colaborator" required id="responsavel">
             <option selected disabled value="disable">
@@ -276,9 +276,7 @@
                               d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
                           </svg></button>
                       </a>
-
-                      </div>
-                      <a href="/home/delete/<%= lead._id %>">
+                     <a href="/home/delete/<%= lead._id %>">
                         <button type="button" class="btn btn-danger mx-1"><svg xmlns="http://www.w3.org/2000/svg"
                             width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                             <path
@@ -288,18 +286,16 @@
                           </svg>
                         </button>
                       </a>
-
-                    </td>
+                  </td>
                   </tr>
-
-                  <% }); %>
+              <% }); %>
           </table>
         </section>
         <% }else { %>
           <div class="alert alert-warning text-center position-fixed" role="alert">
-            Nenhuma Lead cadastrada.
+            Nenhuma Lead cadastrada. 
           </div>
-          <% } %>
+        <% } %>
     </main>
   </main>
   <button id="new-Lead">

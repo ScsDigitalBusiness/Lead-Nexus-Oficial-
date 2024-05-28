@@ -137,20 +137,25 @@
           <div class="grafico-polar"><canvas id="polar"></canvas></div>
         </section>
       </main>
-  </main> 
+  </main>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script> 
-   
-   const leadsInDb = <%- JSON.stringify(allLeadsOnDB) %>;
-    const process =  <%- JSON.stringify(allProcess) %>;  
-    const nameProcess = process.map(prcs=> prcs.process);   
-    const leadName = [] 
-    //leadName  = leadsInDb.map(lead=> lead.name)
-     const ctx3 = document.getElementById("donout");
+  <script>
+
+    const leadsInDb = <% - JSON.stringify(leads) %>;
+    const process =  <% - JSON.stringify(allProcess) %>;
+    const nameProcess = process.map(prcs => prcs.process);
+    let numbeOfLeadWithProcess = [];
+    let arr = []
+    for (let j in nameProcess) {
+      arr = leadsInDb.filter((lead) => (lead.process === nameProcess[j]))
+      numbeOfLeadWithProcess.push(arr.length);
+    }
+    console.log(numbeOfLeadWithProcess)
+    const ctx3 = document.getElementById("donout");
     new Chart(ctx3, {
       type: "bar",
       data: {
-        labels: nameProcess,
+        labels: numbeOfLeadWithProcess,
         datasets: [
           {
             label: "Materiais Cadastrados",
@@ -179,11 +184,11 @@
       },
     });
 
-    
 
-  </script> 
 
-  
+  </script>
+
+
   <script src="/js/jQuery/code.jquery.com_jquery-3.7.1.js"></script>
   <script src="/js/dash.js"></script>
   <script src="/js/Dashanimation.js"></script>

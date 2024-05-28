@@ -12,7 +12,7 @@ exports.index = async (req, res) => {
     const category =  new Category(req.body);  
     const process = new Process(req.body);  
     const categories =  await  category.getAllCategory();    
-    const allProcess = await process.getAllProcess(); 
+    const allProcess = await process.getAllProcess();  
     if (req.session.user) return res.render('Home', {allLeads, allUsers,categories,allProcess });
 }
 exports.createLead = async (req, res) => {
