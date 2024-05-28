@@ -89,15 +89,11 @@
             <option value="Disable" disabled selected>
               Escolha a Modalidade
             </option>
-            <option value="Nenhum">Não Informado</option>
-            <option value="Plastico">Plástico</option>
-            <option value="Metal">Metal</option>
-            <option value="Papel">Papel</option>
-            <option value="Vidro">Vidro</option>
-            <option value="Prensas">Prensas</option>
-            <option value="Info-Produto">Info-Produto</option>
-            <option value="Frete">Frete</option>
-            <option value="Frete">Associações cooperativas</option>
+            <% categories.forEach(category=> { %>
+                <option value="<%= category.name  %>">
+                  <%=   category.name %>
+               </option>
+            <% }) %>
           </select>
           <select name="typeOfMaterial" id="TipoDeMaterial" required>
             <option value="Disable" disabled selected>
@@ -127,7 +123,7 @@
 
           </select>
         </div>
-        <button type="submit" id="register-btn" class="btn btn-primary ">Cadastrar</button>
+        <button type="submit" id="register-btn">Cadastrar</button>
       </form>
     </fieldset>
   </div>
