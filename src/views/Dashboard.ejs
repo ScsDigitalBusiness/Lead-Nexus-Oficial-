@@ -145,8 +145,7 @@
     const process =  <%- JSON.stringify(allProcess) %>;  
     const nameProcess = process.map(prcs=> prcs.process);   
     const leadName = [] 
-   
-       leadName  = leadsInDb.map(lead=> lead.name)
+    //leadName  = leadsInDb.map(lead=> lead.name)
 
     
   
@@ -156,7 +155,7 @@
     new Chart(ctx3, {
       type: "bar",
       data: {
-        labels: leadName,
+        labels: nameProcess,
         datasets: [
           {
             label: "Materiais Cadastrados",
