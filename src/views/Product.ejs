@@ -23,76 +23,79 @@
 </head>
 
 <body>
-
   <!-- REGISTER-AREA -->
-  <div class="register  w-75 h-75">
-    <h2 class="form-text">Novo Produto</h2>
-    <div class="close">
-      <img src="/utilites/close.svg" alt="fechar" />
+
+  <div class="offcanvas offcanvas-end w-50" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title fs-5" id="offcanvasRightLabel">Novo Produto</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <fieldset id="register-area" class="register-area d-flex align-items-center justify-content-center">
-      <form class="row g-3 w-75" action="/product/create/" method="post">
-        <div class="col-md-6">
-          <label for="inputProduct4" class="form-label">Nome do Produto</label>
-          <input type="text" class="form-control" name="name" id="inputProduct4">
-        </div>
-        <div class="col-md-6">
-          <label for="inputSKU4" class="form-label">SKU</label>
-          <input type="text" name="sku" class="form-control" id="inputSKU4" placeholder="SKU-CODE">
-        </div>
-        <div class="col-md-6">
-          <label for="inputDesc" class="form-label">Categoria <span style="color: #0B5ED7; font-weight: bold; cursor: pointer;"
-              data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
-              aria-controls="offcanvasWithBothOptions">+</span></label>
-          <select class="form-select" name="category" aria-label="Default select example">
-            <option selected>Selecione a Categoria</option>
-            <% categories.forEach(category=>{ %>
-              <option value="<%= category.name %>">
-                <%= category.name %>
-              </option>
-              <% }) %>
-          </select>
-        </div>
-        <div class="col-md-6">
-          <label for="inputDesc" class="form-label">Descrição</label>
-          <input type="text" class="form-control" name="description" id="inputDesc" placeholder="Descrição do Produto">
-        </div>
-        <div class="col-md-6">
-          <label for="inputWeight" class="form-label">Peso(kg)</label>
-          <input type="number" name="weight" class="form-control" id="inputWeight" placeholder="Peso do Produto">
-        </div>
-        <div class="col-md-6">
-          <label for="inputWeight" class="form-label">Preço R$</label>
-          <input type="number" name="price" class="form-control" id="inputWeight" placeholder="R$ 00,00">
-        </div>
-        <div class="col-md-6">
-          <label for="inputBrand" class="form-label">Marca</label>
-          <input type="text" name="brand" class="form-control" id="inputBrand">
-        </div>
-        <div class="col-md-4">
-          <label for="inputProcess" class="form-label">Processo <span style="color: #0B5ED7; font-weight: bold; cursor: pointer;"
-              data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
-              aria-controls="staticBackdrop">+</span></label>
-          <select id="inputProcess" name="process" class="form-select">
-            <option selected>Escolha o Processo</option>
-            <% allProcess.forEach(prcss=>{ %>
-              <option value="<%= prcss.process %>">
-                <%= prcss.process %>
-              </option>
-              <% }) %>
+    <div class="offcanvas-body">
+      <fieldset id="register-area" class="register-area d-flex align-items-start justify-content-center">
+        <form class="row g-3 w-75" action="/product/create/" method="post">
+          <div class="col-md-6">
+            <label for="inputProduct4" class="form-label">Nome do Produto</label>
+            <input type="text" class="form-control" name="name" id="inputProduct4">
+          </div>
+          <div class="col-md-6">
+            <label for="inputSKU4" class="form-label">SKU</label>
+            <input type="text" name="sku" class="form-control" id="inputSKU4" placeholder="SKU-CODE">
+          </div>
+          <div class="col-md-6">
+            <label for="inputDesc" class="form-label">Categoria <span
+                style="color: #0B5ED7; font-weight: bold; cursor: pointer;" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">+</span></label>
+            <select class="form-select" name="category" aria-label="Default select example">
+              <option selected>Selecione a Categoria</option>
+              <% categories.forEach(category=>{ %>
+                <option value="<%= category.name %>">
+                  <%= category.name %>
+                </option>
+                <% }) %>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="inputDesc" class="form-label">Descrição</label>
+            <input type="text" class="form-control" name="description" id="inputDesc"
+              placeholder="Descrição do Produto">
+          </div>
+          <div class="col-md-6">
+            <label for="inputWeight" class="form-label">Peso(kg)</label>
+            <input type="number" name="weight" class="form-control" id="inputWeight" placeholder="Peso do Produto">
+          </div>
+          <div class="col-md-6">
+            <label for="inputWeight" class="form-label">Preço R$</label>
+            <input type="number" name="price" class="form-control" id="inputWeight" placeholder="R$ 00,00">
+          </div>
+          <div class="col-md-6">
+            <label for="inputBrand" class="form-label">Marca</label>
+            <input type="text" name="brand" class="form-control" id="inputBrand">
+          </div>
+          <div class="col-md-4">
+            <label for="inputProcess" class="form-label">Processo <span
+                style="color: #0B5ED7; font-weight: bold; cursor: pointer;" data-bs-toggle="offcanvas"
+                data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">+</span></label>
+            <select id="inputProcess" name="process" class="form-select">
+              <option selected>Escolha o Processo</option>
+              <% allProcess.forEach(prcss=>{ %>
+                <option value="<%= prcss.process %>">
+                  <%= prcss.process %>
+                </option>
+                <% }) %>
 
-          </select>
-        </div>
-        <div class="col-md-2">
-          <label for="inputDate" class="form-label">Date</label>
-          <input type="datetime-local" name="date" class="form-control" id="inputDate">
-        </div>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label for="inputDate" class="form-label">Date</label>
+            <input type="datetime-local" name="date" class="form-control" id="inputDate">
+          </div>
 
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
-        </div>
-      </form>
-    </fieldset>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
+          </div>
+        </form>
+      </fieldset>
+    </div>
   </div>
   <!--Modal de categorias-->
   <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
@@ -253,7 +256,8 @@
             </svg></a>
         </li>
         <li>
-          <button id="new-Lead">
+          <button id="new-Lead " class=" border border-0 bg-transparent" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-plus-circle"
               viewBox="0 0 16 16">
               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
@@ -307,6 +311,7 @@
             <tbody>
               <% let i=0 ; %>
                 <% allProducts.forEach((product)=> { %>
+
                   <% i++ %>
                     <tr id="lead-" <% i %> >
                       <td>
@@ -335,14 +340,100 @@
                         <%= product.weight %> (Kg)
                       </td>
                       <td class="d-flex">
-                        <a href="/product/edit/index/<%=product._id %>">
-                          <button type="button" class="btn btn-dark s,"><svg xmlns="http://www.w3.org/2000/svg"
-                              width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
-                              <path
-                                d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
-                            </svg></button>
-                        </a>
+                        <button type="button" class="btn btn-dark s," data-bs-toggle="offcanvas"
+                          data-bs-target="#OffcanvasRight<%= i %>" aria-controls="OffcanvasRight<%= i %>"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-pen" viewBox="0 0 16 16">
+                            <path
+                              d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
+                          </svg>
+                        </button>
+                        <!-- Modal -->
+                        <div class="offcanvas  offcanvas-end  w-50" tabindex="-1" id="OffcanvasRight<%= i %>"
+                          aria-labelledby="offcanvasRightLabel">
+                          <div class="offcanvas-header">
+                            <h5 class="offcanvas-title fs-5" id="offcanvasRightLabel">Editar Produto</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                              aria-label="Close"></button>
+                          </div>
+                          <div class="offcanvas-body">
+                            <fieldset id="register-area"
+                              class="register-area d-flex align-items-start justify-content-start flex-column w-75">
+                              <form class="row g-3 w-75" action="/product/edit/<%=product._id%>" method="post">
+                                <div class="col-md-6">
+                                  <label for="inputProduct4" class="form-label">Nome do Produto</label>
+                                  <input type="text" class="form-control" name="name" value="<%= product.name %>"
+                                    id="inputProduct4">
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="inputSKU4" class="form-label">SKU</label>
+                                  <input type="text" name="sku" value="<%= product.sku %>" class="form-control"
+                                    id="inputSKU4" placeholder="SKU-CODE">
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="inputDesc" class="form-label">Categoria <span
+                                      style="color: #0B5ED7; font-weight: bold; cursor: pointer;"
+                                      data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+                                      aria-controls="offcanvasWithBothOptions">+</span></label>
+                                  <select class="form-select" name="category" aria-label="Default select example">
+                                    <option selected>Selecione a Categoria</option>
+                                    <% categories.forEach(category=>{ %>
+                                      <option value="<%= category.name %>">
+                                        <%= category.name %>
+                                      </option>
+                                      <% }) %>
+                                  </select>
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="inputDesc" class="form-label">Descrição</label>
+                                  <input type="text" class="form-control" value="<%= product.description %>"
+                                    name="description" id="inputDesc" placeholder="Descrição do Produto">
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="inputWeight" class="form-label">Peso(kg)</label>
+                                  <input type="number" name="weight" value="<%= product.weight%>" class="form-control"
+                                    id="inputWeight" placeholder="Peso do Produto">
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="inputWeight" class="form-label">Preço R$</label>
+                                  <input type="number" name="price" class="form-control" value="<%= product.price %>"
+                                    id="inputWeight" placeholder="R$ 00,00">
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="inputBrand" class="form-label">Marca</label>
+                                  <input type="text" name="brand" value="<%= product.brand %>" class="form-control"
+                                    id="inputBrand">
+                                </div>
+                                <div class="col-md-4">
+                                  <label for="inputProcess" class="form-label">Processo <span
+                                      style="color: #0B5ED7; font-weight: bold; cursor: pointer;"
+                                      data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
+                                      aria-controls="staticBackdrop">+</span></label>
+                                  <select id="inputProcess" name="process" class="form-select">
+                                    <option selected>Escolha o Processo</option>
+                                    <% allProcess.forEach(prcss=>{ %>
+                                      <option value="<%= prcss.process %>">
+                                        <%= prcss.process %>
+                                      </option>
+                                      <% }) %>
 
+                                  </select>
+                                </div>
+                                <div class="col-md-2">
+                                  <label for="inputDate" class="form-label">Date</label>
+                                  <input type="datetime-local" value="<%= product.date %>" name="date"
+                                    class="form-control" id="inputDate">
+                                </div>
+
+                                <div class="col-12">
+                                  <button type="submit" class="btn btn-primary">Editar Produto</button>
+                                </div>
+                              </form>
+                            </fieldset>
+                          </div>
+                        </div>
+
+                        <!--Button delete-->
                         <a href="/product/delete/<%= product._id  %>">
                           <button type="button" class="btn btn-danger mx-1"><svg xmlns="http://www.w3.org/2000/svg"
                               width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -352,11 +443,13 @@
                                 d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
                             </svg></button>
                         </a>
+
                       </td>
                     </tr>
-            </tbody>
 
-            <% }); %>
+
+                    <% }); %>
+            </tbody>
           </table>
         </section>
 
