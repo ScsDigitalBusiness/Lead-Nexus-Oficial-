@@ -38,7 +38,8 @@ class Leads {
     }
     async getAllNumberOfLeadsRegisterForUser() {
         try {
-            let leads = await LeadModel.find({ colaborator: this.session.nome });
+            let leads = await LeadModel.find({ colaborator: this.session.nome }); 
+            console.log(leads)
             return leads.length;
         } catch (e) {
             throw new Error(e);
