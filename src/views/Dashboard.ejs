@@ -142,15 +142,101 @@
   <script>
 
     const leadsInDb = <%- JSON.stringify(leadsAll) %>;
-    const process =  <%- JSON.stringify(allProcess) %>;
-    const nameProcess = process.map(prcs => prcs.process);
+    const process =  <%- JSON.stringify(allProcess) %>; 
+    const category = <%- JSON.stringify(categories)%>;  
+    const users =  <%- JSON.stringify(allUsers)%>;   
+    const userName = users.map(user=>user.nome); 
+    const categoryName = category.map(categories=>categories.name); 
+    const nameProcess = process.map(prcs => prcs.process);  
+    const clientNumber = leadsInDb.filter(lead=> lead.typeLead ==="Cliente");  
+    const fornecedorNumber = leadsInDb.filter(lead=> lead.typeLead ==="Fornecedor");  
+    
+    let numberOfLeadWithUsers = [];
+    let arrayUsers = [];  
+    let numberOfLeadWithCategories = [];  
+    let arrayCategories = []; 
     let numbeOfLeadWithProcess = [];
-    let arr = []  
-
-    for (let j in nameProcess) {
-      arr = leadsInDb.filter((lead) => (lead.process === nameProcess[j]))
-      numbeOfLeadWithProcess.push(arr.length);
+    let arrayProcess = []   
+    //usser Register Contage  
+    for(let i in userName)  {
+      arrayUsers = leadsInDb.filter(lead=> lead.colaborator === userName[i]); 
+      numberOfLeadWithUsers.push(arrayUsers.length); 
     }
+    //Category contage 
+    for(let i in categoryName) {
+      arrayCategories = leadsInDb.filter(lead=> lead.material === categoryName[i]); 
+      numberOfLeadWithCategories.push(arrayCategories.length)
+    } 
+    //process contage 
+    for (let j in nameProcess) {
+      arrayProcess = leadsInDb.filter((lead) => (lead.process === nameProcess[j]))
+      numbeOfLeadWithProcess.push(arrayProcess.length);
+    }  
+    //bar - Colaborators
+    const ctx1 = document.getElementById("line");
+    new Chart(ctx1, {
+      type: "pie",
+      data: {
+        labels: ["Cliente","Fornecedor"],
+        datasets: [
+          {
+            label: "Tipo de Leads",
+            data: [clientNumber.length, fornecedorNumber.length],
+            borderWidth: 1,
+            backgroundColor: [
+              '#5EE95C',
+              "#0D0D0D",
+              
+            ],
+            borderColor: '#5EE95C',
+          },
+        ],
+      },
+      options: {
+        indexAxis: "x",
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+
+    // Chart bar 
+    const ctx2 = document.getElementById("bar");
+    new Chart(ctx2, {
+      type: "bar",
+      data: {
+        labels: userName,
+        datasets: [
+          {
+            label: "Os Mais cadastrados",
+            data: numberOfLeadWithUsers,
+            borderWidth: 1,
+            backgroundColor: [
+              '#5EE95C',
+              '#5EE95C',
+              '#5EE95C',
+              '#5EE95C',
+              '#5EE95C',
+              '#5EE95C',
+              '#5EE95C'
+            ],
+            borderColor: '#5EE95C',
+          },
+        ],
+      },
+      options: {
+        indexAxis: "x",
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+
+    // Chart bar 
     const ctx3 = document.getElementById("donout");
     new Chart(ctx3, {
       type: "bar",
@@ -175,7 +261,7 @@
         ],
       },
       options: {
-        indexAxis: "x",
+        indexAxis: "y",
         scales: {
           y: {
             beginAtZero: true,
@@ -183,6 +269,37 @@
         },
       },
     });
+  //polar area  
+  const ctx4 = document.getElementById("polar");
+  new Chart(ctx4, {
+  type: "polarArea",
+  data: {
+    labels:categoryName ,
+    datasets: [
+      {
+        label: "Materiais Cadastrados",
+        data: numberOfLeadWithCategories,
+        backgroundColor: [
+          "#68F263",
+          "#96D9A5",
+          "#9FD996",
+          "#F2F2F2",
+          "#6A8466",
+          "#0D0D0D",
+          "#3C2E25",
+        ],
+        borderColor: "black",
+      },
+    ],
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  },
+});
 
 
 

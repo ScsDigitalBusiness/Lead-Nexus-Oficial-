@@ -19,7 +19,7 @@ class SignUp {
       this.errors = [];
       this.user = null;
    }
-  async userExist() {
+   async userExist() {
       try {
          const existUser = await SignupModel.findOne({ email: this.body.email });
          if (existUser) this.errors.push("Já possui uma conta com esse E-mail!");
@@ -34,7 +34,7 @@ class SignUp {
       if (!validator.isEmail(this.body.email)) this.errors.push("E-mail incorreto !");
       this.userExist();
       if (this.body.password < 3) this.errors.push("Senha inválida, precistar ter no minimo 4 caraceters");
-      if(this.body.password!== this.body.passwordConfirmed) this.errors.push("Senhas não conferem!"); 
+      if (this.body.password !== this.body.passwordConfirmed) this.errors.push("Senhas não conferem!");
    }
    async register() {
       this.validation();
@@ -46,27 +46,27 @@ class SignUp {
             throw new Error(e);
          }
       }
-  }
-  async login() {
+   }
+   async login() {
       try {
          this.user = await SignupModel.findOne({ email: this.body.email, password: this.body.password });
          if (!this.user) this.errors.push("Usuário não existe !");
-         
+
       } catch (e) {
          throw new Error(e);
       }
    }
    cleanUP() {
       for (let key in this.body) {
-         if (typeof this.body[key] !== "string")this.body[key] = "";
-         
+         if (typeof this.body[key] !== "string") this.body[key] = "";
+
       }
    }
    async updateProfile(id) {
       const profileUpdated = await SignupModel.findByIdAndUpdate(id, this.body, { new: true });
       return profileUpdated;
-   } 
-   async  getAllUsers () {
+   }
+   async getAllUsers() {
       const allUsers = await SignupModel.find();
       return allUsers;
    }

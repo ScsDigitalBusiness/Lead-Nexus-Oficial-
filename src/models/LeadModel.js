@@ -38,7 +38,7 @@ class Leads {
     }
     async getAllNumberOfLeadsRegisterForUser() {
         try {
-            let leads = await LeadModel.find({ colaborator: this.session.nome }); 
+            let leads = await LeadModel.find({ colaborator: this.session.nome });
             console.log(leads)
             return leads.length;
         } catch (e) {
@@ -86,9 +86,9 @@ class Leads {
     async deleteLead(id) {
         const deleted = await LeadModel.findByIdAndDelete({ _id: id });
         return deleted;
-    } 
-   
-    
+    }
+
+
 }
 
 exports.Leads = Leads;
