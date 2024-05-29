@@ -66,7 +66,7 @@
           </div>
           <div class="col-md-6">
             <label for="inputWeight" class="form-label">Preço R$</label>
-            <input type="number" required name="price" class="form-control" id="inputWeight" placeholder="R$ 00,00">
+            <input type="number" required name="price" format="currency" precision="2" class="form-control" id="inputWeight" placeholder="R$ 00,00">
           </div>
           <div class="col-md-6">
             <label for="inputBrand" class="form-label">Marca</label>
@@ -274,9 +274,8 @@
                 <th>Processo</th>
                 <th> Marca </th>
                 <th>Peso</th>
-                <th>
-                  Ações
-                </th>
+                <th>Preço</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody>
@@ -309,6 +308,9 @@
                       </td>
                       <td>
                         <%= product.weight %> (Kg)
+                      </td> 
+                      <td>
+                        R$ <%= product.price %>
                       </td>
                       <td class="d-flex">
                         <button type="button" class="btn btn-dark s," data-bs-toggle="offcanvas"
