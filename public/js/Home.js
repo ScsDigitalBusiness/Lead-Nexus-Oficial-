@@ -1,7 +1,6 @@
 //area de variáveis
 import { Get_APIS_For_Materials } from "./modules/objects.js";
 import { Form, ValidationsOfForm } from "./modules/objects.js";
-import { GetData } from "./modules/objects.js";
 import { SearchBar } from "./modules/searchBar-module.js";
 import { URL_IBGE_UF_API } from "./modules/keys.js";
 
@@ -20,58 +19,26 @@ import { URL_IBGE_UF_API } from "./modules/keys.js";
 //Get_APIS_For_Materials.ShowMaterial("material");
 
 //IBGE API :
+function showFormLeadRegister () {
+  Get_APIS_For_Materials.getUfApi(URL_IBGE_UF_API, "uf");
+  document.getElementById("uf").addEventListener('change', () => {
+    Get_APIS_For_Materials.getCityApi("https://servicodados.ibge.gov.br/api/v1/localidades/estados/" +
+    $("#uf").val() +
+    "/municipios",  'cidade'); 
+  })  
+}
 
-Get_APIS_For_Materials.getUfApi(URL_IBGE_UF_API, "uf");
-document.getElementById("uf").addEventListener('change', () => {
-  Get_APIS_For_Materials.getCityApi("https://servicodados.ibge.gov.br/api/v1/localidades/estados/" +
-  $("#uf").val() +
-  "/municipios",  'cidade'); 
-}) 
+function showEditLeadRegister() {
+  Get_APIS_For_Materials.getUfApi(URL_IBGE_UF_API, "uf_edit");
+  document.getElementById("uf_edit").addEventListener('change', () => {
+    Get_APIS_For_Materials.getCityApi("https://servicodados.ibge.gov.br/api/v1/localidades/estados/" +
+    $("#uf_edit").val() +
+    "/municipios",  'city_edit'); 
+  }) 
+}
 
-//validações :
-
-//validação de nome
-Form.nomeInput().addEventListener("keyup", () => {
-  ValidationsOfForm.validationName();
-});
-//validação de Telefone
-Form.TellInput().addEventListener("keyup", () => {
-  ValidationsOfForm.validationPhone();
-});
-//validaçãp de Email
-
-Form.EmailInput().addEventListener("keyup", () => {
-  ValidationsOfForm.validationEmail(); 
-  console.log(document.getElementById("date").value); 
-});
-
-ValidationsOfForm.dateMax();  
-ValidationsOfForm.dateMin();
-
-
-//PEGANDO DOS DADOS DO FORMULÁRIO E ENVIANDO PARA O LOCAL STORAGE:
-
-let Ano_Cadastro = new Date();
-
-let Mes_cadastro = new Date();
-
-let Day_Cadastro = new Date();
-
-let DayM = new Date();
-
-Form.Button().addEventListener("click", () => {
-  ValidationsOfForm.sigIn(
-    Ano_Cadastro.getFullYear(),
-    Mes_cadastro.getMonth(),
-    Day_Cadastro.getDay(),
-    DayM.getDate()
-  ); 
-  
-});
-
-//mostrando os dados das leads :
-//GetData.Show();
-
+showFormLeadRegister () 
+showEditLeadRegister()
 //Search Bar
 
 const table = {

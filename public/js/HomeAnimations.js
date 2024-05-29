@@ -24,16 +24,7 @@ Quando o botão de fechar for clicado novamente
 a área de cadastro ficará oculta. 
 */
 
-$("#new-Lead").click(() => {
-  $("#new-Lead").hide();
-  $(".register").fadeIn(200);
-  $(".content").addClass("desfoque");
-  $(".close").click(function () {
-    $("#new-Lead").show();
-    $(".register").fadeOut(200);
-    $(".content").removeClass("desfoque");
-  });
-});
+
  /* 
  Animação é executada quando o 
  botão do sellflux é clicado.  
