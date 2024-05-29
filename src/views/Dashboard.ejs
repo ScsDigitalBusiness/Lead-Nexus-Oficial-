@@ -172,7 +172,7 @@
       arrayProcess = leadsInDb.filter((lead) => (lead.process === nameProcess[j]))
       numbeOfLeadWithProcess.push(arrayProcess.length);
     }  
-    //bar - Colaborators
+    //Chart Clients and Fornecer
     const ctx1 = document.getElementById("line");
     new Chart(ctx1, {
       type: "pie",
@@ -202,7 +202,7 @@
       },
     });
 
-    // Chart bar 
+    // Chart bar User Registration
     const ctx2 = document.getElementById("bar");
     new Chart(ctx2, {
       type: "bar",
@@ -236,7 +236,7 @@
       },
     });
 
-    // Chart bar 
+    // Chart Process 
     const ctx3 = document.getElementById("donout");
     new Chart(ctx3, {
       type: "bar",
@@ -269,7 +269,7 @@
         },
       },
     });
-  //polar area  
+  //Chart Category  
   const ctx4 = document.getElementById("polar");
   new Chart(ctx4, {
   type: "polarArea",
