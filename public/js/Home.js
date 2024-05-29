@@ -17,7 +17,7 @@ import { URL_IBGE_UF_API } from "./modules/keys.js";
 
 //Método ShowMaterial() mostra os materiais de uma API externa.
 
-Get_APIS_For_Materials.ShowMaterial("material");
+//Get_APIS_For_Materials.ShowMaterial("material");
 
 //IBGE API :
 

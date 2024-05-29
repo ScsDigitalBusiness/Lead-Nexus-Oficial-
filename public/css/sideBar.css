@@ -22,28 +22,13 @@
   list-style: none;
 } 
 
-.links-bar li img {
-  height: 3.5vh;
-  cursor: pointer; 
-  
-}
-.home-img:hover,
-.lead-icon:hover,
-.crm-img:hover,
-.senting-img:hover, .exit-img {
-  filter: grayscale(1);
-  transform: scale(1.05);
-}
-.lead-icon {
-  filter: grayscale(1);
-}
 #sentings {
   position: relative;
-  top: 35%;
+  top: 30%;
 } 
 #exit {
   position: relative;
-  top: 33%;
+  top: 26%;
 }
 #exit img {
   height: 3.3vh;

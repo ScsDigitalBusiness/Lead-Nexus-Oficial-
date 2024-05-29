@@ -87,7 +87,7 @@
           </div>
           <select name="material" id="material" required>
             <option value="Disable" disabled selected>
-              Escolha a Modalidade
+              Escolha a Categoria
             </option>
             <% categories.forEach(category=> { %>
                 <option value="<%= category.name  %>">
@@ -305,7 +305,21 @@
       <img src="/utilites/search.svg" alt="" />
     </button>
     <input id="Search-bar" placeholder="Pesquisar..." type="search" class="Barra-de-Pesquisa" />
-  </div>
+  </div> 
+   <script>
+        const products = <%-JSON.stringify(allProducts)%>;  
+         document.getElementById("material").addEventListener("change",()=>{
+             let value = document.getElementById("material").value; 
+             let filtredProducts= products.filter(product => product.category === value); 
+             filtredProducts.forEach((products)=>{
+              document.getElementById("TipoDeMaterial").innerHTML += 
+              `<option value="${products.name}">
+                 ${products.name}
+              </option>`
+             })
+         })
+
+   </script>
   <!-- SCRIPTS-->
   <script src="/js/Jquery/code.jquery.com_jquery-3.7.1.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
