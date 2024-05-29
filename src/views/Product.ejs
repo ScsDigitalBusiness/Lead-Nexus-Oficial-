@@ -51,8 +51,8 @@
                 <option value="<%= category.name %>">
                   <%= category.name %>
                 </option>
-                <% }) %> 
-                <option value="Nenhum">Nenhum</option>
+                <% }) %>
+                  <option value="Nenhum">Nenhum</option>
             </select>
           </div>
           <div class="col-md-6">
@@ -83,7 +83,7 @@
                   <%= prcss.process %>
                 </option>
                 <% }) %>
-                <option value="Nenhum">Nenhum</option>
+                  <option value="Nenhum">Nenhum</option>
             </select>
           </div>
           <div class="col-md-2">
@@ -111,21 +111,24 @@
           <label class="visually-hidden" for="autoSizingInput">Nome</label>
           <input type="text" class="form-control" id="autoSizingInput" name="name" placeholder="Categoria">
         </div>
-        <div class="col-auto">
-          <label class="visually-hidden" for="autoSizingSelect">Colaborador</label>
-          <select name="colaborator" class="form-select" id="autoSizingSelect">
-            <% allUsers.forEach(user=>{ %>
-              <option value="<%=user.nome %>">
-                <%=user.nome %>
-              </option>
 
-              <% }) %>
-          </select>
-        </div>
         <div class="col-auto">
           <button type="submit" class="btn btn-primary">Cadastrar</button>
         </div>
       </form>
+      <ul class="list-group p-2">
+        <li class="list-group-item active" aria-current="true">Categorias</li>
+        <% categories.forEach(category=>{ %>
+          <li class="list-group-item">
+            <div class="modal-item-body d-flex  align-items-center justify-content-start flex-row">
+              <%= category.name %>
+                <a class="position-absolute end-0 h-25 w-25" href="/category/delete/<%=category._id %>"><button
+                    type="button" class="btn-close" aria-label="Close"></button></a>
+             </div>
+          </li>
+          <% }) %>
+
+      </ul>
     </div>
   </div>
 
@@ -142,17 +145,7 @@
               <label class="visually-hidden" for="autoSizingInput">Nome</label>
               <input type="text" class="form-control" id="autoSizingInput" name="name" placeholder="Categoria">
             </div>
-            <div class="col-auto">
-              <label class="visually-hidden" for="autoSizingSelect">Colaborador</label>
-              <select name="colaborator" class="form-select" id="autoSizingSelect">
-                <% allUsers.forEach(user=>{ %>
-                  <option value="<%=user.nome %>">
-                    <%=user.nome %>
-                  </option>
 
-                  <% }) %>
-              </select>
-            </div>
             <div class="col-auto">
               <button type="submit" class="btn btn-primary">Cadastrar</button>
             </div>
@@ -179,26 +172,29 @@
             <label class="visually-hidden" for="autoSizingInput">Processo</label>
             <input type="text" class="form-control" id="autoSizingInput" name="process" placeholder=" Nome do Processo">
           </div>
-          <div class="col-auto">
-            <label class="visually-hidden" for="autoSizingSelect">Colaborador</label>
-            <select name="colaborator" class="form-select" id="autoSizingSelect">
-              <% allUsers.forEach(user=>{ %>
-                <option value="<%=user.nome %>">
-                  <%=user.nome %>
-                </option>
 
-                <% }) %>
-            </select>
-          </div>
           <div class="col-auto">
             <button type="submit" class="btn btn-primary">Cadastrar</button>
           </div>
         </form>
       </div>
+      <ul class="list-group p-2">
+        <li class="list-group-item active" aria-current="true">Processo</li>
+        <% allProcess.forEach(prcss=>{ %>
+          <li class="list-group-item">
+            <div class="modal-item-body d-flex  align-items-center justify-content-start flex-row">
+              <%= prcss.process %>
+                <a class="position-absolute end-0 h-25 w-25" href="/process/delete/<%=prcss._id %>"><button
+                    type="button" class="btn-close" aria-label="Close"></button></a>
+            </div>
+          </li>
+          <% }) %>
+
+      </ul>
     </div>
   </div>
 
-  <!--Area de -->
+  <!--Area Principal -->
   <main id="content" class="content">
     <header class="cabecalho">
       <div class="notification-area">
@@ -299,7 +295,7 @@
             <thead class="table-light">
               <tr>
                 <th>ID</th>
-                <th>Nome</th>
+                <th>Nome/Serviço</th>
                 <th>Categoria</th>
                 <th>Processo</th>
                 <th> Marca </th>
@@ -358,7 +354,7 @@
                               aria-label="Close"></button>
                           </div>
                           <div class="offcanvas-body">
-                            <fieldset  id="register-area"
+                            <fieldset id="register-area"
                               class="register-area d-flex align-items-center justify-content-start flex-column ">
                               <form class="row g-3 w-100 " action="/product/edit/<%=product._id%>" method="post">
                                 <div class="col-md-6">
@@ -376,14 +372,15 @@
                                       style="color: #0B5ED7; font-weight: bold; cursor: pointer;"
                                       data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
                                       aria-controls="offcanvasWithBothOptions">+</span></label>
-                                  <select id="inputCategory<%=i%>" class="form-select" name="category" aria-label="Default select example">
+                                  <select id="inputCategory<%=i%>" class="form-select" name="category"
+                                    aria-label="Default select example">
                                     <option selected>Selecione a Categoria</option>
                                     <% categories.forEach(category=>{ %>
                                       <option value="<%= category.name %>">
                                         <%= category.name %>
-                                      </option> 
+                                      </option>
                                       <% }) %>
-                                      <option value="Nenhum">Nenhum</option>
+                                        <option value="Nenhum">Nenhum</option>
                                   </select>
                                 </div>
                                 <div class="col-md-6">
@@ -416,9 +413,9 @@
                                     <% allProcess.forEach(prcss=>{ %>
                                       <option value="<%= prcss.process %>">
                                         <%= prcss.process %>
-                                      </option> 
+                                      </option>
                                       <% }) %>
-                                      <option value="Nenhum">Nenhum</option>
+                                        <option value="Nenhum">Nenhum</option>
 
                                   </select>
                                 </div>

@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 const ProcessSchema = mongoose.Schema({
     process: { type: String, required: true },
-    colaborator: { type: String, required: true },
 
 })
 
@@ -28,6 +27,13 @@ class Process {
             throw new Error(e);
         }
 
+    } 
+    async delete(id) {
+        try {
+         this.process = await ProcessModel.findByIdAndDelete({_id:id}); 
+        }catch(e) {
+            throw new Error(e); 
+        }
     }
 }
 module.exports = Process; 

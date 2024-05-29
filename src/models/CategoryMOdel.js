@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const CategorySchema = mongoose.Schema({
     name: { type: String, required: true },
-    colaborator: { type: String, required: true },
 })
 
 const CategoryModel = mongoose.model("CategoryModel", CategorySchema);
@@ -18,6 +17,14 @@ class Category {
             this.category = await CategoryModel.create(this.body);
         } catch (e) {
             throw new Error(e);
+        }
+    } 
+    async delete(id) {
+        try {
+            this.category = await CategoryModel.findByIdAndDelete({_id: id});
+
+        }catch(e){
+            throw new Error(e); 
         }
     }
     async getAllCategory() {
