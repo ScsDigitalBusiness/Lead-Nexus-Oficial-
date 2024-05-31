@@ -4,8 +4,8 @@ import { Form, ValidationsOfForm } from "./modules/objects.js";
 import { SearchBar } from "./modules/searchBar-module.js";
 import { URL_IBGE_UF_API } from "./modules/keys.js";
 
-
-
+$('.money').mask('000.000.000.000.000,00', {reverse: true});
+$('#inputTel').mask('(00) 0000-0000');
 
 
 

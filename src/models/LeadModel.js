@@ -48,7 +48,6 @@ class Leads {
     async getAllEmails() {
         try {
             const leads = await LeadModel.find({ colaborator: this.session.nome });
-            console.log("Emails cadastrados por :" + this.session.nome + "E-mails" + leads.length);
             let emails = leads.filter((lead) => {
                 if (lead.email !== undefined || lead.email !== null || lead.email !== " ") return lead.email
             }
