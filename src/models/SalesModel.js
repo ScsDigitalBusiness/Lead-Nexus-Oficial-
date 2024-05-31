@@ -20,4 +20,43 @@ const SalesSchema = mongoose.Schema({
 
 }) 
 
-const SalesModel = mongoose.model("SalesModel",SalesSchema); 
+const SalesModel = mongoose.model("SalesModel",SalesSchema);   
+class Sales {
+    constructor(body) {
+        this.body = body; 
+        this.erros=  []; 
+        this.sale= null; 
+    }
+ async create() {
+     try {
+        this.sal= SalesModel.create(this.body); 
+     }catch(e) {
+        throw new Error(e)
+     }
+ } 
+ async getAllSales() {
+    try {
+        const sales = await SalesModel.find(); 
+        return sales; 
+    }catch(e) {
+        throw new Error(e); 
+    }
+
+ } 
+ async delete(id) {
+    try {
+        this.sale = await SalesModel.findByIdAndDelete({_id:id}); 
+    }catch (e) {
+        
+        throw new Error(e); 
+    }
+ } 
+ async edit(id) {
+    try {
+        this.sale = await SalesModel.findByIdAndUpdate({_id:id},this.body); 
+    }catch(e) {
+        throw new Error(e); 
+    }
+ }
+} 
+module.exports = Sales; 

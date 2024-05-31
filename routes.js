@@ -8,7 +8,7 @@ const {indexSettings,updateProfile}  = require ("./src/controllers/SettingsContr
 const {indexProduct,createProduct,editPage,editProduct,deleteProduct} = require("./src/controllers/ProductController");  
 const {createCategory,deleteCategory} = require("./src/controllers/CategoryController"); 
 const {createProcess,deleteProcess} = require("./src/controllers/ProcessController");
-const {indexSales,createSales} = require("./src/controllers/SalesController"); 
+const {indexSales,createSales,deleteSales,editSales} = require("./src/controllers/SalesController"); 
 const  multer =  require('multer');  
 const uploads = multer ({dest: "./public/uploads"}); 
 const path = require('path'); 
@@ -37,7 +37,7 @@ router.get("/dashboard/index/",indexDashboard);
 router.get("/crm/index/",indexCRM);   
 //product-page routes 
 router.get("/product/index/",indexProduct) 
-router.post("/product/create/",createProduct); deleteCategory
+router.post("/product/create/",createProduct); 
 router.get("/product/edit/index/:id",editPage); 
 router.post("/product/edit/:id",editProduct);  
 router.get("/product/delete/:id",deleteProduct);  
@@ -48,7 +48,11 @@ router.get("/category/delete/:id",deleteCategory)
 
 //sales-page 
 router.get("/sales/index/",indexSales); 
-router.post("/sales/create/",createSales); 
+router.post("/sale/create/",createSales);  
+router.get("/sale/delete/:id",deleteSales); 
+router.post("/sale/edit/:id",editSales); 
+
+
 //settings
 router.get("/settings/index/",indexSettings);
 router.post("/settings/update/:id",uploads.single('userImg'),  updateProfile); 

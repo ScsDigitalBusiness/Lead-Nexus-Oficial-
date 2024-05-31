@@ -34,7 +34,7 @@
 
             <fieldset id="register-area" class="register-area d-flex align-items-start justify-content-center">
 
-                <form class="row g-3 w-100" action="/sales/create/" method="post">
+                <form class="row g-3 w-100" action="/sale/create/" method="post">
                     <div class="col-md-6">
                         <label for="inputClient" class="form-label">Cliente</label>
                         <select class="form-select" id="inputClient" required name="client" aria-label="Default select example">
@@ -120,8 +120,14 @@
                         <select class="form-select" required name="payment" id="payment"
                             aria-label="Default select example">
                             <option selected disabled>Selecione a Forma de Pagamento</option>
-                            <option>
-                                Thiago
+                            <option value="PIX ">
+                                PIX 
+                            </option> 
+                            <option value="Boleto">
+                                Boleto
+                            </option> 
+                            <option value="Cartão">
+                                Cartão
                             </option>
                             <option value="Nenhum">Nenhum</option>
                         </select>
@@ -334,100 +340,258 @@
             </ul>
         </div>
         <main class="dash">
-            <section class="area-product w-100">
-                <table class="table">
-                    <thead class="table-light">
-                        <tr>
-                            <th>ID</th>
-                            <th>Nome/Serviço</th>
-                            <th>Categoria</th>
-                            <th>Processo</th>
-                            <th> Marca </th>
-                            <th>Peso</th>
-                            <th>Preço</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
+          
                     <tbody>
-                        <% let i=0 ; %>
-
-
-                            <% i++ %>
-                                <tr id="lead-" <% i %> >
-                                    <td>
-                                        <%= i %>
-                                    </td>
-                                    <td id="nome-lead">
-                                        <div class="lead-img">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
+                        <% if(allSales.length>0 ) { %>
+                            <section class="area-product w-100">
+                              <table class="table">
+                                <thead class="table-light">
+                                  <tr>
+                                    <th>ID</th>
+                                    <th>CLiente</th>
+                                    <th>Produto/Serviço</th> 
+                                    <th>Processo</th>
+                                    <th>Preço</th>
+                                    <th>Peso</th>
+                                    <th> Vendedor </th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <% let i=0 ; %>
+                                    <% allSales.forEach((sale)=> { %>
+                    
+                                      <% i++ %>
+                                        <tr id="lead-" <%= i %> >
+                                          <td>
+                                            <%= i %>
+                                          </td>
+                                          <td id="nome-lead">
+                                            <div class="lead-img">
+                                              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
                                                 class="bi bi-hexagon-half" viewBox="0 0 16 16">
                                                 <path
-                                                    d="M14 4.577v6.846L8 15V1zM8.5.134a1 1 0 0 0-1 0l-6 3.577a1 1 0 0 0-.5.866v6.846a1 1 0 0 0 .5.866l6 3.577a1 1 0 0 0 1 0l6-3.577a1 1 0 0 0 .5-.866V4.577a1 1 0 0 0-.5-.866z" />
-                                            </svg>
-                                        </div>
-
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                    <td class="d-flex">
-                                        <button type="button" class="btn btn-dark s," data-bs-toggle="offcanvas"
-                                            data-bs-target="#OffcanvasRight<%= i %>"
-                                            aria-controls="OffcanvasRight<%= i %>"><svg
-                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                                  d="M14 4.577v6.846L8 15V1zM8.5.134a1 1 0 0 0-1 0l-6 3.577a1 1 0 0 0-.5.866v6.846a1 1 0 0 0 .5.866l6 3.577a1 1 0 0 0 1 0l6-3.577a1 1 0 0 0 .5-.866V4.577a1 1 0 0 0-.5-.866z" />
+                                              </svg>
+                                            </div>
+                                            <%= sale.client %>
+                                          </td>
+                                          <td>
+                                            <%= sale.productOurService %>
+                                          </td> 
+                                          <td>
+                                            <%= sale.process %>
+                                          </td>
+                                          <td>
+                                           R$ <%= sale.subtotal %>
+                                          </td> 
+                                          <td>
+                                            <%= sale.weight %> (Kg)
+                                          </td> 
+                                          <td>
+                                            <%= sale.saller %>
+                                          </td>
+                                         <% if (sale.status ==="Concluída") {  %>
+                                          <td style="color: #53C2F7; font-weight: bold;"> 
+                                            
+                                             <%= sale.status %>
+                                          </td> 
+                                        <% }else { %> 
+                                            <% if(sale.status ==="Pendente"){ %> 
+                                            <td style="color:#d28045; font-weight: bold;">
+                                                <%= sale.status %> 
+                                             </td>  
+                                             <% }else { %> 
+                                                <td style="color: #BB2D3B; font-weight: bold;">
+                                                    <%= sale.status %> 
+                                                 </td>
+                                                <% }%> 
+                                        <% } %>
+                                          <td class="d-flex">
+                                            <button type="button" class="btn btn-dark s," data-bs-toggle="offcanvas"
+                                              data-bs-target="#OffcanvasRight<%= i %>" aria-controls="OffcanvasRight<%= i %>"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                                class="bi bi-pen" viewBox="0 0 16 16">
                                                 <path
-                                                    d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
-                                            </svg>
-                                        </button>
-                                        <!-- Modal -->
-                                        <div class="offcanvas  offcanvas-end  w-50" tabindex="-1"
-                                            id="OffcanvasRight<%= i %>" aria-labelledby="offcanvasRightLabel">
-                                            <div class="offcanvas-header">
-                                                <h5 class="offcanvas-title fs-5" id="offcanvasRightLabel">Editar Produto
-                                                </h5>
+                                                  d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
+                                              </svg>
+                                            </button>
+                                            <!-- Modal -->
+                                            <div class="offcanvas  offcanvas-end  w-50" tabindex="-1" id="OffcanvasRight<%= i %>"
+                                              aria-labelledby="offcanvasRightLabel">
+                                              <div class="offcanvas-header">
+                                                <h5 class="offcanvas-title fs-5" id="offcanvasRightLabel">Editar Venda</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                                                    aria-label="Close"></button>
+                                                  aria-label="Close"></button>
+                                              </div>
+                                              <div class="offcanvas-body">
+                                                <fieldset id="register-area" class="register-area d-flex align-items-start justify-content-center">
+                                                    <form class="row g-3 w-100" action="/sale/edit/<%= sale._id %>" method="post">
+                                                        <div class="col-md-6">
+                                                            <label for="inputClient-edit-<%=i %>" class="form-label">Cliente</label>
+                                                            <select class="form-select inputClient"  id="inputClient-edit-<%= i %>" required name="client" aria-label="Default select example">
+                                                                <option selected disabled><%= sale.client %></option>
+                                                                <% allLeads.forEach(lead=>{ %>
+                                                                    <option value="<%= lead.name %>">
+                                                                        <%= lead.name %>
+                                                                    </option>
+                                                                    <% }) %>
+                                    
+                                                                        <option value="Nenhum">Nenhum</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="inputEmail-edit-<%=i%>" class="form-label">E-mail</label>
+                                                            <input type="email" class="form-control " name="email" value="<%= sale.email %>" placeholder="exemplo@teste.com.br"required id="inputEmail-edit-<%=i%>">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="inputTel-edit-<%=i%>" class="form-label">Telefone</label>
+                                                            <input type="text" name="tel" class="form-control inputTel" value="<%= sale.tel %>" required id="inputTel-edit-<%=i%>"placeholder="(00) 0000-0000">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="material-edit-<%=i%>" class="form-label">Categoria <span style="color: #0B5ED7; font-weight: bold; cursor: pointer;" data-bs-toggle="offcanvas"data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">+</span></label>
+                                                            <select class="form-select" required name="productCategory" id="material-edit-<%=i%>"
+                                                                aria-label="Default select example">
+                                                                <option selected disabled><%= sale.productCategory%></option>
+                                                                <% categories.forEach(category=>{ %>
+                                                                    <option value="<%= category.name %>">
+                                                                        <%= category.name %>
+                                                                    </option>
+                                                                    <% }) %>
+                                                                        <option value="Nenhum">Nenhum</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="TipoDeMaterial-edit-<%=i%>" class="form-label">Produto/Serviço</label>
+                                                            <select class="form-select " required name="productOurService" id="TipoDeMaterial-edit-<%=i%>"
+                                                                aria-label="Default select example">
+                                                                <option selected disabled><%= sale.productOurService%></option>
+                                                                <option value="Nenhum">Nenhum</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="inputProcess" class="form-label">Processo <span
+                                                                    style="color: #0B5ED7; font-weight: bold; cursor: pointer;" data-bs-toggle="offcanvas"
+                                                                    data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">+</span></label>
+                                                            <select required id="inputProcess" name="process" class="form-select">
+                                                                <option selected disabled><%= sale.process%></option>
+                                                                <% allProcess.forEach(prcss=>{ %>
+                                                                    <option value="<%= prcss.process %>">
+                                                                        <%= prcss.process %>
+                                                                    </option>
+                                                                    <% }) %>
+                                                                        <option value="Nenhum">Nenhum</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="inputPrice" class="form-label ">Preço R$</label>
+                                                            <input type="text" required name="price" value="<%= sale.price%>" format="currency" precision="2"
+                                                                class="form-control money" id="inputPrice" placeholder="R$ 00,00">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="inputWeight" class="form-label">Peso de Venda (kg)</label>
+                                                            <input type="text" required  value="<%= sale.weight%>" name="weight" class="form-control money" id="inputWeight"
+                                                                placeholder="Peso(kg)">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="inputDescount" class=" form-label">Desconto Aplicado R$</label>
+                                                            <input type="text" required name="descount" format="currency" precision="2"
+                                                                class="form-control money" id="inputDescount"  value="<%= sale.descount%>" placeholder="R$ 00,00">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="inputTotal" class="form-label">Subtotal R$</label>
+                                                            <input type="text" class="form-control money " name="subtotal"  value="<%= sale.subtotal%>"  required placeholder="R$ 00,00"
+                                                                id="inputTotal">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label for="inputSaleCode" class="form-label">Código de Venda</label>
+                                                            <input type="text" class="form-control" value="<%= sale.code%>"  name="code" required id="inputSaleCode">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label for="payment" class="form-label">Forma de Pagamento</label>
+                                                            <select class="form-select" required name="payment"  id="payment"
+                                                                aria-label="Default select example">
+                                                                <option selected disabled><%= sale.payment%></option>
+                                                                <option value="PIX ">
+                                                                    PIX 
+                                                                </option> 
+                                                                <option value="Boleto">
+                                                                    Boleto
+                                                                </option> 
+                                                                <option value="Cartão">
+                                                                    Cartão
+                                                                </option>
+                                                                <option value="Nenhum">Nenhum</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label for="status" class="form-label">Status da Venda</label>
+                                                            <select class="form-select" required name="status" id="status"
+                                                                aria-label="Default select example">
+                                                                <option selected disabled><%= sale.status%></option>
+                                                                <option style="background-color: rgb(138, 236, 138); color: rgb(86, 86, 86);">
+                                                                    Concluída
+                                                                </option>
+                                                                <option style="background-color: rgb(248, 248, 140);  color: rgb(86, 86, 86);">
+                                                                    Pendente
+                                                                </option>
+                                                                <option style="background-color: rgb(240, 113, 113); color: rgb(86, 86, 86);">
+                                                                    Cancelada
+                                                                </option>
+                                                                <option value="Nenhum">Nenhum</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="inputDate" class="form-label">Date da Venda*</label>
+                                                            <input required type="datetime-local" value="<%= sale.date%>" name="date" class="form-control" id="inputDate">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="saller" class="form-label">Vendedor</label>
+                                                            <select class="form-select" required name="saller" id="saller"
+                                                                aria-label="Default select example">
+                                                                <option selected disabled><%= sale.saller%></option>
+                                                                <%allUsers.forEach(saller=>{ %>
+                                                                    <option value="<%= saller.nome %>">
+                                                                        <%= saller.nome %>
+                                                                    </option>
+                                                                    <% }) %>
+                                                                        <option value="Nenhum">Nenhum</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <button type="submit" class="btn btn-primary">Editar Venda</button>
+                                                        </div>
+                                                    </form>
+                                                </fieldset>
+                                              </div>
                                             </div>
-                                            <div class="offcanvas-body">
-                                                
-                                            </div>
-                                        </div>
-
-                                        <!--Button delete-->
-                                        <a href="/product/delete/">
-                                            <button type="button" class="btn btn-danger mx-1"><svg
-                                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
-                                                    <path
-                                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                    
+                                            <!--Button delete-->
+                                            <a href="/sale/delete/<%= sale._id  %>">
+                                              <button type="buttodeleten" class="btn btn-danger mx-1"><svg xmlns="http://www.w3.org/2000/svg"
+                                                  width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                  <path
+                                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                                  <path
+                                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
                                                 </svg></button>
-                                        </a>
-
-                                    </td>
-                                </tr>
-
-                    </tbody>
-                </table>
-            </section>
-
-            <div class="alert alert-warning text-center position-fixed " role="alert">
-                Nenhum produto cadastrado.
-            </div>
+                                            </a>
+                    
+                                          </td>
+                                        </tr>
+                                    <% }); %>
+                                </tbody>
+                              </table>
+                            </section>
+                    
+                     <% }else { %>
+                      <div class="alert alert-warning text-center position-fixed " role="alert">
+                                Nenhuma Venda cadastrada.
+                     </div>
+                    
+                       <% } %>
+           
       </main>
         <div class="search">
             <button id="button-search" class="button-seach">
@@ -440,8 +604,9 @@
 
     <!-- SCRIPTSerer-->   
     <script>
-        const products = <% -JSON.stringify(allProducts) %>;  
-        const leads = <% - JSON.stringify(allLeads) %>; 
+        const products = <%-JSON.stringify(allProducts) %>;  
+        const leads = <%- JSON.stringify(allLeads) %>; 
+        const sales = <%- JSON.stringify(allSales) %>; 
 
         document.getElementById("material").addEventListener("change", () => {
             let value = document.getElementById("material").value;
@@ -449,7 +614,8 @@
             filtredProducts.forEach((products) => {
                 document.getElementById("TipoDeMaterial").innerHTML +=`<option value="${products.name}">${products.name}</option>`
             })
-        })
+        }) 
+    
         document.getElementById("inputClient").addEventListener("change", () => {
             let value = document.getElementById("inputClient").value;
             let filtredLeads = leads.filter(lead => lead.name === value);
@@ -457,8 +623,32 @@
                 document.getElementById("inputEmail").value= lead.email 
                 document.getElementById("inputTel").value= lead.tel
             })
+        })  
+        for(let i = 1; i < sales.length; i ++ ) {
+            document.getElementById(`inputClient-edit-${i}`).addEventListener("change", () => {
+            let value = document.getElementById(`inputClient-edit-${i}`).value;
+            let filtredLeads = leads.filter(lead => lead.name === value);
+            filtredLeads.forEach((lead) => {
+                document.getElementById(`inputEmail-edit-${i}`).value= lead.email 
+                document.getElementById(`inputTel-edit-${i}`).value= lead.tel
+            })
+        }) 
+        document.getElementById(`material-edit-${i}`).addEventListener("change", () => {
+            let value = document.getElementById(`material-edit-${i}`).value;
+            let filtredProducts = products.filter(product => product.category === value);
+            filtredProducts.forEach((products) => {
+                document.getElementById(`TipoDeMaterial-edit-${i}`).innerHTML +=`<option value="${products.name}">${products.name}</option>`
+            })
         })
-
+        }
+        
+        //descoubt calculo 
+        document.getElementById("inputDescount").addEventListener("change",()=>{
+            let price = parseFloat( document.getElementById("inputPrice").value); 
+            let discount =  parseFloat(document.getElementById("inputDescount").value);  
+            document.getElementById("inputTotal").value = (price - discount);
+            
+        })
     </script>
     <script src="/js/Jquery/code.jquery.com_jquery-3.7.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
