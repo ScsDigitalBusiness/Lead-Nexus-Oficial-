@@ -50,20 +50,15 @@
                     </div>
                     <div class="col-md-6">
                         <label for="inputEmail" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" name="email" placeholder="exemplo@teste.com.br"
-                            required id="inputEmail">
+                        <input type="email" class="form-control" name="email" placeholder="exemplo@teste.com.br"required id="inputEmail">
                     </div>
                     <div class="col-md-6">
                         <label for="inputTel" class="form-label">Telefone</label>
-                        <input type="text" name="tel" class="form-control" required id="inputTel"
-                            placeholder="(00) 0000-0000">
+                        <input type="text" name="tel" class="form-control" required id="inputTel"placeholder="(00) 0000-0000">
                     </div>
                     <div class="col-md-6">
-                        <label for="inputDesc" class="form-label">Categoria <span
-                                style="color: #0B5ED7; font-weight: bold; cursor: pointer;" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasWithBothOptions"
-                                aria-controls="offcanvasWithBothOptions">+</span></label>
-                        <select class="form-select" required name="category" id="material"
+                        <label for="material" class="form-label">Categoria <span style="color: #0B5ED7; font-weight: bold; cursor: pointer;" data-bs-toggle="offcanvas"data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">+</span></label>
+                        <select class="form-select" required name="productCategory" id="material"
                             aria-label="Default select example">
                             <option selected disabled>Selecione a Categoria</option>
                             <% categories.forEach(category=>{ %>
@@ -407,93 +402,7 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="offcanvas-body">
-                                                <fieldset id="register-area"
-                                                    class="register-area d-flex align-items-center justify-content-start flex-column ">
-                                                    <form class="row g-3 w-100 " action="/product/edit/" method="post">
-                                                        <div class="col-md-6">
-                                                            <label for="inputProduct4" class="form-label">Nome do
-                                                                Produto</label>
-                                                            <input type="text" class="form-control" required name="name"
-                                                                value="" id="inputProduct4">
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="inputSKU4" class="form-label">SKU</label>
-                                                            <input type="text" name="sku" required value=""
-                                                                class="form-control" id="inputSKU4"
-                                                                placeholder="SKU-CODE">
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="inputCategory<%=i%>"
-                                                                class="form-label">Categoria <span
-                                                                    style="color: #0B5ED7; font-weight: bold; cursor: pointer;"
-                                                                    data-bs-toggle="offcanvas"
-                                                                    data-bs-target="#offcanvasWithBothOptions"
-                                                                    aria-controls="offcanvasWithBothOptions">+</span></label>
-                                                            <select required id="inputCategory<%=i%>"
-                                                                class="form-select" name="category"
-                                                                aria-label="Default select example">
-                                                                <option selected>Selecione a Categoria</option>
-
-                                                                <option value="">
-
-                                                                </option>
-
-                                                                <option value="Nenhum">Nenhum</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="inputDesc" class="form-label">Descrição</label>
-                                                            <input required type="text" class="form-control" value=""
-                                                                name="description" id="inputDesc"
-                                                                placeholder="Descrição do Produto">
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="inputWeight" class="form-label">Peso(kg)</label>
-                                                            <input required type="number" name="weight" value=""
-                                                                class="form-control" id="inputWeight"
-                                                                placeholder="Peso do Produto">
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="inputWeight" class="form-label">Preço R$</label>
-                                                            <input required type="number" name="price"
-                                                                class="form-control" value="" id="inputWeight"
-                                                                placeholder="R$ 00,00">
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="inputBrand" class="form-label">Marca</label>
-                                                            <input required type="text" name="brand" value=""
-                                                                class="form-control" id="inputBrand">
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <label for="inputProcess<%=i%>" class="form-label">Processo
-                                                                <span
-                                                                    style="color: #0B5ED7; font-weight: bold; cursor: pointer;"
-                                                                    data-bs-toggle="offcanvas"
-                                                                    data-bs-target="#staticBackdrop"
-                                                                    aria-controls="staticBackdrop">+</span></label>
-                                                            <select required id="inputProcess<%=i%>" name="process"
-                                                                class="form-select">
-                                                                <option selected>Escolha o Processo</option>
-
-                                                                <option value="">
-                                                                </option>
-
-                                                                <option value="Nenhum">Nenhum</option>
-
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <label for="inputDate" class="form-label">Date</label>
-                                                            <input required type="datetime-local" value="" name="date"
-                                                                class="form-control" id="inputDate">
-                                                        </div>
-
-                                                        <div class="col-12">
-                                                            <button type="submit" class="btn btn-primary">Editar
-                                                                Produto</button>
-                                                        </div>
-                                                    </form>
-                                                </fieldset>
+                                                
                                             </div>
                                         </div>
 
@@ -519,10 +428,7 @@
             <div class="alert alert-warning text-center position-fixed " role="alert">
                 Nenhum produto cadastrado.
             </div>
-
-
-
-        </main>
+      </main>
         <div class="search">
             <button id="button-search" class="button-seach">
                 <img src="/utilites/search.svg" alt="" />
@@ -535,15 +441,13 @@
     <!-- SCRIPTS-->
     <script>
         const products = <% -JSON.stringify(allProducts) %>;  
-        const leads = <%- JSON.stringify(allLeads) %>
+        const leads = <% - JSON.stringify(allLeads) %>; 
+
         document.getElementById("material").addEventListener("change", () => {
             let value = document.getElementById("material").value;
             let filtredProducts = products.filter(product => product.category === value);
             filtredProducts.forEach((products) => {
-                document.getElementById("TipoDeMaterial").innerHTML +=
-                    `<option value="${products.name}">
-             ${products.name}
-          </option>`
+                document.getElementById("TipoDeMaterial").innerHTML +=`<option value="${products.name}">${products.name}</option>`
             })
         })
         document.getElementById("inputClient").addEventListener("change", () => {

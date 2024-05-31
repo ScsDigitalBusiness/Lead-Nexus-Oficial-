@@ -4,9 +4,8 @@ const Product = require("../models/ProductAndServiceModel")
 const Category = require("../models/CategoryMOdel");
 const Process = require("../models/ProcessModel");
 
-exports.index = async (req, res) => { 
-  const productModel = new Product(req.body); 
-
+exports.index = async (req, res) => {
+    const productModel = new Product(req.body);
     const leads = new Leads(req.body, req.session.user);
     const signup = new SignUp(req.body);
     const category = new Category(req.body);
@@ -14,9 +13,9 @@ exports.index = async (req, res) => {
     const allLeads = await leads.getLeads();
     const allUsers = await signup.getAllUsers();
     const categories = await category.getAllCategory();
-    const allProcess = await process.getAllProcess(); 
-    const allProducts = await productModel.getProducts();  
-    if (req.session.user) return res.render('Home', { allLeads,allProducts, allUsers, categories, allProcess });
+    const allProcess = await process.getAllProcess();
+    const allProducts = await productModel.getProducts();
+    if (req.session.user) return res.render('Home', { allLeads, allProducts, allUsers, categories, allProcess });
 }
 exports.createLead = async (req, res) => {
     const leads = new Leads(req.body, req.session.user);
