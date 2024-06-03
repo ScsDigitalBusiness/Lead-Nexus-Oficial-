@@ -18,8 +18,9 @@ exports.indexSales = async (req, res) => {
     const allLeads = await leads.getLeads(); 
     const allSales = await SalesModel.getAllSales(); 
     const allSalesValues = await SalesModel.getAllSalesValue();
+    const allSalesFinish = await SalesModel.getAllSalesFinished();
 
-    res.render("Sales", {allSales,allSalesValues ,allLeads, allProducts, categories, allUsers, allProcess });
+    res.render("Sales", {allSales,allSalesValues,allSalesFinish,allLeads, allProducts, categories, allUsers, allProcess });
 
 }
 exports.createSales = async (req, res) => {
