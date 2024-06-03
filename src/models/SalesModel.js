@@ -57,6 +57,24 @@ class Sales {
     }catch(e) {
         throw new Error(e); 
     }
- }
+ } 
+ async getAllSalesValue() {
+    try {
+        const sales = await SalesModel.find(); 
+        const  values = sales.filter(sale=>  {if(sale.status ==="Concluída") return sale.subtotal} );  
+        console.log(values)
+        let convertedValues = values.map(val=>{ 
+            return parseFloat(val.subtotal);  
+        })  
+        const total = convertedValues.reduce((totalValue,actual)=> totalValue + actual
+            
+        ,0); 
+         
+        return total; 
+    }catch(e) {
+        throw new Error(e); 
+    }
+
+ } 
 } 
 module.exports = Sales; 
