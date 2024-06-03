@@ -302,23 +302,39 @@
                             <path
                               d="M14 4.577v6.846L8 15V1zM8.5.134a1 1 0 0 0-1 0l-6 3.577a1 1 0 0 0-.5.866v6.846a1 1 0 0 0 .5.866l6 3.577a1 1 0 0 0 1 0l6-3.577a1 1 0 0 0 .5-.866V4.577a1 1 0 0 0-.5-.866z" />
                           </svg>
-                        </div>
-                        <%= product.name %>
+                        </div> 
+                        <span class="badge rounded-pill text-bg-dark"> <%= product.name %></span>
+                       
+                      </td>
+                      <td> 
+                        <% if(product.category ==="Nenhum" || product.category ==="Selecione a Categoria" ) { %> 
+                          <span class="badge rounded-pill text-bg-warning"> <%= product.category %></span>
+                         <% } else { %>
+                          <span class="badge rounded-pill text-bg-secondary">  <%= product.category %></span>
+                        <% } %>
+                        
+                      </td>
+                      <td> 
+                        <% if(product.process ==="Nenhum" || product.process ==="Escolha o Processo" ) { %> 
+                          <span class="badge rounded-pill text-bg-warning"> <%= product.process %></span>
+                         <% } else { %>
+                          <span class="badge rounded-pill text-bg-secondary"><%= product.process %> </span>  
+                        <% } %>
+                      </td>
+                      <td> 
+                        <span class="badge rounded-pill text-bg-primary"> <%= product.brand %></span>
+                       
                       </td>
                       <td>
-                        <%= product.category %>
-                      </td>
-                      <td>
-                        <%= product.process %>
-                      </td>
-                      <td>
-                        <%= product.brand %>
-                      </td>
-                      <td>
-                        <%= product.weight %> (Kg)
+                        <span class="badge rounded-pill text-bg-secondary"><%= product.weight %>(Kg)</span>  
                       </td> 
-                      <td>
-                        R$ <%= product.price %>
+                      <td> 
+                        <% if( product.price  < 0) { %>
+                          <span class="badge rounded-pill text-bg-danger">  R$ <%= product.price %></span>
+                      <% } else { %>
+                        <span class="badge rounded-pill text-bg-success">  R$ <%= product.price %></span>
+                      <% } %>
+                        
                       </td>
                       <td class="d-flex">
                         <button type="button" class="btn btn-dark s," data-bs-toggle="offcanvas"
@@ -373,12 +389,12 @@
                                 </div>
                                 <div class="col-md-6">
                                   <label for="inputWeight" class="form-label">Peso(kg)</label>
-                                  <input required type="number" name="weight" value="<%= product.weight%>" class="form-control"
+                                  <input required type="text" name="weight" value="<%= product.weight%>" class="money form-control"
                                     id="inputWeight" placeholder="Peso do Produto">
                                 </div>
                                 <div class="col-md-6">
                                   <label for="inputWeight" class="form-label">Preço R$</label>
-                                  <input required type="number" name="price" class="form-control" value="<%= product.price %>"
+                                  <input required type="text" name="price" class=" money form-control" value="<%= product.price %>"
                                     id="inputWeight" placeholder="R$ 00,00">
                                 </div>
                                 <div class="col-md-6">

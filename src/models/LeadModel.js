@@ -39,7 +39,6 @@ class Leads {
     async getAllNumberOfLeadsRegisterForUser() {
         try {
             let leads = await LeadModel.find({ colaborator: this.session.nome });
-            console.log(leads)
             return leads.length;
         } catch (e) {
             throw new Error(e);
@@ -61,13 +60,13 @@ class Leads {
         const leads = await LeadModel.find({ colaborator: this.session.nome });
         const dateOfSoftware = new Date();
         const actualMonth = dateOfSoftware.getMonth();
-        const leadsRegisterInThisMonth = leads.filter((lead) => {
+        const leadsRegisterInThiseMonth = leads.filter((lead) => {
             let LeadDate = new Date(lead.date);
             if (actualMonth == LeadDate.getMonth()) {
                 return lead.date;
             }
         });
-        return leadsRegisterInThisMonth.length;
+        return leadsRegisterInThiseMonth.length;
 
     }
     async getLeads() {
@@ -86,6 +85,32 @@ class Leads {
         const deleted = await LeadModel.findByIdAndDelete({ _id: id });
         return deleted;
     }
+    async getLeadsRegisterToday() {
+        try {
+            const leadsOfUser = await LeadModel.find({ colaborator: this.session.nome });
+            let myDate = new Date(); 
+            let formated  = this.dateFormatter(myDate) 
+            console.log(formated); 
+            let filtredLead = leadsOfUser.filter((lead) => { 
+             let formatedDate = this.dateFormatter(lead.date);   
+             console.log(formatedDate)
+              if(formated === formatedDate) return lead; 
+             });
+            return filtredLead.length;
+        } catch (e) {
+            throw new Error(e);
+        }
+
+    } 
+    dateFormatter(date) {
+       let defaultDate = new Date(date); 
+       let day = (defaultDate.getDate()<10)? `0${defaultDate.getDate()}`:defaultDate.getDate(); 
+       let month = (defaultDate.getMonth() < 10)? `0${defaultDate.getMonth()}`:defaultDate.getMonth(); 
+       let year = defaultDate.getFullYear(); 
+       let formatedDate = `${day}-${month}-${year}`; 
+       return formatedDate;   
+    }
+
 
 
 }

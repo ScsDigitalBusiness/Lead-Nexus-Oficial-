@@ -12,7 +12,7 @@ exports.indexDashboard = async (req, res) => {
     const products = new Product(req.body);
     const allLeadsOnDB = await AllLeads.getAllNumberOfLeadsRegisterForUser();
     const leadsAll = await AllLeads.getLeads();
-    const emails = await AllLeads.getAllEmails();
+    const allLeadsToday = await AllLeads.getLeadsRegisterToday();
     const AllLeadsInMonth = await AllLeads.getAllLeadsInThisMonth();
     const category = new Category(req.body);
     const process = new Process(req.body);
@@ -20,5 +20,5 @@ exports.indexDashboard = async (req, res) => {
     const allProcess = await process.getAllProcess();
     const allUsers = await signup.getAllUsers();
 
-    res.render('Dashboard', { emails, allLeadsOnDB, leadsAll, AllLeadsInMonth, categories, allProcess, allUsers });
+    res.render('Dashboard', { allLeadsToday, allLeadsOnDB, leadsAll, AllLeadsInMonth, categories, allProcess, allUsers });
 };
