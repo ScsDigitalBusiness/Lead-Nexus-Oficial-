@@ -38,7 +38,7 @@ function showEditLeadRegister() {
 }
 
 showFormLeadRegister () 
-showEditLeadRegister()
+
 //Search Bar
 
 const table = {

@@ -321,7 +321,10 @@
                 <th>Telefone</th>
                 <th>E-mail</th>
                 <th> Tipo </th>
-                <th>Material</th>
+                <th>Material</th> 
+                <th>UF</th> 
+                <th>Cidade</th>
+                <th>Processo</th>
                 <th>Responsável</th>
                 <th>
                   Ações
@@ -356,11 +359,23 @@
                       
                     </td>
                     <td> 
-                      <span class="badge rounded-pill text-bg-info">  <%= lead.typeOfMaterial %></span>
+                      <span class="badge rounded-pill text-bg-secondary">  <%= lead.typeOfMaterial %></span>
+                     
+                    </td>  
+                    <td> 
+                      <span class="badge rounded-pill text-bg-secondary">  <%= lead.uf %></span>
+                     
+                    </td> 
+                    <td> 
+                      <span class="badge rounded-pill text-bg-secondary">  <%= lead.city %></span>
                      
                     </td>
                     <td> 
-                      <span class="badge rounded-pill text-bg-primary">   <%= lead.colaborator %></span>
+                      <span class="badge rounded-pill text-bg-secondary">  <%= lead.process %></span>
+                     
+                    </td>
+                    <td> 
+                      <span class="badge rounded-pill text-bg-primary">  <%= lead.colaborator %></span>
                      
                     </td>
 
