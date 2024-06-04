@@ -64,8 +64,8 @@
     font-size: 1.3em;
     text-align: center;
     justify-content: center;
-    height: 30vh;
-  } 
+    height: 25vh;
+}
   .text__Form h2 {
       color: #3CA597; 
       font-size: 2em;
@@ -86,12 +86,12 @@
   
   .form-area form {
     display: flex;
-    height: 70vh;
+    height: 55vh;
     align-items: center;
     justify-content: start;
     flex-direction: column;
     gap: 3vh;
-  }
+}
   .form-area form input {
     width: 35vw;
     padding: 2vh; 
@@ -209,5 +209,32 @@
       box-shadow: 30px 0 0 silver;
       margin-top: 0;
     }
+  }
+  .form-area {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 80px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  .input-area {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  .input-area img {
+    margin-right: 10px;
+  }
+  .custom-file-label::after {
+    content: "Procurar";
+  }
+  .profile-img-preview {
+    display: block;
+    margin: 0 auto 15px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
   }
   
