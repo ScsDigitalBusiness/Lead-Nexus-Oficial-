@@ -3,7 +3,6 @@ const Process = require("../models/ProcessModel");
 const Category = require("../models/CategoryMOdel");
 const Product = require("../models/ProductAndServiceModel")
 const { SignUp } = require("../models/SignupModelAndLoginModel");
-const  {PhotoProfile} = require('../models/ProfilePhotosModel'); 
 
 
 exports.indexDashboard = async (req, res) => {
@@ -19,9 +18,6 @@ exports.indexDashboard = async (req, res) => {
     const categories = await category.getAllCategory();
     const allProcess = await process.getAllProcess();
     const allUsers = await signup.getAllUsers(); 
-    const profilePhoto = new PhotoProfile();   
-    const userPhoto =   await  profilePhoto.getUserPhoto(req.session.user._id) 
-    console.log(userPhoto);
-
-    res.render('Dashboard', {userPhoto, allLeadsToday, allLeadsOnDB, leadsAll, AllLeadsInMonth, categories, allProcess, allUsers });
+  
+    res.render('Dashboard', { allLeadsToday, allLeadsOnDB, leadsAll, AllLeadsInMonth, categories, allProcess, allUsers });
 };

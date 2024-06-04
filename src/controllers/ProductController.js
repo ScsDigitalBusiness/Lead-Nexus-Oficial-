@@ -2,7 +2,6 @@ const Product = require("../models/ProductAndServiceModel")
 const Category = require("../models/CategoryMOdel");
 const { SignUp } = require("../models/SignupModelAndLoginModel");
 const Process = require("../models/ProcessModel");
-const  {PhotoProfile} = require('../models/ProfilePhotosModel'); 
 exports.indexProduct = async (req, res) => {
   const productModel = new Product(req.body);
   const signup = new SignUp(req.body);
@@ -12,10 +11,8 @@ exports.indexProduct = async (req, res) => {
   const allUsers = await signup.getAllUsers();
   const categories = await category.getAllCategory();
   const allProcess = await process.getAllProcess(); 
-  const profilePhoto = new PhotoProfile();   
-  const userPhoto =   await  profilePhoto.getUserPhoto(req.session.user._id) 
-  console.log(userPhoto);  
-  res.render("Product", { userPhoto,allProducts, categories, allUsers, allProcess });
+ 
+  res.render("Product", {allProducts, categories, allUsers, allProcess });
 }
 exports.createProduct = async (req, res) => {
   const productModel = new Product(req.body);

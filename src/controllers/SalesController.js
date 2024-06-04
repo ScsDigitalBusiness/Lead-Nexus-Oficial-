@@ -4,7 +4,6 @@ const Category = require("../models/CategoryMOdel");
 const { SignUp } = require("../models/SignupModelAndLoginModel");
 const Process = require("../models/ProcessModel");  
 const Sales =require("../models/SalesModel") 
-const  {PhotoProfile} = require('../models/ProfilePhotosModel'); 
 exports.indexSales = async (req, res) => { 
     const SalesModel = new Sales(req.body); 
     const productModel = new Product(req.body);
@@ -20,11 +19,7 @@ exports.indexSales = async (req, res) => {
     const allSales = await SalesModel.getAllSales(); 
     const allSalesValues = await SalesModel.getAllSalesValue();
     const allSalesFinish = await SalesModel.getAllSalesFinished(); 
-    const profilePhoto = new PhotoProfile();   
-  const userPhoto =   await  profilePhoto.getUserPhoto(req.session.user._id) 
-  console.log(userPhoto);  
-
-    res.render("Sales", {userPhoto,allSales,allSalesValues,allSalesFinish,allLeads, allProducts, categories, allUsers, allProcess });
+   res.render("Sales", {allSales,allSalesValues,allSalesFinish,allLeads, allProducts, categories, allUsers, allProcess });
 
 }
 exports.createSales = async (req, res) => {

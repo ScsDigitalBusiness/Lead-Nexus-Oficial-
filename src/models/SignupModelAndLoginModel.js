@@ -7,10 +7,10 @@ const SignupSchema = mongoose.Schema({
    email: { type: String, required: true },
    password: { type: String, required: true },
    passwordConfirmed: { type: String, required: true },
-   
+   userPhoto: {type:String,required:false}
 });
 
-const SignupModel = mongoose.model("SignUp", SignupSchema);
+const SignupModel = mongoose.model("Accounts", SignupSchema);
 
 
 class SignUp {
@@ -53,7 +53,7 @@ class SignUp {
       this.body.password  = bcryptjs.hashSync(this.body.password,salt); 
       this.body.passwordConfirmed  = bcryptjs.hashSync(this.body.passwordConfirmed,salt); 
       this.validation(); 
-
+      
       if (this.errors.length === 0) {
          try {
             this.user = await SignupModel.create(this.body);
