@@ -32,8 +32,18 @@
     </div>
     <div class="offcanvas-body">
       <fieldset id="register-area" class="register-area d-flex align-items-start justify-content-center">
-        <form class="row g-3 w-100" action="/product/create/" method="post">
-          <div class="col-md-6">
+        <form class="row g-3 w-100" action="/product/create/" method="post">  
+          <div class="w-100 d-flex align-items-center justify-content-start ">
+            <div class="col-md-6">  
+              <img  class="w-50" src="/utilites/material-photo.jpg" class="img-thumbnail" alt="..."> 
+              
+              <div class="input-group m-3 ">
+                <input type="file" class="form-control" id="inputGroupFile02"> 
+                <label class="input-group-text" for="inputGroupFile02">Upload</label>
+               </div>
+            </div>
+          </div>
+          <div class="col-md-6"> 
             <label for="inputProduct4" class="form-label">Nome do Produto</label>
             <input type="text" class="form-control" name="name" required id="inputProduct4">
           </div>
@@ -90,7 +100,7 @@
             <label for="inputDate" class="form-label">Date</label>
             <input  required type="datetime-local" name="date" class="form-control" id="inputDate">
           </div>
-
+         
           <div class="col-12">
             <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
           </div>
