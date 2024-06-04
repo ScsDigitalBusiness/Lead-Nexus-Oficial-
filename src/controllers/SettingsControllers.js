@@ -1,19 +1,25 @@
 const { SignUp } = require("../models/SignupModelAndLoginModel");
-const fs = require('fs')
-exports.indexSettings = (req, res) => {
-  res.render("Settings");
+const  {PhotoProfile} = require('../models/ProfilePhotosModel'); 
+exports.indexSettings =  async (req, res) => { 
+  const profilePhoto = new PhotoProfile();   
+  const userPhoto =   await  profilePhoto.getUserPhoto(req.session.user._id) 
+  console.log(userPhoto);  
+  
+    res.render("Settings",{userPhoto});
+   
 }
 
-exports.updateProfile = async (req, res) => {
-  const profileData = {
-    nome: req.body.nome,
-    email: req.body.email,
-    userImg: new Buffer.from(fs.readFileSync(req.file.path).toString("base64")),
-  }
-
-  const profile = new SignUp(profileData);
+exports.updateProfile = async (req, res) => { 
+  
+   const profilePhoto = new PhotoProfile({
+    _id_profile: req.session.user._id,
+    originalname : req.file.originalname, 
+    filename: req.file.filename, 
+   }  );  
+   await profilePhoto.create(); 
+  const profile = new SignUp(req.body);
   const profileUpdated = await profile.updateProfile(req.params.id);
   req.session.user = profileUpdated;
   req.session.save(() => {return res.redirect("back");})
- return
+ return 
 }

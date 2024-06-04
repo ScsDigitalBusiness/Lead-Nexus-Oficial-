@@ -31,7 +31,7 @@
               <%=user.nome %>
             </span></p>
         </div>
-        <img id="user-foto" class="user-foto" src="./uploads/<%= user.userImg %>" alt="" />
+        <img id="user-foto" class="user-foto" src="/uploads/<%=userPhoto.filename  %>" alt="" />
       </div>
     </header>
     <!--SLIDE-BAR-->
@@ -64,8 +64,8 @@
             enctype="multipart/form-data">
             <div class="user-img">
               <label for="upload-img">Mudar Foto</label>
-              <input id="upload-img" type="file" name="userImg" value="" accept="image/jpeg, image/png, image/jpg" />
-              <img id="profileImg" style="height: 40vh" class="User-foto" src="/utilites//user-photo.png" alt="" />
+              <input id="upload-img" type="file" name="userImg" value="" accept="image/jpeg, image/png, image/jpg" /> 
+              <img id="profileImg" style="height: 40vh" class="User-foto" src="/uploads/<%=userPhoto.filename  %>" alt="" />
             </div>
             <div class="area-input">
               <input id="nome" name="nome" required placeholder="Nome" type="text" value="<%= user.nome %>" />

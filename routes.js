@@ -9,9 +9,9 @@ const {indexProduct,createProduct,editPage,editProduct,deleteProduct} = require(
 const {createCategory,deleteCategory} = require("./src/controllers/CategoryController"); 
 const {createProcess,deleteProcess} = require("./src/controllers/ProcessController");
 const {indexSales,createSales,deleteSales,editSales} = require("./src/controllers/SalesController"); 
-const  multer =  require('multer');  
-const uploads = multer ({dest: "./public/uploads"}); 
-const path = require('path'); 
+const  multer =  require('multer');   
+const multerConfig = require("./src/config/multerConfig"); 
+const uploads = multer (multerConfig); 
 const router = express.Router();
  
 //Login and Singup Page

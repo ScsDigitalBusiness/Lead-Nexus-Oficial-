@@ -2,8 +2,8 @@ const { Leads } = require("../models/LeadModel");
 const { SignUp } = require("../models/SignupModelAndLoginModel");
 const Product = require("../models/ProductAndServiceModel")
 const Category = require("../models/CategoryMOdel");
-const Process = require("../models/ProcessModel");
-
+const Process = require("../models/ProcessModel"); 
+const  {PhotoProfile} = require('../models/ProfilePhotosModel'); 
 exports.index = async (req, res) => {
     const productModel = new Product(req.body);
     const leads = new Leads(req.body, req.session.user);
@@ -14,8 +14,11 @@ exports.index = async (req, res) => {
     const allUsers = await signup.getAllUsers();
     const categories = await category.getAllCategory();
     const allProcess = await process.getAllProcess();
-    const allProducts = await productModel.getProducts();
-    if (req.session.user) return res.render('Home', { allLeads, allProducts, allUsers, categories, allProcess });
+    const allProducts = await productModel.getProducts(); 
+    const profilePhoto = new PhotoProfile();   
+  const userPhoto =   await  profilePhoto.getUserPhoto(req.session.user._id) 
+  console.log(userPhoto);  
+    if (req.session.user) return res.render('Home', { userPhoto,allLeads, allProducts, allUsers, categories, allProcess });
 }
 exports.createLead = async (req, res) => {
     const leads = new Leads(req.body, req.session.user);
