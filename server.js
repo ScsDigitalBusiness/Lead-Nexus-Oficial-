@@ -3,14 +3,16 @@ const mongoose = require('mongoose')
 const router = require('./routes');
 const path = require('path');  
 const session = require('express-session');  
-const MongoStore = require('connect-mongo');  
+const MongoStore = require('connect-mongo');   
+const  helmet = require ("helmet"); 
+const csrf = require("csurf"); 
 const flash  = require('connect-flash');    
 require('dotenv').config(); 
 
 
-const globalMiddleware = require ('./src/middlewares/middlewares'); 
+const {globalMiddleware,csrfMiddleware,checkCsrfError} = require ('./src/middlewares/middlewares'); 
 const app = express();
-
+// app.use(helmet()) 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
@@ -37,10 +39,13 @@ const sessionOptions = session({
         maxAge: 1000 * 60 * 60 *7, 
         httpOnly: true
     }
-})
+}) 
+//app.use(csrf()); 
 app.use(sessionOptions); 
 app.use(flash()); 
-app.use(globalMiddleware); 
+app.use(globalMiddleware);  
+/*app.use(checkCsrfError);  
+app.use(csrfMiddleware);  */
 app.use(router);
 
 app.set('views', path.resolve(__dirname, "src", "views"));
