@@ -10,51 +10,66 @@ exports.indexProduct = async (req, res) => {
   const allProducts = await productModel.getProducts();
   const allUsers = await signup.getAllUsers();
   const categories = await category.getAllCategory();
-  const allProcess = await process.getAllProcess(); 
- 
-  res.render("Product", {allProducts, categories, allUsers, allProcess });
+  const allProcess = await process.getAllProcess();
+
+  res.render("Product", { allProducts, categories, allUsers, allProcess });
 }
-exports.createProduct = async (req, res) => {  
-   const  body = {
-    name: req.body.name, 
-    productPhoto:req.file.filename, 
+exports.createProduct = async (req, res) => {
+  const body = {
+    name: req.body.name,
+    productPhoto: req.file.filename,
     category: req.body.category,
     process: req.body.process,
     sku: req.body.sku,
-    weight:req.body.weight,
+    weight: req.body.weight,
     price: req.body.price,
-    brand:req.body.brand,
+    brand: req.body.brand,
     description: req.body.description,
     date: req.body.date,
-  }  
+  }
   const productModel = new Product(body);
   await productModel.create();
-  res.redirect("/product/index/") 
+  res.redirect("/product/index/")
 }
 exports.editPage = async (req, res) => {
   const productModel = new Product(req.body);
   const productFinded = await productModel.getProductById(req.params.id);
   res.render("EditProduct", { productFinded });
 }
-exports.editProduct = async (req, res) => {  
+exports.editProduct = async (req, res) => {
+  let body = {}
+  if (!req.file) {
+    body = {
+      name: req.body.name,
+      category: req.body.category,
+      process: req.body.process,
+      sku: req.body.sku,
+      weight: req.body.weight,
+      price: req.body.price,
+      brand: req.body.brand,
+      description: req.body.description,
+      date: req.body.date,
+    }
+  } else {
+    body = {
+      name: req.body.name,
+      productPhoto: req.file.filename,
+      category: req.body.category,
+      process: req.body.process,
+      sku: req.body.sku,
+      weight: req.body.weight,
+      price: req.body.price,
+      brand: req.body.brand,
+      description: req.body.description,
+      date: req.body.date,
+    }
+  }
 
-  const  body = {
-    name: req.body.name, 
-    productPhoto:req.file.filename, 
-    category: req.body.category,
-    process: req.body.process,
-    sku: req.body.sku,
-    weight:req.body.weight,
-    price: req.body.price,
-    brand:req.body.brand,
-    description: req.body.description,
-    date: req.body.date,
-  } 
   const productModel = new Product(body);
   await productModel.getPorductByIdAndUpate(req.params.id);
   res.redirect("/product/index/");
 }
-exports.deleteProduct = async (req, res) => { 
+exports.deleteProduct = async (req, res) => {
 
   const productModel = new Product(req.body);
   await productModel.getProductByIdAndDelete(req.params.id);
