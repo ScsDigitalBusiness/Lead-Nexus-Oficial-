@@ -23,7 +23,7 @@ router.post("/signup/register/",signupRegister);
 //rota home
 router.get("/home/index/",index);   
 //ppost do formulário
-router.post("/home/create/", uploads.single('leadPhoto-edited'),createLead); 
+router.post("/home/create/", uploads.single('photoLead'),createLead); 
 //delete 
 router.get("/home/delete/:id",deleteLead);  
 //edit 

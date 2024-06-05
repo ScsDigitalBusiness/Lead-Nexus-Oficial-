@@ -19,19 +19,36 @@ exports.index = async (req, res) => {
     if (req.session.user) return res.render('Home', {allLeads, allProducts, allUsers, categories, allProcess });
 }
 exports.createLead = async (req, res) => { 
-    const body = {
-        name: req.body.name,
-        tel: req.body.tel,
-        email:req.body.email, 
-        photoLead: req.file.filename,
-        typeLead:  req.body.typeLead,
-        uf:  req.body.uf,
-        city: req.body.city,
-        date:  req.body.date,
-        material:   req.body.material,
-        typeOfMaterial:  req.body.typeOfMaterial,
-        process:  req.body.process,
-        colaborator: req.body.colaborator
+    let body = {};
+    if(!req.file) {
+        body = {
+            name: req.body.name,
+            tel: req.body.tel,
+            email:req.body.email, 
+            typeLead:  req.body.typeLead,
+            uf:  req.body.uf,
+            city: req.body.city,
+            date:  req.body.date,
+            material:   req.body.material,
+            typeOfMaterial:  req.body.typeOfMaterial,
+            process:  req.body.process,
+            colaborator: req.body.colaborator
+        }
+    }else {
+        body = {
+            name: req.body.name,
+            tel: req.body.tel,
+            email:req.body.email, 
+            photoLead: req.file.filename,
+            typeLead:  req.body.typeLead,
+            uf:  req.body.uf,
+            city: req.body.city,
+            date:  req.body.date,
+            material:   req.body.material,
+            typeOfMaterial:  req.body.typeOfMaterial,
+            process:  req.body.process,
+            colaborator: req.body.colaborator
+        }
     }
     const leads = new Leads(body, req.session.user);
     await leads.createLead();
