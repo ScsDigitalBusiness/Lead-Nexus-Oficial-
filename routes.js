@@ -23,12 +23,12 @@ router.post("/signup/register/",signupRegister);
 //rota home
 router.get("/home/index/",index);   
 //ppost do formulário
-router.post("/home/create/", uploads.single('photoLead'),createLead); 
+router.post("/home/create/", uploads.single('leadPhoto-edited'),createLead); 
 //delete 
 router.get("/home/delete/:id",deleteLead);  
 //edit 
 router.get("/home/edit/:id",editLead);  
-router.post("/home/update/:id",uploads.single('photoLead'),upate);
+router.post("/home/update/:id",uploads.single('leadPhotoEdit'),upate);
 //logout  
 router.get("/home/index/logout",logout); 
 //DASHBOARD ROUTES 

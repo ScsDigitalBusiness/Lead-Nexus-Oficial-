@@ -58,7 +58,7 @@ exports.editLead = async (req, res) => {
     
     res.render("EditLead", { allUsers, leadForEdit,categories,allProcess,allProducts});
 }
-exports.upate = async (req, res) => {   
+exports.upate = async (req, res) => {    
     let body = {}
     if(!req.file) {
         body = {
@@ -93,7 +93,7 @@ exports.upate = async (req, res) => {
       
     const leads = new Leads(body, req.session.user);
     await leads.edit(req.params.id);
-    res.redirect('/home/index/');
+    res.redirect('/home/index/'); 
 
 }
 exports.logout = (req, res) => {

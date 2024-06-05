@@ -91,9 +91,7 @@
             <option value="Disable" disabled selected>
               <%= leadForEdit.material %>
             </option>
-             <% categories.forEach((category)=>{ %>
-              <option value="<%=category.name %>"><%=category.name %></option>
-             <% })%>
+             
           </select>
           <select name="typeOfMaterial" id="TipoDeMaterial" required>
             <option value="Disable" disabled selected>
@@ -105,8 +103,8 @@
             <option value="Disable" disabled selected>
               <%= leadForEdit.process %>
             </option> 
-            <%  allProcess.forEach(process=>{ %>
-              <option value="<%=process.process %>"><%=category.name %></option>
+            <%  allProcess.forEach(prcs=>{ %>
+              <option value="<%=prcs.process %>"><%=category.name %></option>
              <% })%>
             
           </select>
