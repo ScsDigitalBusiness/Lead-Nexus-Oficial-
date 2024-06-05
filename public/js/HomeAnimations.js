@@ -32,15 +32,9 @@ a área de cadastro ficará oculta.
 Quando o botão fechar é clicado, o formulário é 
 oculto.
  */
-$(".sell-flux").click(() => {
-  $(".sellflux-send").show();
-  $(".sellflux-send").fadeIn(200);
-  $(".close3").click(() => {
-    $(".sellflux-send").hide();
-    $(".sellflux-send").fadeOut(200);
-  });
-});
- 
-setTimeout(() => { 
-  document.getElementById("spiner-area").remove(); 
-}, 1000);
+
+
+var loadFile = function (event) {
+  var image = document.getElementById("output");
+  image.src = URL.createObjectURL(event.target.files[0]);
+};

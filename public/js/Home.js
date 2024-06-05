@@ -64,3 +64,4 @@ searchElement.bar().addEventListener("keyup", () => {
 searchElement.bar().addEventListener("keyup", () => {
   console.log(Search.expression);
 });
+ 

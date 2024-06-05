@@ -30,12 +30,13 @@
             <p class="Username">Olá, <span class="name-user"><%=user.nome %></span></p>
           </div>
           <a href="/settings/index/">
-            <img
-              id="user-foto"
-              class="user-foto"
-              src="/uploads/<%=user.userPhoto %>"
-              alt=""
-            />
+            <% if(user.userPhoto) { %> 
+              <img id="user-foto" class="user-foto" src="/uploads/<%=user.userPhoto%>" alt="" />
+   
+            <% }else { %> 
+              <img id="user-foto" class="user-foto" src="/utilites/user-photo.png" alt="" />
+  
+            <% }%>
           </a>
         </div>
       </header>

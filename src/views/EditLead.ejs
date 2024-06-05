@@ -3,17 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <link rel="stylesheet" href="/css/editpage.css" />
+    <link rel="stylesheet" href="/css/editpage.css" /> 
+  <link rel="stylesheet" href="/css/profilePhoto.css" />
+
     <title>Editar <%= leadForEdit.name  %> </title>
 </head>
 <body> 
   <div class="register">
       <fieldset id="register-area" class="register-area">
-        <form id="form-body" action="/home/update/<%=leadForEdit._id %>" method="POST">
-            <div class="simple">
-              <div class="new-lead-img">
-                <img src="/utilites/user.png" alt="" />
-              </div>
+        <form enctype="multipart/form-data" id="form-body" action="/home/update/<%=leadForEdit._id %>" method="POST">
+            <div class="simple"> 
+              
+              <div class="new-lead-img">  
+                <div class="profile-pic">
+                <label class="-label" for="file">
+                  <span class="glyphicon glyphicon-camera"></span>
+                  <span>Change Image</span>
+                </label> 
+                <% if(leadForEdit.photoLead)  { %>
+                  <input id="file" type="file" name="photoLead" onchange="loadFile(event)"/>
+                <img src="/uploads/<%= leadForEdit.photoLead %>"  class="output"  id="output" width="200" />
+                <% }else { %>
+                  <input id="file" type="file" name="photoLead" onchange="loadFile(event)"/>
+                <img src="/utilites/user.png" class="output"  id="output" width="200" />
+                 <% }%>  
+                </div>
+              </div> 
               <div class="inputs">
                 <input name="name" required id="nome" type="text" value = "<%= leadForEdit.name %> " placeholder="Nome" />
                 <img src="/utilites/nameicon.svg" alt="" />

@@ -121,8 +121,12 @@
   gap: 3vh;
 }
 #nome-lead img {
-  height: 4vh;
-}
+  height: 4vh; 
+} 
+.lead-img {
+  clip-path: circle(); 
+  background-color: silver;
+} 
 #new-Lead {
   display: flex;
   align-items: center;

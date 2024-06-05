@@ -8,7 +8,8 @@
   <link rel="stylesheet" href="/css/Home.css" />
   <link rel="shortcut icon" href="assets/utilites/logo.svg" type="image/x-icon" />
   <link rel="stylesheet" href="/css/header.css" />
-  <link rel="stylesheet" href="/css/sideBar.css" />
+  <link rel="stylesheet" href="/css/sideBar.css" /> 
+  <link rel="stylesheet" href="/css/profilePhoto.css" />
   <link rel="stylesheet" href="/css/principal-area.css" />
   <link rel="stylesheet" href="/css/register-area-product.css" />
   <link rel="stylesheet" href="/css/animations.css" />
@@ -32,15 +33,15 @@
     </div>
     <div class="offcanvas-body">
       <fieldset id="register-area" class="register-area d-flex align-items-start justify-content-center">
-        <form class="row g-3 w-100" action="/product/create/" method="post">  
+        <form   enctype="multipart/form-data" class="row g-3 w-100" action="/product/create/" method="post">  
           <div class="w-100 d-flex align-items-center justify-content-start ">
-            <div class="col-md-6">  
-              <img  class="w-50" src="/utilites/material-photo.jpg" class="img-thumbnail" alt="..."> 
-              
-              <div class="input-group m-3 ">
-                <input type="file" class="form-control" id="inputGroupFile02"> 
-                <label class="input-group-text" for="inputGroupFile02">Upload</label>
-               </div>
+            <div class="profile-pic">
+              <label class="-label" for="file">
+                <span class="glyphicon glyphicon-camera"></span>
+                <span>Change Image</span>
+              </label> 
+              <input id="file" type="file" name="productPhoto" accept="image/png image/jpg image/jpeg" onchange="loadFile(event)"/>
+              <img src="/utilites/user-photo.png" id="output" width="200" />
             </div>
           </div>
           <div class="col-md-6"> 
@@ -196,7 +197,13 @@
             </span></p>
         </div>
         <a href="/settings/index/">
-          <img id="user-foto" class="user-foto" src="/uploads/<%=user.userPhoto %>" alt="" />
+          <% if(user.userPhoto) { %> 
+            <img id="user-foto" class="user-foto" src="/uploads/<%=user.userPhoto%>" alt="" />
+ 
+          <% }else { %> 
+            <img id="user-foto" class="user-foto" src="/utilites/user-photo.png" alt="" />
+
+          <% }%>
         </a>
       </div>
     </header>
@@ -284,7 +291,7 @@
       <% if(allProducts.length>0 ) { %>
         <section class="area-product w-100">
           <table class="table  table-borderless table-hover">
-         
+           
             <div class="buttons-action position-absolute end-0">
               <button type="button" id="export"  class="btn btn-transparent"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1z"/>
@@ -313,14 +320,19 @@
                       <td>
                         <%= i %>
                       </td>
-                      <td id="nome-lead">
-                        <div class="lead-img">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
-                            class="bi bi-hexagon-half" viewBox="0 0 16 16">
-                            <path
-                              d="M14 4.577v6.846L8 15V1zM8.5.134a1 1 0 0 0-1 0l-6 3.577a1 1 0 0 0-.5.866v6.846a1 1 0 0 0 .5.866l6 3.577a1 1 0 0 0 1 0l6-3.577a1 1 0 0 0 .5-.866V4.577a1 1 0 0 0-.5-.866z" />
-                          </svg>
-                        </div> 
+                      <td id="nome-lead"> 
+                        <% if(product.productPhoto) { %> 
+                          <div >
+                            <img class="img-thumbnail" src="/uploads/<%= product.productPhoto %>" alt="">
+                          </div> 
+                         <% } else { %> 
+                          <div  class="img-thumbnail" class="lead-img">
+                            <svg  xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black" class="bi bi-box-seam" viewBox="0 0 16 16">
+                              <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2zm3.564 1.426L5.596 5 8 5.961 14.154 3.5zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464z"/>
+                            </svg>
+                          </div> 
+                         <%  }%>
+                     
                         <span class="badge rounded-pill text-bg-dark"> <%= product.name %></span>
                        
                       </td>
@@ -373,7 +385,23 @@
                           </div>
                           <div class="offcanvas-body">
                             <fieldset id="register-area"class="register-area d-flex align-items-center justify-content-start flex-column ">
-                              <form class="row g-3 w-100 " action="/product/edit/<%=product._id%>" method="post">
+                              <form  enctype="multipart/form-data" class="row g-3 w-100 " action="/product/edit/<%=product._id%>" method="post">
+                                <div class="w-100 d-flex align-items-center justify-content-start ">
+                                  <div class="profile-pic">
+                                    <label class="-label" for="file-<%= i %>">
+                                      <span class="glyphicon glyphicon-camera"></span>
+                                      <span>Change Image</span>
+                                    </label>  
+                                    <% if(product.productPhoto)  { %>
+                                      <input id="file-<%= i %>" type="file" name="productPhoto-edited" onchange="loadFileEdit(event)"/>
+                                    <img src="/uploads/<%= product.productPhoto %>"  class="output"  id="output-<%= i %>" width="200" />
+                                    <% }else { %>
+                                      <input id="file-<%= i %>" type="file" name="productPhoto-edited" onchange="loadFileEdit(event)"/>
+                                    <img src="/utilites/user-photo.png" class="output"  id="output-<%= i %>" width="200" />
+                                     <% }%>
+                                    
+                                  </div>
+                                </div>
                                 <div class="col-md-6">
                                   <label for="inputProduct4" class="form-label">Nome do Produto</label>
                                   <input type="text" class="form-control" required name="name" value="<%= product.name %>"
@@ -489,7 +517,17 @@
 
   <!-- SCRIPTS--> 
 
+  <script>
+     const products = <%-JSON.stringify(allProducts)%>;   
+
+     for(let i = 1; i < products.length;i++) {
+    var loadFileEdit = function (event) {
+    var image = document.getElementById(`output-${i}`);
+    image.src = URL.createObjectURL(event.target.files[0]);
+  };
   
+     }
+  </script>
   <script src="/js/Jquery/code.jquery.com_jquery-3.7.1.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"
     integrity="sha512-0XDfGxFliYJPFrideYOoxdgNIvrwGTLnmK20xZbCAvPfLGQMzHUsaqZK8ZoH+luXGRxTrS46+Aq400nCnAT0/w=="
@@ -497,7 +535,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
-  <script type="module" src="/js/Home.js"></script> 
+    <script type="module" src="/js/Home.js"></script> 
   <script  src="/js/table2excel.js"></script>
 
   <script src="/js/HomeAnimations.js"></script>

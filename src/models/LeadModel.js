@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 
-const LeadSchema = mongoose.Schema({
+const LeadSchema = mongoose.Schema({ 
+
+
     name: { type: String, required: true },
     tel: { type: String, required: true },
-    email: { type: String, required: true },
+    email: { type: String, required: true }, 
+    photoLead:  { type: String, required: false },
     typeLead: { type: String, required: true },
     uf: { type: String, required: true },
     city: { type: String, required: true },

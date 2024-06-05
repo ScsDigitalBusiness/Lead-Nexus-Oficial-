@@ -10,7 +10,9 @@
   <link rel="stylesheet" href="/css/header.css" />
   <link rel="stylesheet" href="/css/sideBar.css" />
   <link rel="stylesheet" href="/css/principal-area.css" />
-  <link rel="stylesheet" href="/css/register-area.css" />
+  <link rel="stylesheet" href="/css/register-area.css" /> 
+  <link rel="stylesheet" href="/css/profilePhoto.css" />
+
   <link rel="stylesheet" href="/css/animations.css" />
   <link rel="stylesheet" href="/css/more-infos.css" />
   <link rel="stylesheet" href="/css/search.css" />
@@ -29,7 +31,17 @@
     </div>
     <div class="offcanvas-body">
       <fieldset id="register-area" class="register-area-lead d-flex align-items-start justify-content-center">
-        <form class="row g-3 w-100" action="/home/create/" method="post">
+        <form  enctype="multipart/form-data" class="row g-3 w-100" action="/home/create/" method="post">
+          <div class="w-100 d-flex align-items-center justify-content-start ">
+            <div class="profile-pic">
+              <label class="-label" for="file">
+                <span class="glyphicon glyphicon-camera"></span>
+                <span>Change Image</span>
+              </label> 
+              <input id="file" type="file" name="photoLead"  accept="image/png image/jpg image/jpeg" onchange="loadFile(event)"/>
+              <img src="/utilites/user-photo.png" id="output" width="200" />
+            </div>
+          </div>
           <div class="col-md-6">
             <label for="inputProduct4" class="form-label">Nome</label>
             <input type="text" class="form-control" name="name" required id="inputProduct4">
@@ -225,8 +237,14 @@
               <%= user.nome %>
             </span></p>
         </div>
-        <a href="/settings/index/">
-          <img id="user-foto" class="user-foto" src="/uploads/<%=user.userPhoto%>" alt="" />
+        <a href="/settings/index/"> 
+          <% if(user.userPhoto) { %> 
+            <img id="user-foto" class="user-foto" src="/uploads/<%=user.userPhoto%>" alt="" />
+ 
+          <% }else { %> 
+            <img id="user-foto" class="user-foto" src="/utilites/user-photo.png" alt="" />
+
+          <% }%>
         </a>
       </div>
     </header>
@@ -350,8 +368,14 @@
                       <%= i %>
                     </td>
                     <td id="nome-lead">
-                      <div class="lead-img">
-                        <img src="/utilites/user.png" alt="">
+                      <div class="lead-img "> 
+                        <% if(lead.photoLead) { %> 
+                        <img src="/uploads/<%= lead.photoLead %>" width="40" height="50" alt="">
+
+                         <% }else { %>
+                        <img  src="/utilites/user.png" alt="">
+
+                         <% } %>
                       </div> 
                       <span class="badge rounded-pill text-bg-dark"><%= lead.name %></span>
                       

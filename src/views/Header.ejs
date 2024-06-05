@@ -12,7 +12,14 @@
             <%= user.nome %>
           </span></p>
       </div>
-      <a href="setings-page/index.html"><img id="user-foto" class="user-foto" src="/uploads/<%=user.userPhoto %>"
-          alt="user" /></a>
+      <a href="setings-page/index.html">
+        <% if(user.userPhoto) { %> 
+          <img id="user-foto" class="user-foto" src="/uploads/<%=user.userPhoto%>" alt="" />
+
+        <% }else { %> 
+          <img id="user-foto" class="user-foto" src="/utilites/user-photo.png" alt="" />
+
+        <% }%>
+      </a>
     </div>
   </header>
