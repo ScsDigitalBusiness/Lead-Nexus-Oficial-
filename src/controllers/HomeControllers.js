@@ -45,12 +45,18 @@ exports.deleteLead = async (req, res) => {
     req.session.save(() => { return res.redirect("back"); })
 }
 exports.editLead = async (req, res) => { 
-
     const leads = new Leads(req.body, req.session.user);
-    const signup = new SignUp(req.body);
+    const signup = new SignUp(req.body);  
+    const productModel = new Product(req.body);
+    const category = new Category(req.body);
+    const process = new Process(req.body);
     const leadForEdit = await leads.getLeadsById(req.params.id);
-    const allUsers = await signup.getAllUsers();
-    res.render("EditLead", { allUsers, leadForEdit });
+    const allUsers = await signup.getAllUsers(); 
+    const categories = await category.getAllCategory();
+    const allProcess = await process.getAllProcess();
+    const allProducts = await productModel.getProducts();  
+    
+    res.render("EditLead", { allUsers, leadForEdit,categories,allProcess,allProducts});
 }
 exports.upate = async (req, res) => {   
     let body = {}

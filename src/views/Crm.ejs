@@ -110,8 +110,13 @@
             <% allLeads.forEach(lead=> { %>
               <div class="lead" draggable="true">
                 <div class="indenfication">
-                  <div class="lead-foto">
-                    <img src="/utilites/user.png" alt="" />
+                  <div class="lead-foto">  
+                    <% if(lead.photoLead)  { %> 
+                       <img src="/uploads/<%= lead.photoLead%>" alt="" />
+                    <% }else  { %>
+                      <img src="/utilites/user.png" alt="" />
+
+                    <%  } %>
                   </div>
                   <div class="lead-name">
                     <p class="name-lead"> <%=  lead.name %> </p>
