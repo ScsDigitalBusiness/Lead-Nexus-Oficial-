@@ -7,7 +7,8 @@ const SignupSchema = mongoose.Schema({
    email: { type: String, required: true },
    password: { type: String, required: true },
    passwordConfirmed: { type: String, required: true },
-   userPhoto: {type:String,required:false}
+   userPhoto: {type:String,required:false}, 
+   office:{type:String,required:false}
 });
 
 const SignupModel = mongoose.model("Accounts", SignupSchema);
@@ -93,6 +94,13 @@ class SignUp {
    async getAllUsers() {
       const allUsers = await SignupModel.find();
       return allUsers;
+   } 
+   async editPermissionsOfUser(id) { 
+      try  {
+        this.user  = await SignupModel.findByIdAndUpdate(id,this.body,{new:true}); 
+      }catch(e) {
+         throw new Error(e);  
+      }
    }
 }
 

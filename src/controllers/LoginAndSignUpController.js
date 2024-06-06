@@ -13,7 +13,8 @@ exports.loginIndex = async (req, res) => {
    if (req.session.user) return res.render('Home', { allLeads, allUsers });
    res.render("Login");
 }
-exports.signupRegister = async (req, res) => {
+exports.signupRegister = async (req, res) => { 
+   req.body.office = "Colaborador";
    const singUp = new SignUp(req.body);
    await singUp.register();
    if (singUp.errors.length > 0) {
