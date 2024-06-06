@@ -9,9 +9,9 @@ exports.indexAllUsers =  async (req,res)=>{
  
 } 
 exports.editUserPermission = async (req,res) =>{ 
-    res.send(req.body)
-   /* const signup = new SignUp(req.body);   
+   console.log(req.body)
+    const signup = new SignUp(req.body);   
     await  signup.editPermissionsOfUser(req.params.id); 
-   res.redirect("/allUsers/index/"); */
+   res.redirect("/allUsers/index/"); 
       
 }

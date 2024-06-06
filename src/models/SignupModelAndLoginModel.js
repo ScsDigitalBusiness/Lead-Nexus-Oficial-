@@ -97,7 +97,7 @@ class SignUp {
    } 
    async editPermissionsOfUser(id) { 
       try  {
-        this.user  = await SignupModel.findByIdAndUpdate(id,this.body,{new:true}); 
+        this.user  = await SignupModel.findByIdAndUpdate(id,{office:this.body.office},{new:true}); 
       }catch(e) {
          throw new Error(e);  
       }

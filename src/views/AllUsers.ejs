@@ -214,7 +214,7 @@
                             <div class="offcanvas-body">
                               <fieldset id="register-area"
                                 class="register-area-lead d-flex align-items-start justify-content-center">
-                                <form enctype="multipart/form-data" class="row g-3 w-100" action="/allUsers/edit/<%= user._id %>" method="POST">
+                                <form  class="row g-3 w-100" action="/allUsers/edit/<%= user._id %>" method="POST">
                                   <div class="w-100 d-flex align-items-center justify-content-start ">
                                     <div class="profile-pic">
                                      <% if(user.userPhoto) { %>
@@ -245,8 +245,8 @@
                                       <option value="<%= user.office %>" disabled selected>
                                         <%= user.office %>
                                       </option>
-                                      <option value="Cliente">Administrador</option>
-                                      <option value="Fornecedor">Colaborador</option>
+                                      <option value="Administrador">Administrador</option>
+                                      <option value="Colaborador">Colaborador</option>
                                     </select>
                                   </div>
                                    <div class="col-12">
