@@ -192,8 +192,14 @@
                       <td>
                         <span class="badge rounded-pill text-bg-secondary"><%= user.email %></span>  
                       </td>  
-                      <td>
-                        <span class="badge rounded-pill text-bg-secondary"><%= user.office %></span>  
+                      <td> 
+                        <% if(user.office ==="Administrador") { %> 
+
+                          <span class="badge rounded-pill text-bg-danger"><%= user.office %></span>  
+                         <% } else { %> 
+                          <span class="badge rounded-pill text-bg-warning"><%= user.office %></span>  
+
+                          <% } %>
                       </td>
                       <td class="d-flex">
                         <button type="button" class="btn btn-dark s," data-bs-toggle="offcanvas"
