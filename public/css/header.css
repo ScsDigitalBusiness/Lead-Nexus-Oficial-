@@ -103,10 +103,10 @@
   right: 13%;
 } 
 .admin:hover {
-  outline: 8px solid #68F263;
+  outline: 5px solid var(--primary);
 }  
 .user-foto:hover {
-  outline: 8px solid ;
+  outline: 5px solid #68F263 ;
 }
 
 .logo img {
