@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/css/dash.css" />
   <link rel="stylesheet" href="/css/header.css" />
   <link rel="stylesheet" href="/css/sideBar.css" />
-  <link rel="stylesheet" href="/css/contentDash.css" />
+  <link rel="stylesheet" href="/css/contentDashAdmin.css" />
   <link rel="shortcut icon" href="/utilites/favicon.ico" type="image/x-icon" />
   <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
   <title>Dashboard Admin</title>
@@ -23,21 +23,17 @@
             <% if(user.office!== "Administrador") { %>  
                 <li> 
                   <a href="/dashboard/index/">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
-                      class="bi bi-grid-1x2" viewBox="0 0 16 16">
-                      <path
-                        d="M6 1H1v14h5zm9 0h-5v5h5zm0 9v5h-5v-5zM0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1zm1 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1z" />
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-grid-1x2-fill" viewBox="0 0 16 16">
+                        <path d="M0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1zm0 9a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1z"/>
+                      </svg>
                   </a>
                 </li> 
                 <% }else { %>
                   <li> 
                     <a href="/dashboardadm/index/"> 
-                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
-                        class="bi bi-grid-1x2" viewBox="0 0 16 16">
-                        <path
-                          d="M6 1H1v14h5zm9 0h-5v5h5zm0 9v5h-5v-5zM0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1zm1 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1z" />
-                      </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-grid-1x2-fill" viewBox="0 0 16 16">
+                            <path d="M0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1zm0 9a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1z"/>
+                          </svg>
                     </a>
                   </li> 
                <% } %>
@@ -127,7 +123,7 @@
           <div class="total-view">
             <div class="text-total-view">
               <p class="total-view-p">
-                Total de Produtos
+                Total de Produtos Cadastrados
               </p>
               <div class="button-view-all-type-2 go-leads">
                 <img src="/utilites/view-all-icon.svg" alt="">
@@ -185,28 +181,37 @@
     const process =  <%- JSON.stringify(allProcess) %>; 
     const category = <%- JSON.stringify(categories)%>;  
     const users =  <%- JSON.stringify(allUsers)%>;    
-    const sales = <%-JSON.stringify(allSales) %>
+    const sales = <%-JSON.stringify(allSales) %>; 
+    const products = <%-JSON.stringify(allProducts)%>; 
+
     const userName = users.map(user=>user.nome); 
     const categoryName = category.map(categories=>categories.name); 
-    const nameProcess = process.map(prcs => prcs.process);   
+    const nameProcess = process.map(prcs => prcs.process);    
+    const ProductsName = products.map(prod=> prod.name); 
     const SalesStatusFinish =  sales.filter(sale=> sale.status ==="Concluída");  
     const SalesStatusPending =  sales.filter(sale=> sale.status ==="Pendente"); 
     const SalesStatusCancel =  sales.filter(sale=> sale.status ==="Cancelada"); 
-
     const clientNumber = leadsInDb.filter(lead=> lead.typeLead ==="Cliente");  
     const fornecedorNumber = leadsInDb.filter(lead=> lead.typeLead ==="Fornecedor");  
     
     let numberOfLeadWithUsers = []; 
-    let numberOfSalesForCategory = [];
-    let arraySalesForCategory =[]
+    let numberOfSalesForCategory = []; 
+    let numberOfSalesForProduct = [];
+    let arraySalesForCategory =[]; 
+    let arraySalesForProduct = [];
     let arrayUsers = [];   
 
     let numberOfLeadWithCategories = [];  
     let arrayCategories = []; 
-    let numbeOfLeadWithProcess = [];
-    let arrayProcess = []    
+    let numbeOfLeadWithProcess = []; 
+    let arrayProcess = []     
+
+    for(let i in ProductsName)  {
+        arraySalesForProduct = sales.filter(sale=> sale.productOurService === ProductsName[i]); 
+        numberOfSalesForProduct.push(arraySalesForProduct.length); 
+    }
     for(let i in categoryName)  {
-      arraySalesForCategory = sales.filter(sale=> sale.productCategory === categoryName[i]); 
+      arraySalesForCategory = SalesStatusFinish.filter(sale=> sale.productCategory === categoryName[i]); 
       numberOfSalesForCategory.push(arraySalesForCategory.length); 
     }
 
@@ -310,23 +315,23 @@
     // Chart Process 
     const ctx3 = document.getElementById("donout");
     new Chart(ctx3, {
-      type: "line",
+      type: "polarArea",
       data: {
         labels:categoryName,
         datasets: [
           {
             label: "Processos de Materiais Cadastrados",
             data: numberOfSalesForCategory,
-            borderWidth: 1,
+            borderWidth: 1, 
             backgroundColor: [
-              '#5EE95C',
-              '#5EE95C',
-              '#5EE95C',
-              '#5EE95C',
-              '#5EE95C',
-              '#5EE95C',
-              '#5EE95C'
-            ],
+            
+          "#96D9A5",
+          "#9FD996",
+          "#F2F2F2",
+          "#6A8466",
+          "#0D0D0D",
+          "#3C2E25",
+          ],
             borderColor: '#5EE95C',
           },
         ],
@@ -343,33 +348,27 @@
   //Chart Category  
   const ctx4 = document.getElementById("polar");
   new Chart(ctx4, {
-  type: "radar",
+  type: "bar",
   data: {
-    labels:categoryName ,
+    labels:ProductsName ,
     datasets: [
       {
-        label: "Materiais Cadastrados",
-        data: numberOfLeadWithCategories,
+        label: "Produtos Mais Vendidos",
+        data: numberOfSalesForProduct,
         backgroundColor: [
-          "#68F263",
-          "#96D9A5",
-          "#9FD996",
-          "#F2F2F2",
-          "#6A8466",
-          "#0D0D0D",
-          "#3C2E25",
+         '#5EE95C',
+              '#5EE95C',
+              '#5EE95C',
+              '#5EE95C',
+              '#5EE95C',
+              '#5EE95C',
+              '#5EE95C',
         ],
         borderColor: "black",
       },
     ],
   },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
-    },
-  },
+ 
 });  
 let SaleValueFormated = salesValues.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
  document.getElementById("count-month").innerHTML = SaleValueFormated; 

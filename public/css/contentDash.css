@@ -1,17 +1,11 @@
 .dash {
-  background:#F5F6FA;
+  background: white;
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: calc(100vw - 7vw);
+  width: calc(100vw - 10vw);
   overflow-y: scroll;
   overflow-x: hidden;
-}  
-.cabecalho  , .notification-area{
-  background:#F5F6FA;
-} 
-.notification-img {
-  background-color: rgb(215, 215, 215);
 }
 .geral-view {
   width: 96%;
@@ -33,7 +27,7 @@
   padding: 3vh;
 }
 .total-view {
-  background-color: #FFFFFF;
+  background-color: #f1f1f1;
   width: 30%;
   color: white;
 
@@ -129,11 +123,10 @@
   align-items: center;
   justify-content: center;
   grid-area: graf1;
-  width: 60vw; 
-  gap: 1vh;
+  width: 40vw;
   height: 40vh;
   border-radius: 50px;
-  background-color: #FFFFFF;
+  background: #eaeaea;
   margin: 1vh;
 }
 .grafico-line canvas {
@@ -147,10 +140,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width:30vw;
+  width: calc(100vw - 55vw);
   grid-area: graf2;
   height: 40vh;
-  background-color: #FFFFFF;
+
+  background: #eaeaea;
 }
 .grafico-bar canvas {
   height: 100%;
@@ -166,7 +160,7 @@
   grid-area: graf3;
   height: 50vh;
   width: calc(100vw - 60vw);
-  background-color: #FFFFFF;
+  background: #eaeaea;
 }
 
 .grafico-more canvas {
@@ -183,7 +177,7 @@
   height: 50vh;
   margin: 1vh;
 
-  background-color: #FFFFFF;
+  background: #eaeaea;
 }
 .grafico-polar canvas {
   height: 90%;
