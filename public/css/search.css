@@ -2,12 +2,12 @@
   position: fixed;
   display: flex;
   align-items: center;
-  justify-content: cente2r;
+  justify-content: center;
   width: 20vw;
   border-radius: 20vh;
   background-color: white; 
   border: 0.5px solid rgb(202, 202, 202);
-  top: 3.5%; 
+  top: 1.5%; 
   left: 12%; 
   padding:0.5vh;
   

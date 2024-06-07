@@ -6,7 +6,8 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 7vw; 
+  width: 7vw;  
+  position: relative;
  
 }
 .links-bar {
@@ -22,12 +23,12 @@
 } 
 
 #sentings {
-  position: relative;
-  top: 32%;
+  position: absolute;
+  bottom: 6%;
 } 
 #exit {
-  position: relative;
-  top: 29%;
+  position: absolute;
+  bottom: 2%;
 }
 #exit img {
   height: 3.3vh;
