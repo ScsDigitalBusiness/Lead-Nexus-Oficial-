@@ -15,7 +15,6 @@ exports.index = async (req, res) => {
     const categories = await category.getAllCategory();
     const allProcess = await process.getAllProcess();
     const allProducts = await productModel.getProducts(); 
-  
     if (req.session.user) return res.render('Home', {allLeads, allProducts, allUsers, categories, allProcess });
 }
 exports.createLead = async (req, res) => { 

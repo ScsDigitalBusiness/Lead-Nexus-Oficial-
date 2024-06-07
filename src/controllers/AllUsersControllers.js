@@ -9,9 +9,14 @@ exports.indexAllUsers =  async (req,res)=>{
  
 } 
 exports.editUserPermission = async (req,res) =>{ 
-   console.log(req.body)
     const signup = new SignUp(req.body);   
     await  signup.editPermissionsOfUser(req.params.id); 
    res.redirect("/allUsers/index/"); 
       
+} 
+exports.deleteUser = async (req,res) =>{
+   const signup = new SignUp(req.body); 
+   await  signup.deleteUser(req.params.id);  
+   res.redirect("/allUsers/index/"); 
+
 }

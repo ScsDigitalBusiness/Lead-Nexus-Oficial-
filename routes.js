@@ -2,7 +2,7 @@ const express = require('express');
 
 const { index,createLead,logout,deleteLead,editLead,upate} = require('./src/controllers/HomeControllers'); 
 const {loginIndex, signupIndex,signupRegister, login} = require ("./src/controllers/LoginAndSignUpController");  
-const {indexAllUsers,editUserPermission} = require("./src/controllers/AllUsersControllers")
+const {indexAllUsers,editUserPermission,deleteUser} = require("./src/controllers/AllUsersControllers")
 const {indexDashboard} = require("./src/controllers/DashboardControllers"); 
 const {indexCRM} = require ("./src/controllers/CrmControllers"); 
 const {indexSettings,updateProfile}  = require ("./src/controllers/SettingsControllers")  
@@ -48,7 +48,8 @@ router.get("/process/delete/:id",deleteProcess);
 router.get("/category/delete/:id",deleteCategory) 
 //allUsers Page 
 router.get("/allUsers/index/",indexAllUsers);  
-router.post('/allUsers/edit/:id',editUserPermission)
+router.post('/allUsers/edit/:id',editUserPermission) 
+router.get("/allUsers/delete/:id",deleteUser)
 //sales-page 
 router.get("/sales/index/",indexSales); 
 router.post("/sale/create/",createSales);  

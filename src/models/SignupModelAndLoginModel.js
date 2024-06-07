@@ -101,6 +101,13 @@ class SignUp {
       }catch(e) {
          throw new Error(e);  
       }
+   } 
+   async deleteUser(id) {
+      try {
+         this.user =  await SignupModel.findByIdAndDelete({_id:id}); 
+      }catch(e) {
+         throw new Error(e); 
+      }
    }
 }
 

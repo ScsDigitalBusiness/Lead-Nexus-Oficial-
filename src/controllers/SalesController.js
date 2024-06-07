@@ -4,7 +4,8 @@ const Category = require("../models/CategoryMOdel");
 const { SignUp } = require("../models/SignupModelAndLoginModel");
 const Process = require("../models/ProcessModel");  
 const Sales =require("../models/SalesModel") 
-exports.indexSales = async (req, res) => { 
+exports.indexSales = async (req, res) => {   
+if(req.session.user.office==="Administrador") {
     const SalesModel = new Sales(req.body); 
     const productModel = new Product(req.body);
     const leads = new Leads(req.body, req.session.user);
@@ -19,8 +20,8 @@ exports.indexSales = async (req, res) => {
     const allSales = await SalesModel.getAllSales(); 
     const allSalesValues = await SalesModel.getAllSalesValue();
     const allSalesFinish = await SalesModel.getAllSalesFinished(); 
-   res.render("Sales", {allSales,allSalesValues,allSalesFinish,allLeads, allProducts, categories, allUsers, allProcess });
-
+    res.render("Sales", {allSales,allSalesValues,allSalesFinish,allLeads, allProducts, categories, allUsers, allProcess });
+  }
 }
 exports.createSales = async (req, res) => {
    const SalesModel = new Sales(req.body); 
