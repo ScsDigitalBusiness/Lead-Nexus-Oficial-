@@ -82,7 +82,7 @@
 .user-foto { 
   max-width: 70px;
   border-radius: 999px;
-  outline: 3px solid rgb(27, 184, 241);
+  outline: 3px solid #68F263;
   cursor: pointer;
   transition: 200ms ease-in-out; 
   aspect-ratio: 1;
@@ -101,7 +101,14 @@
   object-fit: cover; 
   position: relative;
   right: 13%;
+} 
+.admin:hover {
+  outline: 8px solid #68F263;
+}  
+.user-foto:hover {
+  outline: 8px solid ;
 }
+
 .logo img {
   height: 100%;
   clip-path: circle();
