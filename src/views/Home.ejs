@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="/css/principal-area.css" />
   <link rel="stylesheet" href="/css/register-area.css" />
   <link rel="stylesheet" href="/css/profilePhoto.css" />
-
+ <link rel="stylesheet" href="/css/sidebar.css">
   <link rel="stylesheet" href="/css/animations.css" />
   <link rel="stylesheet" href="/css/more-infos.css" />
   <link rel="stylesheet" href="/css/search.css" />
@@ -224,10 +224,12 @@
 
       </ul>
     </div>
-  </div>
-  <!-- REGISTER-AREA -->
+  </div> 
+  
+  <!-- REGISTER-AREA --> 
+   
   <main id="content" class="content">
-    <%- include("Header.ejs",{user: user}) %>
+    <%- include("Header.ejs",{user: user}) %>  
     <div class="slidebar">
       <div class="logo">
         <img src="/utilites/logo.svg" alt="LOGO" />
@@ -333,7 +335,7 @@
           </a>
         </li>
       </ul>
-    </div>
+    </div>  
     <main class="dash"> 
        
       <% if(allLeads.length> 0  ) { %>
