@@ -171,10 +171,11 @@
     const category = <%- JSON.stringify(categories)%>;  
     const users =  <%- JSON.stringify(allUsers)%>;   
     const userName = users.map(user=>user.nome); 
+    const salesValues = <%JSON.stringify(allSalesValues) %>
     const categoryName = category.map(categories=>categories.name); 
     const nameProcess = process.map(prcs => prcs.process);  
     const clientNumber = leadsInDb.filter(lead=> lead.typeLead ==="Cliente");  
-    const fornecedorNumber = leadsInDb.filter(lead=> lead.typeLead ==="Fornecedor");  
+    const fornecedorNumber = leadsInDb.filter(lead=> lead.typeLead ==="Fornecedor");    
     
     let numberOfLeadWithUsers = [];
     let arrayUsers = [];  

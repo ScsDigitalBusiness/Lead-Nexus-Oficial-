@@ -569,7 +569,7 @@
                                                         <div class="col-md-6">
                                                             <label for="inputEmail-edit-<%=i%>" class="form-label">E-mail</label>
                                                             <input type="email" class="form-control " name="email" value="<%= sale.email %>" placeholder="exemplo@teste.com.br"required id="inputEmail-edit-<%=i%>">
-                                                        </div>
+                                                         </div>
                                                         <div class="col-md-6">
                                                             <label for="inputTel-edit-<%=i%>" class="form-label">Telefone</label>
                                                             <input type="text" name="tel" class="form-control inputTel" value="<%= sale.tel %>" required id="inputTel-edit-<%=i%>"placeholder="(00) 0000-0000">
@@ -732,6 +732,7 @@
         const products = <%-JSON.stringify(allProducts) %>;  
         const leads = <%- JSON.stringify(allLeads) %>; 
         const sales = <%- JSON.stringify(allSales) %>; 
+      const salesValues = <%-JSON.stringify(allSalesValues) %>
 
         document.getElementById("material").addEventListener("change", () => {
             let value = document.getElementById("material").value;
@@ -766,20 +767,24 @@
             })
         }) 
         document.getElementById(`inputTotal-${i}`).addEventListener("focus",()=>{
-            let price = parseFloat(document.getElementById(`inputPrice-${i}`).value); 
+            let price =  parseFloat(document.getElementById(`inputPrice-${i}`).value);  
             let discount =  parseFloat(document.getElementById(`inputDescount-${i}`).value);  
-            document.getElementById(`inputTotal-${i}`).value = `${(price - discount)},00`;
+           
+            document.getElementById(`inputTotal-${i}`).value =(price - discount).toLocaleString('pt-br',{minimumFractionDigits: 2});
             
         })
         }
         
         //descoubt calculo 
         document.getElementById("inputTotal").addEventListener("focus",()=>{
-            let price = parseFloat(document.getElementById("inputPrice").value); 
+            let price = parseFloat(document.getElementById("inputPrice").value);  
             let discount =  parseFloat(document.getElementById("inputDescount").value);  
-            document.getElementById("inputTotal").value = `${(price - discount)},00`;
+            document.getElementById("inputTotal").value = (price - discount).toLocaleString('pt-br',{minimumFractionDigits: 2});
             
-        })
+        }) 
+        let SaleValueFormated = salesValues.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+       document.getElementById("leads-count").innerHTML = SaleValueFormated; 
+
     </script>
     <script src="/js/Jquery/code.jquery.com_jquery-3.7.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"

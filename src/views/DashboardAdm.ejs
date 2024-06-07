@@ -119,43 +119,59 @@
             </div>
 
             <h3 id="leads-count">
-              <%= allLeadsOnDB %>
+              <%= leadsAll.length %>
             </h3>
-          </div>
+          </div> 
+          
 
           <div class="total-view">
             <div class="text-total-view">
               <p class="total-view-p">
-                Cadastradas hoje
+                Total de Produtos
               </p>
               <div class="button-view-all-type-2 go-leads">
                 <img src="/utilites/view-all-icon.svg" alt="">
               </div>
             </div>
             <h3 id="today-count" class="count">
-              <%=allLeadsToday%>
+              <%=allProducts.length%>
             </h3>
-          </div>
+          </div>  
           <div class="total-view">
             <div class="text-total-view">
               <p class="total-view-p">
-                Cadastradas Neste Mês
+                Total de Vendas
+              </p>
+              <div class="button-view-all-type-2 go-leads">
+                <img src="/utilites/view-all-icon.svg" alt="">
+              </div>
+            </div>
+            <h3 id="today-count" class="count">
+              <%=allSalesFinish%>
+            </h3>
+          </div> 
+          
+          <div class="total-view">
+            <div class="text-total-view">
+              <p class="total-view-p">
+                Receita Geral
               </p>
               <div class="button-view-all-type-2 go-leads">
                 <img src="/utilites/view-all-icon.svg" alt="">
               </div>
             </div>
             <h3 id="count-month" class="count">
-              <%=AllLeadsInMonth %>
+              
             </h3>
           </div>
 
         </div>
         <section class="grafico-area">
           <div class="grafico-line">
-            <canvas id="line"> </canvas>
+            <canvas id="sallers"></canvas>
+            <canvas id="sale_status"> </canvas> 
           </div>
-          <div class="grafico-bar"><canvas id="bar"> </canvas></div>
+          <div class="grafico-bar"> </canvas><canvas id="lead_status"> </canvas></div>
           <div class="grafico-more"><canvas id="donout"></canvas></div>
           <div class="grafico-polar"><canvas id="polar"></canvas></div>
         </section>
@@ -164,25 +180,39 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
 
-    const leadsInDb = <%- JSON.stringify(leadsAll) %>;
+    const leadsInDb = <%- JSON.stringify(leadsAll) %>; 
+    const salesValues = <%-JSON.stringify(allSalesValues) %>
     const process =  <%- JSON.stringify(allProcess) %>; 
     const category = <%- JSON.stringify(categories)%>;  
-    const users =  <%- JSON.stringify(allUsers)%>;   
+    const users =  <%- JSON.stringify(allUsers)%>;    
+    const sales = <%-JSON.stringify(allSales) %>
     const userName = users.map(user=>user.nome); 
     const categoryName = category.map(categories=>categories.name); 
-    const nameProcess = process.map(prcs => prcs.process);  
+    const nameProcess = process.map(prcs => prcs.process);   
+    const SalesStatusFinish =  sales.filter(sale=> sale.status ==="Concluída");  
+    const SalesStatusPending =  sales.filter(sale=> sale.status ==="Pendente"); 
+    const SalesStatusCancel =  sales.filter(sale=> sale.status ==="Cancelada"); 
+
     const clientNumber = leadsInDb.filter(lead=> lead.typeLead ==="Cliente");  
     const fornecedorNumber = leadsInDb.filter(lead=> lead.typeLead ==="Fornecedor");  
     
-    let numberOfLeadWithUsers = [];
-    let arrayUsers = [];  
+    let numberOfLeadWithUsers = []; 
+    let numberOfSalesForCategory = [];
+    let arraySalesForCategory =[]
+    let arrayUsers = [];   
+
     let numberOfLeadWithCategories = [];  
     let arrayCategories = []; 
     let numbeOfLeadWithProcess = [];
-    let arrayProcess = []   
+    let arrayProcess = []    
+    for(let i in categoryName)  {
+      arraySalesForCategory = sales.filter(sale=> sale.productCategory === categoryName[i]); 
+      numberOfSalesForCategory.push(arraySalesForCategory.length); 
+    }
+
     //usser Register Contage  
     for(let i in userName)  {
-      arrayUsers = leadsInDb.filter(lead=> lead.colaborator === userName[i]); 
+      arrayUsers = SalesStatusFinish.filter(sale=> sale.saller === userName[i]); 
       numberOfLeadWithUsers.push(arrayUsers.length); 
     }
     //Category contage 
@@ -196,44 +226,62 @@
       numbeOfLeadWithProcess.push(arrayProcess.length);
     }  
     //Chart Clients and Fornecer
-    const ctx1 = document.getElementById("line");
+    const ctx1 = document.getElementById("sale_status");
     new Chart(ctx1, {
-      type: "pie",
+      type: "doughnut",
       data: {
-        labels: ["Cliente","Fornecedor"],
+        labels: ["Finalizada","Pendente","Cancelada"],
         datasets: [
           {
             label: "Tipo de Leads",
-            data: [clientNumber.length, fornecedorNumber.length],
+            data: [ SalesStatusFinish.length,  SalesStatusPending.length,SalesStatusCancel.length],
             borderWidth: 1,
             backgroundColor: [
-              '#5EE95C',
-              "#0D0D0D",
+              '#198754',
+              "#FFC107",
+              "#DC3545",
+
               
             ],
             borderColor: '#5EE95C',
           },
         ],
       },
-      options: {
-        indexAxis: "x",
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-      },
+      
     });
 
+    const ctx5 = document.getElementById("lead_status");
+    new Chart(ctx5, {
+      type: "pie",
+      data: {
+        labels: ["Cliente","Fornecedor"],
+        datasets: [
+          {
+            label: "Tipo de Leads",
+            data: [ clientNumber.length,  fornecedorNumber.length],
+            borderWidth: 1,
+            backgroundColor: [
+            "#68F263",
+            "#black",
+             
+
+              
+            ],
+            borderColor: '#5EE95C',
+          },
+        ],
+      },
+      
+    });
     // Chart bar User Registration
-    const ctx2 = document.getElementById("bar");
+    const ctx2 = document.getElementById("sallers");
     new Chart(ctx2, {
       type: "bar",
       data: {
         labels: userName,
         datasets: [
           {
-            label: "Ranking de Usuários",
+            label: "Desempenho dos Vendedores",
             data: numberOfLeadWithUsers,
             borderWidth: 1,
             backgroundColor: [
@@ -262,13 +310,13 @@
     // Chart Process 
     const ctx3 = document.getElementById("donout");
     new Chart(ctx3, {
-      type: "bar",
+      type: "line",
       data: {
-        labels: nameProcess,
+        labels:categoryName,
         datasets: [
           {
-            label: "Materiais Cadastrados",
-            data: numbeOfLeadWithProcess,
+            label: "Processos de Materiais Cadastrados",
+            data: numberOfSalesForCategory,
             borderWidth: 1,
             backgroundColor: [
               '#5EE95C',
@@ -284,7 +332,7 @@
         ],
       },
       options: {
-        indexAxis: "y",
+        indexAxis: "x",
         scales: {
           y: {
             beginAtZero: true,
@@ -295,7 +343,7 @@
   //Chart Category  
   const ctx4 = document.getElementById("polar");
   new Chart(ctx4, {
-  type: "polarArea",
+  type: "radar",
   data: {
     labels:categoryName ,
     datasets: [
@@ -322,13 +370,14 @@
       },
     },
   },
-});
-
+});  
+let SaleValueFormated = salesValues.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+ document.getElementById("count-month").innerHTML = SaleValueFormated; 
 
 
   </script>
 
-
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   <script src="/js/jQuery/code.jquery.com_jquery-3.7.1.js"></script>
   <script src="/js/dash.js"></script>
   <script src="/js/Dashanimation.js"></script>
