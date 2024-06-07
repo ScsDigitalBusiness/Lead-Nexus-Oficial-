@@ -3,7 +3,8 @@ const express = require('express');
 const { index,createLead,logout,deleteLead,editLead,upate} = require('./src/controllers/HomeControllers'); 
 const {loginIndex, signupIndex,signupRegister, login} = require ("./src/controllers/LoginAndSignUpController");  
 const {indexAllUsers,editUserPermission,deleteUser} = require("./src/controllers/AllUsersControllers")
-const {indexDashboard} = require("./src/controllers/DashboardControllers"); 
+const {indexDashboard,} = require("./src/controllers/DashboardControllers");   
+const {indexDashboardAdm} = require("./src/controllers/DashboardAdm")
 const {indexCRM} = require ("./src/controllers/CrmControllers"); 
 const {indexSettings,updateProfile}  = require ("./src/controllers/SettingsControllers")  
 const {indexProduct,createProduct,editPage,editProduct,deleteProduct} = require("./src/controllers/ProductController");  
@@ -34,6 +35,8 @@ router.post("/home/update/:id",uploads.single('leadPhotoEdit'),upate);
 router.get("/home/index/logout",logout); 
 //DASHBOARD ROUTES 
 router.get("/dashboard/index/",indexDashboard); 
+router.get("/dashboardadm/index/",indexDashboardAdm); 
+
 //CRM ROUTES 
 router.get("/crm/index/",indexCRM);   
 //product-page routes 
