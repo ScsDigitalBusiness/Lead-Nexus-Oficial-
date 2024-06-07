@@ -18,5 +18,5 @@ exports.indexDashboardAdm =  async (req,res) =>{
     const allProcess = await process.getAllProcess();
     const allUsers = await signup.getAllUsers(); 
   
-    res.render('Dashboard', { allLeadsToday, allLeadsOnDB, leadsAll, AllLeadsInMonth, categories, allProcess, allUsers });
+    res.render('DashboardAdm', { allLeadsToday, allLeadsOnDB, leadsAll, AllLeadsInMonth, categories, allProcess, allUsers });
 }

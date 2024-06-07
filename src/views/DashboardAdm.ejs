@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="/css/contentDash.css" />
   <link rel="shortcut icon" href="/utilites/favicon.ico" type="image/x-icon" />
   <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
-
   <title>Dashboard Admin</title>
 </head>
 <body>
@@ -21,15 +20,27 @@
           <img src="/utilites/logo.svg" alt="" />
         </div>
         <ul class="links-bar">
-          <li>
-            <a href="/dashboard/index/">
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-grid-1x2-fill"
-                viewBox="0 0 16 16">
-                <path
-                  d="M0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1zm0 9a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1z" />
-              </svg>
-            </a>
-          </li> 
+            <% if(user.office!== "Administrador") { %>  
+                <li> 
+                  <a href="/dashboard/index/">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
+                      class="bi bi-grid-1x2" viewBox="0 0 16 16">
+                      <path
+                        d="M6 1H1v14h5zm9 0h-5v5h5zm0 9v5h-5v-5zM0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1zm1 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1z" />
+                    </svg>
+                  </a>
+                </li> 
+                <% }else { %>
+                  <li> 
+                    <a href="/dashboardadm/index/"> 
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black"
+                        class="bi bi-grid-1x2" viewBox="0 0 16 16">
+                        <path
+                          d="M6 1H1v14h5zm9 0h-5v5h5zm0 9v5h-5v-5zM0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1zm1 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1z" />
+                      </svg>
+                    </a>
+                  </li> 
+               <% } %>
           <% if(user.office ==="Administrador") { %>
             <li>
               <a href="/allUsers/index/">
@@ -61,7 +72,8 @@
               </svg>
             </a>
           </li> 
-          <% if(user.office ==="Administrador") { %>
+          <% if(user.office ==="Administrador") { %> 
+            <li>
             <a href="/sales/index/">
               <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-currency-dollar"
                 viewBox="0 0 16 16">
