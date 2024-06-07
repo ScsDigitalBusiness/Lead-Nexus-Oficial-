@@ -187,8 +187,8 @@
     const userName = users.map(user=>user.nome); 
     const categoryName = category.map(categories=>categories.name); 
     const nameProcess = process.map(prcs => prcs.process);    
+    const ProductsName = products.map(prod=> prod.name); 
     const SalesStatusFinish =  sales.filter(sale=> sale.status ==="Concluída");  
-    const ProductsName = SalesStatusFinish.map(prod=> prod.productOurService); 
     const SalesStatusPending =  sales.filter(sale=> sale.status ==="Pendente"); 
     const SalesStatusCancel =  sales.filter(sale=> sale.status ==="Cancelada"); 
     const clientNumber = leadsInDb.filter(lead=> lead.typeLead ==="Cliente");  
