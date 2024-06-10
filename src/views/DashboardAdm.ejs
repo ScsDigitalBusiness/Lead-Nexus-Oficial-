@@ -110,7 +110,7 @@
           <div class="total-leads">
             <div class="text-total-lead">
               <p class="total-lead-title">
-                Total de Leads Cadastradas
+              Receita Geral
               </p>
               <div class="button-view-all go-leads">
                 <img src="/utilites/view-all-icon.svg" alt="">
@@ -118,7 +118,7 @@
             </div>
 
             <h3 id="leads-count">
-              <%= leadsAll.length %>
+             
             </h3>
           </div> 
           
@@ -153,14 +153,14 @@
           <div class="total-view">
             <div class="text-total-view">
               <p class="total-view-p">
-                Receita Geral
+                Leads Cadastradas
               </p>
               <div class="button-view-all-type-2 go-leads">
                 <img src="/utilites/view-all-icon.svg" alt="">
               </div>
             </div>
             <h3 id="count-month" class="count">
-              
+              <%= leadsAll.length %>
             </h3>
           </div>
 
@@ -374,7 +374,7 @@
  
 });  
 let SaleValueFormated = salesValues.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
- document.getElementById("count-month").innerHTML = SaleValueFormated; 
+ document.getElementById("leads-count").innerHTML = SaleValueFormated; 
 
 
   </script>
