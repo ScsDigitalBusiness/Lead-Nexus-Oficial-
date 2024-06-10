@@ -112,7 +112,15 @@ class Leads {
        let year = defaultDate.getFullYear(); 
        let formatedDate = `${day}-${month}-${year}`; 
        return formatedDate;   
-    }
+    } 
+     async getLeadsOfUser () { 
+        try {
+         const leadsOfUser = await LeadModel.find({colaborator: this.session.nome}); 
+         return leadsOfUser; 
+        }catch(e) {
+            throw new Error(e); 
+        }
+     }  
 
 
 
