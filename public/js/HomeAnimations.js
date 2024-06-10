@@ -40,45 +40,6 @@ var loadFile = function (event) {
 };
  
 
-//elements 
-const btnToggler = window.document.querySelector(".navbar-toggler"); 
-const inputSearch = window.document.querySelector(".navbar-search"); 
-const iconSearch = window.document.querySelector("#icon-search");
-const navbar = window.document.querySelector(".navbar");
-
-//events
-btnToggler.addEventListener('click', () => {
-    navbar.classList.toggle('active'); 
-});
-
-inputSearch.addEventListener('click', () => {
-    if(!navbar.classList.contains("active")) {
-        navbar.classList.add('active'); 
-    }
-});
-
-iconSearch.addEventListener('click', () => {
-    if(!navbar.classList.contains("active")) {
-        navbar.classList.add('active'); 
-    }
-});
 
  
 
-$(".menu > ul > li").click(function (e) {
-  // Remove the 'active' class from other menu items
-  $(this).siblings().removeClass("active");
-  // Toggle the 'active' class on the clicked menu item
-  $(this).toggleClass("active");
-  // Toggle the visibility of the submenu
-  $(this).find("ul").slideToggle();
-  // Close other submenus if they are open
-  $(this).siblings().find("ul").slideUp();
-  // Remove the 'active' class from submenu items
-  $(this).siblings().find("ul").find("li").removeClass("active");
-});
-
-$(".menu-btn").click(function () {
-  // Toggle the 'active' class on the sidebar
-  $(".sidebar").toggleClass("active");
-});

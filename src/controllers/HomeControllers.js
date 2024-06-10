@@ -60,7 +60,8 @@ exports.deleteLead = async (req, res) => {
     const leads = new Leads(req.body, req.session.user);
     const deleted = await leads.deleteLead(req.params.id);
     req.session.save(() => { return res.redirect("back"); })
-}
+}  
+/*
 exports.editLead = async (req, res) => { 
     const leads = new Leads(req.body, req.session.user);
     const signup = new SignUp(req.body);  
@@ -74,7 +75,7 @@ exports.editLead = async (req, res) => {
     const allProducts = await productModel.getProducts();  
     
     res.render("EditLead", { allUsers, leadForEdit,categories,allProcess,allProducts});
-}
+} */
 exports.upate = async (req, res) => {    
     let body = {}
     if(!req.file) {

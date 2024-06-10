@@ -29,7 +29,6 @@ router.post("/home/create/", uploads.single('photoLead'),createLead);
 //delete 
 router.get("/home/delete/:id",deleteLead);  
 //edit 
-router.get("/home/edit/:id",editLead);  
 router.post("/home/update/:id",uploads.single('leadPhotoEdit'),upate);
 //logout  
 router.get("/home/index/logout",logout); 
