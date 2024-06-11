@@ -2,7 +2,7 @@ const { Leads } = require("../models/LeadModel");
 const { SignUp } = require("../models/SignupModelAndLoginModel");
 const Product = require("../models/ProductAndServiceModel")
 const Category = require("../models/CategoryMOdel");
-const Process = require("../models/ProcessModel"); 
+const Process = require("../models/ProcessModel");
 
 exports.index = async (req, res) => {
     const productModel = new Product(req.body);
@@ -14,39 +14,39 @@ exports.index = async (req, res) => {
     const allUsers = await signup.getAllUsers();
     const categories = await category.getAllCategory();
     const allProcess = await process.getAllProcess();
-    const allProducts = await productModel.getProducts();  
-    const leadsOfUser = await leads.getLeadsOfUser(); 
-    if (req.session.user) return res.render('Home', {leadsOfUser,allLeads, allProducts, allUsers, categories, allProcess });
+    const allProducts = await productModel.getProducts();
+    const leadsOfUser = await leads.getLeadsOfUser();
+    if (req.session.user) return res.render('Home', { leadsOfUser, allLeads, allProducts, allUsers, categories, allProcess });
 }
-exports.createLead = async (req, res) => { 
+exports.createLead = async (req, res) => {
     let body = {};
-    if(!req.file) {
+    if (!req.file) {
         body = {
             name: req.body.name,
             tel: req.body.tel,
-            email:req.body.email, 
-            typeLead:  req.body.typeLead,
-            uf:  req.body.uf,
+            email: req.body.email,
+            typeLead: req.body.typeLead,
+            uf: req.body.uf,
             city: req.body.city,
-            date:  req.body.date,
-            material:   req.body.material,
-            typeOfMaterial:  req.body.typeOfMaterial,
-            process:  req.body.process,
+            date: req.body.date,
+            material: req.body.material,
+            typeOfMaterial: req.body.typeOfMaterial,
+            process: req.body.process,
             colaborator: req.body.colaborator
         }
-    }else {
+    } else {
         body = {
             name: req.body.name,
             tel: req.body.tel,
-            email:req.body.email, 
+            email: req.body.email,
             photoLead: req.file.filename,
-            typeLead:  req.body.typeLead,
-            uf:  req.body.uf,
+            typeLead: req.body.typeLead,
+            uf: req.body.uf,
             city: req.body.city,
-            date:  req.body.date,
-            material:   req.body.material,
-            typeOfMaterial:  req.body.typeOfMaterial,
-            process:  req.body.process,
+            date: req.body.date,
+            material: req.body.material,
+            typeOfMaterial: req.body.typeOfMaterial,
+            process: req.body.process,
             colaborator: req.body.colaborator
         }
     }
@@ -60,7 +60,7 @@ exports.deleteLead = async (req, res) => {
     const leads = new Leads(req.body, req.session.user);
     const deleted = await leads.deleteLead(req.params.id);
     req.session.save(() => { return res.redirect("back"); })
-}  
+}
 /*
 exports.editLead = async (req, res) => { 
     const leads = new Leads(req.body, req.session.user);
@@ -76,42 +76,42 @@ exports.editLead = async (req, res) => {
     
     res.render("EditLead", { allUsers, leadForEdit,categories,allProcess,allProducts});
 } */
-exports.upate = async (req, res) => {    
+exports.upate = async (req, res) => {
     let body = {}
-    if(!req.file) {
+    if (!req.file) {
         body = {
             name: req.body.name,
             tel: req.body.tel,
-            email:req.body.email, 
-            typeLead:  req.body.typeLead,
-            uf:  req.body.uf,
+            email: req.body.email,
+            typeLead: req.body.typeLead,
+            uf: req.body.uf,
             city: req.body.city,
-            date:  req.body.date,
-            material:   req.body.material,
-            typeOfMaterial:  req.body.typeOfMaterial,
-            process:  req.body.process,
+            date: req.body.date,
+            material: req.body.material,
+            typeOfMaterial: req.body.typeOfMaterial,
+            process: req.body.process,
             colaborator: req.body.colaborator
         }
-    }else {
+    } else {
         body = {
             name: req.body.name,
             tel: req.body.tel,
-            email:req.body.email, 
+            email: req.body.email,
             photoLead: req.file.filename,
-            typeLead:  req.body.typeLead,
-            uf:  req.body.uf,
+            typeLead: req.body.typeLead,
+            uf: req.body.uf,
             city: req.body.city,
-            date:  req.body.date,
-            material:   req.body.material,
-            typeOfMaterial:  req.body.typeOfMaterial,
-            process:  req.body.process,
+            date: req.body.date,
+            material: req.body.material,
+            typeOfMaterial: req.body.typeOfMaterial,
+            process: req.body.process,
             colaborator: req.body.colaborator
         }
     }
-      
+
     const leads = new Leads(body, req.session.user);
     await leads.edit(req.params.id);
-    res.redirect('/home/index/'); 
+    res.redirect('/home/index/');
 
 }
 exports.logout = (req, res) => {

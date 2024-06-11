@@ -10,10 +10,11 @@ exports.loginIndex = async (req, res) => {
    const leads = new Leads(req.body, req.session.user);
    const allUsers = await signup.getAllUsers();
    const allLeads = await leads.getLeads();
-   if (req.session.user) return res.render('Home', { allLeads, allUsers });
+
+    if (req.session.user) return res.render('Home', { allLeads, allUsers });
    res.render("Login");
 }
-exports.signupRegister = async (req, res) => { 
+exports.signupRegister = async (req, res) => {  
    req.body.office = "Colaborador";
    const singUp = new SignUp(req.body);
    await singUp.register();
@@ -27,7 +28,7 @@ exports.signupRegister = async (req, res) => {
 
       })
       return;
-   }
+   } 
 }
 exports.login = async (req, res) => {
    const singup = new SignUp(req.body);

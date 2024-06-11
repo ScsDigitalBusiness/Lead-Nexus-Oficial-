@@ -11,9 +11,12 @@
   }
   .section__1 {
     grid-area: s1;
-    background-color: #39ac92;
+    background: url(../utilites/bg2.png); 
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     height: 100vh;
-    width: 35vw;
+    width: 60vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -50,9 +53,9 @@
   }
   
   .section__2 {
-    width: 65vw;
+    width: 40vw;
     grid-area: s2;
-    background-color: #f7f7f7;
+    background-color:#FFFFFF;
     grid-template-areas:
       "text_form text_form  "
       "form form";
@@ -109,15 +112,18 @@
     position: relative; 
     right: 19%;
   }
-  .form-area form button {
-      width: 15vw;
+  .form-area form .button {
+      width: 10vw;
       padding: 2vh;
-      border-radius: 5vh; 
       font-size: 1.1em; 
       color: white; 
       background-color: #3CA597; 
       border: none; 
-      cursor: pointer;
+      cursor: pointer; 
+      transition: 1.2s;
+    } 
+    .form-area form   .button:hover {
+      background-color: #9ea8a6;
     }
   .input-area img {
     height: 2.5vh; 
@@ -210,4 +216,28 @@
       margin-top: 0;
     }
   }
-  
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  gap: 3vh
+}
+.signUp-button { 
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  background-color: transparent;
+  border: 2px solid  #808080;   
+  text-decoration: none;
+  font-size: 1.1em;
+  color:#808080 ;
+  width: 10vw;  
+  padding: 2vh; 
+transition: 1.2s;
+
+} 
+.signUp-button:hover {
+  background-color: rgb(58, 58, 58); 
+  color: white;
+  border: 1px solid rgb(58, 58, 58);
+}

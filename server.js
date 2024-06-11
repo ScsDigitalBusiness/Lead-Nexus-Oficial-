@@ -9,7 +9,6 @@ const csrf = require("csurf");
 const flash  = require('connect-flash');    
 require('dotenv').config(); 
 
-
 const {globalMiddleware,csrfMiddleware,checkCsrfError} = require ('./src/middlewares/middlewares'); 
 const app = express();
 // app.use(helmet()) 
