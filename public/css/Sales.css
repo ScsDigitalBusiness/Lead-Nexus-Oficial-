@@ -1,0 +1,73 @@
+.modal-export .modal-body .business-info {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+  height: 27vh;
+  gap: 1vh;
+  border-bottom: 1px solid silver;
+}
+.modal-export .modal-body .logotipo-roman {
+  height: 15vh;
+}
+.modal-export .modal-body .logotipo-roman img {
+  height: 100%;
+}
+.modal-export .modal-body .locals {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+  width: 100%;
+}
+.modal-export .modal-body .locals h2 {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+.modal-export .modal-body .locals p {
+  font-size: 1.1em;
+}
+.modal-export .modal-body .locals .enderess, .modal-export .modal-body .locals .contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1vh;
+}
+.modal-export .modal-body .infos-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2vh;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.modal-export .modal-body .infos-area .area-rom {
+  width: 20vw;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+.modal-export .modal-body .infos-area .area-rom bak span {
+  font-weight: bold;
+}
+.modal-export .modal-body .infos-area .area-rom p {
+  font-size: 1.1em;
+}
+.modal-export .modal-body .sales, .modal-export .modal-body .info-Client, .modal-export .modal-body .info-romaneio {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  gap: 2vh;
+}
+.modal-export .modal-body .sales h2, .modal-export .modal-body .info-Client h2, .modal-export .modal-body .info-romaneio h2 {
+  font-size: 1.5em;
+  background-color: silver;
+  color: rgb(58, 58, 58);
+  border-radius: 0.5vh;
+}
+.modal-export .modal-body .rom-total {
+  background-color: rgb(226, 226, 226);
+  text-align: end;
+}/*# sourceMappingURL=Sales.css.map */

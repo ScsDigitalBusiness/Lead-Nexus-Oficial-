@@ -318,7 +318,7 @@
     // Chart Process 
     const ctx3 = document.getElementById("donout");
     new Chart(ctx3, {
-      type: "polarArea",
+      type: "bar",
       data: {
         labels:categoryName,
         datasets: [
@@ -340,7 +340,7 @@
         ],
       },
       options: {
-        indexAxis: "x",
+        indexAxis: "y",
         scales: {
           y: {
             beginAtZero: true,
