@@ -983,10 +983,10 @@
 
   <!-- SCRIPTSerer-->
   <script>
-    const products = <% -JSON.stringify(allProducts) %>;
-    const leads = <% - JSON.stringify(allLeads) %>;
-    const sales = <% - JSON.stringify(allSales) %>;
-    const salesValues = <% -JSON.stringify(allSalesValues) %>
+    const products = <%-JSON.stringify(allProducts) %>;
+    const leads = <%- JSON.stringify(allLeads) %>;
+    const sales = <%- JSON.stringify(allSales) %>;
+    const salesValues = <%-JSON.stringify(allSalesValues) %>
 
       document.getElementById("material").addEventListener("change", () => {
         let value = document.getElementById("material").value;

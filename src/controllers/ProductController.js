@@ -14,18 +14,32 @@ exports.indexProduct = async (req, res) => {
 
   res.render("Product", { allProducts, categories, allUsers, allProcess });
 }
-exports.createProduct = async (req, res) => {
-  const body = {
-    name: req.body.name,
-    productPhoto: req.file.filename,
-    category: req.body.category,
-    process: req.body.process,
-    sku: req.body.sku,
-    weight: req.body.weight,
-    price: req.body.price,
-    brand: req.body.brand,
-    description: req.body.description,
-    date: req.body.date,
+exports.createProduct = async (req, res) => { 
+  if (!req.file) {
+    body = {
+      name: req.body.name,
+      category: req.body.category,
+      process: req.body.process,
+      sku: req.body.sku,
+      weight: req.body.weight,
+      price: req.body.price,
+      brand: req.body.brand,
+      description: req.body.description,
+      date: req.body.date,
+    }
+  } else {
+    body = {
+      name: req.body.name,
+      productPhoto: req.file.filename,
+      category: req.body.category,
+      process: req.body.process,
+      sku: req.body.sku,
+      weight: req.body.weight,
+      price: req.body.price,
+      brand: req.body.brand,
+      description: req.body.description,
+      date: req.body.date,
+    }
   }
   const productModel = new Product(body);
   await productModel.create();
