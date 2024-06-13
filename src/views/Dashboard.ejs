@@ -306,7 +306,7 @@
   //Chart Category  
   const ctx4 = document.getElementById("polar");
   new Chart(ctx4, {
-  type: "polarArea",
+  type: "bar",
   data: {
     labels:categoryName ,
     datasets: [
@@ -328,7 +328,7 @@
   },
   options: {
     scales: {
-      y: {
+      x: {
         beginAtZero: true,
       },
     },
