@@ -982,7 +982,7 @@
 
 
   <!-- SCRIPTSerer-->
-  <script>
+  <script> 
     const products = <%-JSON.stringify(allProducts) %>;
     const leads = <%- JSON.stringify(allLeads) %>;
     const sales = <%- JSON.stringify(allSales) %>;
@@ -1038,7 +1038,7 @@
     })
     let SaleValueFormated = salesValues.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
     document.getElementById("leads-count").innerHTML = SaleValueFormated;
-
+   
   </script> 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
    integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="

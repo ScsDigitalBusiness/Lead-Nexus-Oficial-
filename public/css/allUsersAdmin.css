@@ -1,14 +1,18 @@
 .input-area {
   display: flex;
   align-items: start;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: start;
+  flex-direction: column; 
+
 }
 .input-area .inputs {
-  width: 50%;
+  width: 100%; 
 }
 
 .user-photo {
-  background-color: yellow;
-  height: 20vh;
-}/*# sourceMappingURL=allUsersAdmin.css.map */
+  height: 20vh;  
+  align-items: center;
+  justify-content: center; 
+  display: flex; 
+  width: 100vw;
+}/*# sourceMappingURL=allUsersAdmin.css.map */ 
