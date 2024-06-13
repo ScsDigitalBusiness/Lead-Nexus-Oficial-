@@ -19,12 +19,10 @@
   justify-content: start;
   flex-direction: column;
   gap: 2vh; 
-  background-color: red;
 
   list-style: none;
 }  
 .links-bar li   { 
-  background-color: yellow;
   width: 12vw;  
   border-radius: 1vh;
   display: flex;
