@@ -11,7 +11,7 @@
 .content {
   z-index: 0;
   display: grid;
-
+  overflow: hidden;
   height: 100vh;
 
   grid-template-areas:
