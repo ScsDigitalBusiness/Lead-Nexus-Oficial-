@@ -6,12 +6,20 @@
   padding-bottom: 10vh;
   width: calc(100vw - 15vw);
   overflow-y: scroll;
-  background-color: #ffffff; 
+  background:#F5F6FA;
   overflow-x: hidden; 
   flex-direction: column; 
   gap: 3vh;
 
-  }  
+  }   
+
+
+  .cabecalho  , .notification-area{
+    background:#F5F6FA;
+  } 
+  .notification-img {
+    background-color: rgb(215, 215, 215);
+  }
   .cabecalho  , .notification-area{
     background:#F5F6FA;
   } 
@@ -123,7 +131,7 @@
   }
   .grafico-area {
     height: 82vh;
-    width: 95vw;
+    width: 100%;
     display: grid;
     display: flex;
     flex-direction: row;
@@ -141,7 +149,7 @@
     align-items: center;
     justify-content: center;
     grid-area: graf1;
-    width: 50vw; 
+    width: 60%; 
     gap: 1vh;
     height: 40vh;
     border-radius: 50px;
@@ -150,7 +158,7 @@
   }
   .grafico-line canvas {
     height: 100%;
-    width: 90%;
+    width: 100%;
   }
   .grafico-bar {
     border-radius: 50px;
@@ -159,14 +167,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width:30vw;
+    width:25%;
     grid-area: graf2;
     height: 40vh;
     background-color: #FFFFFF;
   }
   .grafico-bar canvas {
     height: 100%;
-    width: 90%;
+    width: 100%;
   }
   
   .grafico-more {
@@ -177,7 +185,7 @@
     justify-content: center;
     grid-area: graf3;
     height: 50vh;
-    width: 40vw;
+    width: 40%;
     background-color: #FFFFFF;
   }
   
@@ -187,19 +195,19 @@
   
   .grafico-polar {
     border-radius: 50px;
-    width: 40vw;
+    width: 50%;
     grid-area: graf4;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 50vh;
-    margin: 1vh;
+    margin: 1vh; 
   
     background-color: #FFFFFF;
   }
   .grafico-polar canvas {
-    height: 90%;
-    width: 90%; 
+    height: 100%;
+    width: 100%; 
    
   } 
   
