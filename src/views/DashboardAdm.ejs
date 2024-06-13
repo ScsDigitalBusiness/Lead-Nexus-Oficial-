@@ -218,8 +218,8 @@
     let numbeOfLeadWithProcess = []; 
     let arrayProcess = []     
 
-    for(let i = 0; i <= ProductsName.length; i++)  {
-        arraySalesForProduct = SalesStatusFinish.filter(sale=> sale.productOurService === ProductsName[i]); 
+    for(let i in ProductsName)  {
+        arraySalesForProduct = sales.filter(sale=> sale.productOurService === ProductsName[i]); 
         numberOfSalesForProduct.push(arraySalesForProduct.length); 
     }
     for(let i in categoryName)  {
