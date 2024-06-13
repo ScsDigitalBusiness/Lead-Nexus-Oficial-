@@ -6,7 +6,7 @@
   padding-bottom: 10vh;
   width: calc(100vw - 15vw);
   overflow-y: scroll;
-  background-color: white; 
+  background-color: #ffffff; 
   overflow-x: hidden; 
   flex-direction: column; 
   gap: 3vh;
