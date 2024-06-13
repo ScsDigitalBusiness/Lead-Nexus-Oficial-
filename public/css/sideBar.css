@@ -54,7 +54,8 @@
 #exit img {
   height: 3.3vh;
 } 
-.selected-page {
+.selected-page {  
+  
   background-color: rgb(223, 223, 223);
 
-}
+} 

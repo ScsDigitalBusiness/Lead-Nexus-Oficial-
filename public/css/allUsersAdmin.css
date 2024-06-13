@@ -5,10 +5,9 @@
   flex-direction: column;
 }
 .input-area .inputs {
-  width: 50%;
+  width: 100%;
 }
 
 .user-photo {
-  background-color: yellow;
   height: 20vh;
 }/*# sourceMappingURL=allUsersAdmin.css.map */
