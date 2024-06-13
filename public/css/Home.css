@@ -5,23 +5,16 @@
   box-sizing: border-box;
   font-family: "Arimo", sans-serif;
 }
-.desfoque {
-  filter: blur(10px);
-}
-.desfoque2 {
-  background-color: transparent;
-  backdrop-filter: blur(10px);
-}
+
 body {
   overflow: hidden;
-  background-color: rgb(44, 44, 44);
 }
 .content {
   z-index: 0;
   display: grid;
   height: 100vh;
   grid-template-areas:
-    "slidebar header "
-    "slidebar dash ";
+    "slidebar header"
+    "slidebar dash";
   width: 100vw;
 }
