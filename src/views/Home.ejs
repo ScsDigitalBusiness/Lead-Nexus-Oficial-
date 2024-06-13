@@ -403,7 +403,8 @@
     
 
     for (let i = 1; i <= leads.length; i++) {
-      document.getElementById(`material-${i}`).addEventListener("change", () => {
+      document.getElementById(`material-${i}`).addEventListener("change", () => { 
+        document.getElementById(`TipoDeMaterial-${i}`).innerHTML = ""; 
         let value = document.getElementById(`material-${i}`).value;
         let filtredProducts = products.filter(product => product.category === value);
         filtredProducts.forEach((products) => {
@@ -428,7 +429,8 @@
       var image = document.getElementById(`output-${i}`);
       image.src = URL.createObjectURL(event.target.files[0]);
     }
-    document.getElementById("material").addEventListener("change", () => {
+    document.getElementById("material").addEventListener("change", () => { 
+      document.getElementById("TipoDeMaterial").innerHTML = ""; 
       let value = document.getElementById("material").value;
       let filtredProducts = products.filter(product => product.category === value);
       filtredProducts.forEach((products) => {
