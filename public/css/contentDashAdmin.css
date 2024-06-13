@@ -1,11 +1,16 @@
 .dash {
-    background:#F5F6FA;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: calc(100vw - 7vw);
-    overflow-y: scroll;
-    overflow-x: hidden;
+  height: calc(100vh - 15vh);
+  grid-area: dash;
+  display: flex;
+  justify-content: start;
+  padding-bottom: 10vh;
+  width: calc(100vw - 15vw);
+  overflow-y: scroll;
+  background-color: white; 
+  overflow-x: hidden; 
+  flex-direction: column; 
+  gap: 3vh;
+
   }  
   .cabecalho  , .notification-area{
     background:#F5F6FA;
@@ -14,13 +19,12 @@
     background-color: rgb(215, 215, 215);
   }
   .geral-view {
-    width: 96%;
-  
+    width: 100%; 
     display: flex;
-    align-items: start;
-    justify-content: center;
+    align-items: center;
+    justify-content: start;
     flex-direction: row;
-    gap: 2vh;
+    gap: 1vh;
   }
   .total-leads {
     background-color: black;
@@ -30,19 +34,21 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 3vh;
+    padding: 3vh; 
+    height: 23vh;
   }
   .total-view {
     background-color: #FFFFFF;
-    width: 30%;
+    width: 22%;
     color: white;
-  
+    height: 90%;
     border-radius: 5vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 3vh;
+    padding: 3vh; 
+    height: 23vh;
   }
   .text-total-view {
     color: black;
@@ -59,7 +65,8 @@
   .text-total-lead {
     color: white;
     display: flex;
-    gap: 17vh;
+    gap: 17vh; 
+
     align-items: center;
     width: 100%; 
    
@@ -74,15 +81,17 @@
     padding-left: 3vh;
     font-size: 4em;
   }
-  .button-view-all-type-2 {
-    background-color: #e1e1e1;
+  .button-view-all-type-2 { 
+    background-color: #F5F6FA;
     padding: 1vh;
     clip-path: circle();
   
     height: 4vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; 
+    position: absolute; 
+    left: 90%;
   }
   .button-view-all-type-2 img {
     height: 100%;
@@ -96,7 +105,9 @@
     height: 4vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; 
+    position: absolute; 
+    left: 90%;
   }
   .button-view-all img {
     height: 100%;
@@ -130,7 +141,7 @@
     align-items: center;
     justify-content: center;
     grid-area: graf1;
-    width: 60vw; 
+    width: 50vw; 
     gap: 1vh;
     height: 40vh;
     border-radius: 50px;
@@ -166,7 +177,7 @@
     justify-content: center;
     grid-area: graf3;
     height: 50vh;
-    width: calc(100vw - 60vw);
+    width: 40vw;
     background-color: #FFFFFF;
   }
   
@@ -176,7 +187,7 @@
   
   .grafico-polar {
     border-radius: 50px;
-    width: calc(100vw - 55vw);
+    width: 40vw;
     grid-area: graf4;
     display: flex;
     align-items: center;

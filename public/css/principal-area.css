@@ -4,14 +4,14 @@
   display: flex;
   justify-content: start;
   padding-bottom: 10vh;
-  width: calc(100vw - 7vw);
+  width: calc(100vw - 15vw);
   overflow-y: scroll;
   background-color: white; 
   overflow-x: hidden; 
   flex-direction: column; 
   gap: 3vh;
-}
 
+  }  
 .geral-view {
   width: 96%;
 
