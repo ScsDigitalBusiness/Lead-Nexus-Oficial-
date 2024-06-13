@@ -161,11 +161,11 @@
                         <%= i %>
                       </td>
                       <td id="nome-lead">
-                        <div class="lead-img ">
+                        <div class="lead-img">
                           <% if(users.userPhoto) { %>
-                            <img id="user-foto" class=" <% if(users.office ==="Administrador") { %> admin <%}else {%> user-foto<% } %>" src="/uploads/<%= users.userPhoto %>" alt="">
+                            <img  class=" <% if(users.office ==="Administrador") { %> admin <%}else {%> user-foto<% } %>" src="/uploads/<%= users.userPhoto %>" alt="">
                             <% } else { %>
-                              <img id="user-foto" class=" <% if(users.office ==="Administrador") { %> admin <%}else {%> user-foto<% } %>" src="/utilites/user-photo.png" alt="">
+                              <img  class="<% if(users.office ==="Administrador") { %> admin <%}else {%> user-foto<% } %> d-flex align-items-center justify-items-center" src="/utilites/user-photo.png" alt="">
                               <% }%>
 
                         </div>
